@@ -1,0 +1,33 @@
+/**
+ * Typography scale — marketing SaaS roles (sizes + line heights).
+ * Mapped in theme-map.css to `text-*` utilities.
+ */
+
+:root {
+  --leading-none: 1;
+  --leading-tight: 1.15;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  --tracking-tight: -0.03em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.1em;
+  --tracking-editorial: -0.035em;
+
+  --fs-display: clamp(2.375rem, 2.1rem + 1.6vw, 4rem);
+  --fs-hero: clamp(2.75rem, 2.15rem + 1.65vw, 4.5rem);
+  --leading-hero-title: 1.12;
+  --fs-heading-xl: clamp(1.9375rem, 1.7rem + 0.8vw, 2.875rem);
+  --fs-stat: clamp(2rem, 1.75rem + 0.9vw, 2.75rem);
+  --fs-heading-lg: clamp(1.5rem, 1.35rem + 0.45vw, 2rem);
+  --fs-heading-md: clamp(1.25rem, 1.15rem + 0.25vw, 1.5rem);
+  --fs-heading-sm: 1.125rem;
+
+  --fs-body-lg: 1.125rem;
+  --fs-body-md: 1rem;
+  --fs-body-sm: 0.875rem;
+
+  --fs-caption: 0.75rem;
+  --fs-eyebrow: 0.8rem;
+}

@@ -1,0 +1,130 @@
+/**
+ * Rely marketing / brand tokens — premium subscription-commerce SaaS.
+ * Primary #06385F · Soft blue #D6E4F0 · Background #F8FAFC
+ */
+
+:root {
+  --site-header-offset: calc(4.5rem + max(0.75rem, env(safe-area-inset-top, 0px)));
+  --hero-breathe-top: clamp(3.5rem, 10vh, 6.5rem);
+  /** Son içerik bölümü ile pre-footer CTA bandı arası (tüm pazarlama sayfaları). */
+  --marketing-pre-footer-gap: clamp(4rem, 7.5vw, 6.5rem);
+
+  /* —— Brand core —— */
+  --marketing-primary: #06385f;
+  --marketing-primary-hover: #084a7a;
+  --marketing-primary-deep: #052f4d;
+  --marketing-soft-blue: #d6e4f0;
+  --marketing-background: #f8fafc;
+
+  /* —— Neutrals & surfaces —— */
+  --marketing-foreground-strong: #0f172a;
+  --marketing-body-muted: #5c6570;
+  --marketing-body-readable: #293548;
+  --marketing-eyebrow-foreground: #506680;
+  --marketing-eyebrow-line: color-mix(
+    in oklab,
+    var(--marketing-eyebrow-foreground) 70%,
+    transparent
+  );
+  --marketing-border-subtle: #e2e8f0;
+  /* Section-to-section divider — softer than hairlines for smoother transitions. */
+  --marketing-section-divider: color-mix(
+    in oklab,
+    var(--marketing-border-subtle) 45%,
+    var(--marketing-background)
+  );
+  --marketing-surface-band: #f8fafc;
+  --marketing-page-hero-bg: #f5f7fa;
+  --marketing-page-hero-gradient: linear-gradient(180deg, #f7f8fb 0%, #f5f7fa 100%);
+  --hero-wave-stroke: #06385f;
+  --hero-wave-stroke-soft: #64748b;
+  --hero-wave-line-opacity: 0.05;
+  --hero-wave-line-opacity-accent: 0.08;
+  --marketing-surface-elevated: #ffffff;
+
+  /* —— Hero: calm but visible brand-tinted glows —— */
+  --marketing-glow-warm: color-mix(
+    in srgb,
+    var(--marketing-soft-blue) 62%,
+    color-mix(in srgb, #d4c4b0 55%, var(--marketing-primary) 18%) 38%
+  );
+  --marketing-glow-cool: color-mix(in srgb, var(--marketing-soft-blue) 76%, var(--marketing-primary) 10%);
+
+  /* —— Supporting accent palette (navy ile uyumlu, soluk değil) —— */
+  --marketing-accent-teal: #0e7c84;
+  --marketing-accent-teal-soft: #d4ecee;
+  --marketing-accent-amber: #b07512;
+  --marketing-accent-amber-soft: #f4e7cd;
+  --marketing-accent-indigo: #4b53be;
+  --marketing-accent-indigo-soft: #e1e3f6;
+  --marketing-accent-rose: #bb4d72;
+  --marketing-accent-rose-soft: #f5dde8;
+
+  /* —— Selective headline emphasis (navy → blue, rare & intentional) —— */
+  --marketing-emphasis-from: #0a2c4b;
+  --marketing-emphasis-to: #2767ad;
+  --marketing-emphasis-on-dark-from: #7db4ec;
+  --marketing-emphasis-on-dark-to: #dcecff;
+
+  /* —— Pre-footer CTA band —— */
+  --marketing-pre-footer-bg: #181818;
+
+  /* —— Dark marketing bands (pricing / CTA) —— */
+  --marketing-pricing-dark: #06385f;
+  --marketing-pricing-charcoal: #052f4d;
+  --marketing-pricing-dark-dash: color-mix(in oklab, white 14%, var(--marketing-primary));
+  --marketing-pricing-muted-on-dark: #b8c9d9;
+
+  /* —— Legacy aliases (components still reference these names) —— */
+  --marketing-cerulean: var(--marketing-primary);
+  --marketing-cyan-bright: var(--marketing-primary);
+  --marketing-cyan-deep: var(--marketing-primary-deep);
+  --marketing-stratos: var(--marketing-primary);
+  --marketing-navy: var(--marketing-primary-deep);
+  --marketing-enterprise-purple: var(--marketing-primary-deep);
+  --marketing-peach: var(--marketing-glow-warm);
+  --marketing-coral: var(--marketing-glow-cool);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --site-header-offset: calc(4.625rem + max(0.75rem, env(safe-area-inset-top, 0px)));
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-header-offset: calc(4.75rem + max(0.75rem, env(safe-area-inset-top, 0px)));
+    --hero-breathe-top: clamp(4.5rem, 12vh, 8rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --site-header-offset: calc(5.75rem + 15px);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --hero-breathe-top: clamp(5.5rem, 14vh, 9.5rem);
+  }
+}
+
+.dark {
+  --marketing-background: oklch(0.145 0.02 250);
+  --marketing-surface-band: oklch(0.18 0.02 250);
+  --marketing-border-subtle: color-mix(in oklab, var(--border) 85%, transparent);
+  --marketing-body-muted: color-mix(in oklab, var(--muted-foreground) 92%, transparent);
+  --marketing-page-hero-gradient: linear-gradient(
+    180deg,
+    oklch(0.17 0.02 250) 0%,
+    oklch(0.145 0.02 250) 100%
+  );
+  --hero-wave-stroke: #9fb4ca;
+  --hero-wave-stroke-soft: #74879c;
+  --hero-wave-line-opacity: 0.05;
+  --hero-wave-line-opacity-accent: 0.08;
+  --marketing-glow-warm: color-mix(in srgb, var(--marketing-primary) 25%, transparent);
+  --marketing-glow-cool: color-mix(in srgb, var(--marketing-soft-blue) 20%, transparent);
+}

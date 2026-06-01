@@ -1,0 +1,18 @@
+/**
+ * RELY corner radius — single value across the design system (15px).
+ */
+
+:root {
+  --radius: 25px;
+  --radius-sm: 25px;
+  --radius-md: 25px;
+  --radius-lg: 25px;
+  --radius-xl: 25px;
+  --radius-2xl: 25px;
+  --radius-3xl: 25px;
+  --radius-4xl: 25px;
+  --radius-shell: 25px;
+  --radius-control: 25px;
+  /* True circles only (avatars, glow blobs, flow nodes) */
+  --radius-pill: 9999px;
+}

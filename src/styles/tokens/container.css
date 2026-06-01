@@ -1,0 +1,7 @@
+/**
+ * Marketing container width + horizontal inset (aligned with design tokens).
+ */
+
+:root {
+  --container-max-width: 80.625rem;
+}

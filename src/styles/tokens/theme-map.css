@@ -1,0 +1,57 @@
+/**
+ * Registers design tokens as Tailwind theme extensions.
+ */
+
+@theme inline {
+  --spacing-stack-3xs: var(--ds-stack-3xs);
+  --spacing-stack-2xs: var(--ds-stack-2xs);
+  --spacing-stack-xs: var(--ds-stack-xs);
+  --spacing-stack-sm: var(--ds-stack-sm);
+  --spacing-stack-md: var(--ds-stack-md);
+  --spacing-stack-lg: var(--ds-stack-lg);
+  --spacing-stack-xl: var(--ds-stack-xl);
+  --spacing-stack-2xl: var(--ds-stack-2xl);
+
+  --spacing-section-y-none: var(--ds-section-y-none);
+  --spacing-section-y-sm: var(--ds-section-y-sm);
+  --spacing-section-y-md: var(--ds-section-y-md);
+  --spacing-section-y-lg: var(--ds-section-y-lg);
+  --spacing-section-y-xl: var(--ds-section-y-xl);
+
+  --spacing-gutter-x: var(--ds-gutter-x);
+  --spacing-gutter-x-lg: var(--ds-gutter-x-lg);
+
+  --spacing-gap-xs: var(--ds-gap-xs);
+  --spacing-gap-sm: var(--ds-gap-sm);
+  --spacing-gap-md: var(--ds-gap-md);
+  --spacing-gap-lg: var(--ds-gap-lg);
+
+  --text-display: var(--fs-display);
+  --text-hero: var(--fs-hero);
+  --text-heading-xl: var(--fs-heading-xl);
+  --text-heading-lg: var(--fs-heading-lg);
+  --text-heading-md: var(--fs-heading-md);
+  --text-heading-sm: var(--fs-heading-sm);
+  --text-body-lg: var(--fs-body-lg);
+  --text-body-md: var(--fs-body-md);
+  --text-body-sm: var(--fs-body-sm);
+  --text-caption: var(--fs-caption);
+  --text-eyebrow: var(--fs-eyebrow);
+  --text-stat: var(--fs-stat);
+
+  --leading-display: var(--leading-tight);
+  --leading-hero: var(--leading-hero-title);
+  --leading-heading: var(--leading-snug);
+  --leading-body: var(--leading-normal);
+
+  --tracking-eyebrow: var(--tracking-wide);
+
+  --shadow-elevation-surface: var(--ds-elevation-surface);
+  --shadow-elevation-raised: var(--ds-elevation-raised);
+  --shadow-elevation-overlay: var(--ds-elevation-overlay);
+
+  --color-brand-primary: var(--marketing-primary);
+  --color-brand-primary-hover: var(--marketing-primary-hover);
+  --color-brand-soft: var(--marketing-soft-blue);
+  --color-brand-canvas: var(--marketing-background);
+}

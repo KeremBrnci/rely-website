@@ -1,0 +1,248 @@
+import type { BlogPostSection } from "@/content/blog/types";
+
+export const articleBody = {
+  sections: [
+    {
+      type: "p",
+      text: "Başarısız ödemeler (failed payments), abonelik işletmelerinde en az voluntary churn kadar MRR kaybı üretir; çoğu operatör bunu «iptal» sanır. Involuntary churn, kart süresi dolması, yetersiz bakiye, 3D Secure veya banka reddi kaynaklıdır. Türkiye’de token’lı tekrarlayan tahsilat ve disiplinli dunning olmadan büyüme, sessiz gelir sızıntısıyla birlikte gelir. Bu yazı, kaybı ölçmek ve operasyonel olarak kurtarmak için operatör rehberidir.",
+    },
+    {
+      type: "h2",
+      text: "Neden başarısız ödemeler stratejik risk?",
+    },
+    {
+      type: "h3",
+      text: "MRR ve nakit akışı etkisi",
+    },
+    {
+      type: "p",
+      text: "Aylık %3 başarısız ödeme oranı, 100.000 TL MRR’lı bir işletmede teorik 3.000 TL risk demektir; recovery %50 ise 1.500 TL kalıcı kayıp. Yıllık ~18.000 TL «görünmeyen churn». Büyüdükçe mutlak kayıp artar; edinme bütçesi ile telafi etmek CAC’ı şişirir.",
+    },
+    {
+      type: "p",
+      text: "Finans ekibi churn raporunu okurken involuntary ayrılmazsa, pazarlama «ürün beğenilmedi» diye yanlış kampanya açar. Doğru ayrım, müdahaleyi tahsilat ve bildirim ekibine yönlendirir.",
+    },
+    {
+      type: "h3",
+      text: "Müşteri deneyimi ve marka güveni",
+    },
+    {
+      type: "p",
+      text: "Abone, üründen memnunken «ödeme alınamadı» e-postası alır; iletişim tonu ve self-servis kart güncelleme linki, kalıcı iptali belirler. Agresif retry banka tarafında bloke riskini artırır; dengeli takvim gerekir.",
+    },
+    {
+      type: "h2",
+      text: "Başarısız ödeme nedenleri (operatör taksonomisi)",
+    },
+    {
+      type: "ul",
+      items: [
+        "Yetersiz bakiye / limit",
+        "Kart süresi dolması",
+        "3D Secure veya banka fraud kuralları",
+        "Token geçersizliği (kart yenileme)",
+        "Yurtdışı işlem kısıtı",
+        "Teknik timeout veya POS kesintisi",
+      ],
+    },
+    {
+      type: "p",
+      text: "Her red kodu için farklı mesaj ve retry gecikmesi kullanın; tek şablon dönüşümü düşürür.",
+    },
+    {
+      type: "h2",
+      text: "Gerçek senaryolar",
+    },
+    {
+      type: "p",
+      text: "Supplement markası: Aylık %4,2 failed payment; dunning yokken net MRR churn %6,1. Craftgate retry + 3. ve 7. gün SMS ile recovery %38 → involuntary churn MRR kaybı %42 azaldı.",
+    },
+    {
+      type: "p",
+      text: "Kahve markası: Yıllık planlarda tek başarısız çekim tüm yılı iptal ediyordu; politika «3 retry + müşteri paneli» olarak değişti, yıllık cohort retention %9 arttı.",
+    },
+    {
+      type: "p",
+      text: "Kozmetik markası: «Ödeme başarısız» e-postası marka tonunda değildi; A/B sonrası self-servis linkli kısa SMS + e-posta, kart güncelleme oranı ikiye katlandı.",
+    },
+    {
+      type: "h2",
+      text: "Yaygın hatalar",
+    },
+    {
+      type: "ul",
+      items: [
+        "Yalnızca tek retry (aynı gün)",
+        "Müşteriye kart güncelleme yolu sunmamak",
+        "Başarısız ödemeyi Shopify siparişi olarak işlemek (stok/fulfillment karmaşası)",
+        "Involuntary churn’ü voluntary gibi raporlamak",
+        "Retry’ı gece saatlerinde yoğunlaştırmak (banka red oranı)",
+        "Dunning’i sadece e-posta ile sınırlamak (SMS eksikliği)",
+      ],
+    },
+    {
+      type: "h2",
+      text: "Dunning ve kurtarma: uygulanabilir çerçeve",
+    },
+    {
+      type: "h3",
+      text: "Retry takvimi",
+    },
+    {
+      type: "p",
+      text: "Örnek: T+0 başarısız → T+1 gün 2. deneme → T+3 gün 3. deneme → T+7 gün son deneme. Her adımda e-posta; T+1 ve T+3’te SMS. Başarılı tahsilat sonrası Shopify siparişi oluşturulur — RELY Subs akışında ödeme önce, sipariş sonra.",
+    },
+    {
+      type: "h3",
+      text: "Kart güncelleme ve storefront",
+    },
+    {
+      type: "p",
+      text: "Müşteri panelinde «ödeme yöntemini güncelle» tek tık; mobil uyumlu. Craftgate/İyzico token yenileme ile entegre. Destek makrosu: panel linki + son teslimat tarihi.",
+    },
+    {
+      type: "h3",
+      text: "Politika: ne zaman iptal?",
+    },
+    {
+      type: "p",
+      text: "X retry sonrası «grace period» (7 gün erişim / teslimat erteleme) voluntary iptali önleyebilir. Süre ve iletişim şeffaf olmalı; aksi halde chargeback riski artar.",
+    },
+    {
+      type: "h2",
+      text: "RELY Subs ve ödeme altyapısı",
+    },
+    {
+      type: "p",
+      text: "Token’lı tekrarlayan tahsilat Craftgate veya İyzico üzerinden; kartlar RELY’de değil, ödeme kuruluşunda saklanır. Dunning kuralları, Mailgun/NetGSM bildirimleri ve müşteri storefront’u tek operasyon setinde yönetilir; recovery rate KPI olarak dashboard’da izlenir.",
+    },
+    {
+      type: "h2",
+      text: "İzlenmesi gereken metrikler",
+    },
+    {
+      type: "ul",
+      items: [
+        "Failed payment rate (aylık)",
+        "Recovery rate (kurtarılan MRR / riskli MRR)",
+        "Involuntary churn MRR",
+        "Ortalama retry sayısı başarıya kadar",
+        "Kart güncelleme dönüşüm oranı",
+        "Grace period sonrası retention",
+        "Chargeback oranı",
+      ],
+    },
+    {
+      type: "p",
+      text: "Başarısız ödemeler kaçınılmazdır; ölçülemez ve kurtarılmazsa abonelik modelinin en büyük sessiz verimsizliğidir. Operatör hedefi: involuntary churn’ü voluntary churn kadar disiplinli yönetmektir.",
+    },
+    {
+      type: "h2",
+      text: "Ödeme kuruluşu ve banka tarafı optimizasyon",
+    },
+    {
+      type: "p",
+      text: "Craftgate çoklu banka yönlendirmesi, tek POS’a göre red oranını düşürebilir. Retry’da aynı bankayı zorlamak yerine alternatif acquirer denemek (kuruluş destekliyorsa) recovery’i artırır. İyzico hızlı kurulumda bile token yenileme akışı test edilmelidir.",
+    },
+    {
+      type: "p",
+      text: "3D Secure gerektiren işlemlerde müşteriye net yönlendirme; başarısız 3DS, failed payment’ın büyük payıdır. Checkout’ta kayıtlı kart ile sonraki yenilemelerde sürtünme azalır.",
+    },
+    {
+      type: "h2",
+      text: "Operasyon ve destek playbooks",
+    },
+    {
+      type: "p",
+      text: "«Ödeme başarısız» gelen müşteriye 24 saat içinde proaktif SMS, recovery oranını artırır. Destek panelinde son red kodu, retry sayısı ve sonraki deneme tarihi görünmeli. Makro: kart güncelleme linki + son teslimat.",
+    },
+    {
+      type: "p",
+      text: "Başarısız ödeme sonrası otomatik iptal süresi çok kısaysa müşteri üründen memnun olsa bile kaybedilir; grace period + tek teslimat erteleme politikası net yazılmalıdır.",
+    },
+    {
+      type: "h3",
+      text: "Shopify sipariş senkronu",
+    },
+    {
+      type: "p",
+      text: "RELY akışında ödeme onaylanmadan sipariş oluşmaması, stok ve müşteri iletişimini sadeleştirir. Finans ekibi «ödenmemiş sipariş» takibi yapmaz; recovery MRR doğrudan bridge’e yansır.",
+    },
+    {
+      type: "h2",
+      text: "Büyüme ile birlikte ölçeklenen dunning",
+    },
+    {
+      type: "p",
+      text: "1.000 aboneden 10.000 aboneye geçerken failed payment mutlak sayı artar; aynı manuel süreç çöker. Dunning kuralları, bildirim şablonları ve KPI’lar önceden otomasyona alınmalıdır.",
+    },
+    {
+      type: "p",
+      text: "Aylık «kurtarılan MRR» hedefi pazarlama hedefi kadar finans toplantısında okunmalıdır.",
+    },
+    { type: "h2", text: "KPI hedefleri ve yönetim ritmi" },
+    { type: "p", text: "Aylık failed payment rate hedefi işletme büyüklüğüne göre <%4 tutulabilir; recovery rate >%35 olgunluk göstergesidir. Haftalık 15 dakikalık «dunning stand-up»: kuyruk boyutu, ortalama retry, kart güncelleme tıklanma." },
+    { type: "h3", text: "Segment bazlı dunning" },
+    { type: "p", text: "Yüksek LTV cohort’ta ekstra retry veya telefon outreach düşünülebilir; düşük LTV’de otomasyon yeterli. Yıllık planlı abonede tek başarısız çekim tüm yılı iptal etmemeli — grace + manuel outreach." },
+    { type: "p", text: "Supplement’te 3. retry öncesi «sipariş ertelendi» SMS’i, müşteriyi panelde kart güncellemeye yönlendirir." },
+    { type: "h2", text: "Hukuk, chargeback ve iletişim tonu" },
+    { type: "p", text: "Agresif retry veya yanıltıcı «son şans» mesajları chargeback riskini artırır. İletişim net: ne zaman çekilecek, nasıl iptal edilir. Türkiye’de tüketici hakları perspektifinde şeffaflık recovery’yi uzun vadede artırır." },
+    { type: "p", text: "RELY bildirim şablonları marka tonunda özelleştirilir; hukuk onayı alınmış standart footer kullanılır." },
+    { type: "h2", text: "Ölçek: 10K+ abone" },
+    { type: "p", text: "Mutlak failed payment sayısı büyür; otomasyon şart. Destek «ödeme başarısız» ticket’larının %80’i self-servis linke yönlendirilmeli. KPI: ticket başına maliyet düşüşü." },
+    { type: "h2", text: "Raporlama ve finans görünümü" },
+    { type: "p", text: "Kurtarılan MRR, finans tablosunda «önlenen kayıp» satırı olarak gösterilebilir; yönetim dunning yatırımını böyle onaylar." },
+    { type: "p", text: "Başarısız ödeme oranı ani artışta (banka kesintisi, fraud dalgası) kök neden analizi 24 saat içinde yapılır; retry politikası geçici sıkılaştırılabilir." },
+    { type: "p", text: "Aylık cohort: edinme ayına göre failed payment % — kanal kalitesi görünür. Düşük kaliteli kanal kapatılır." },
+    { type: "p", text: "Craftgate panel red kodları ile RELY dunning log’u eşleştirilir; hangi mesajın recovery getirdiği A/B ile ölçülür." },
+    { type: "p", text: "Involuntary churn bütçe planında satır olmalı; «sıfır» hedefi değil «yönetilen %X» hedefi." },
+    { type: "h2", text: "Başarısız ödemelerde operatör özeti" },
+    { type: "p", text: "Involuntary churn, isteğe bağlı iptal kadar ölçülmeli ve yönetilmelidir. Token’lı tahsilat, disiplinli retry, self-servis kart güncelleme ve doğru mesaj tonu recovery’yi belirler. Craftgate ve İyzico altyapısı hazır; eksik parça çoğu zaman operasyon playbook’udur." },
+    { type: "p", text: "RELY Subs dunning ve bildirimleri Shopify/İkas sipariş akışıyla hizalar; ödeme başarılı olmadan sipariş oluşmaz. Finans kurtarılan MRR’ı görür, pazarlama yanlış churn yorumu yapmaz." },
+    { type: "p", text: "Hedef: failed payment rate düşük, recovery rate yüksek, involuntary MRR churn kontrollü. Bu üçlü sağlandığında abonelik büyümesi sessiz gelir kaybına uğramaz." },
+    { type: "p", text: "Banka kesintisi haberlerinde failed payment spike normaldir; retry politikası geçici gevşetilmez, iletişim artırılır." },
+    { type: "p", text: "Müşteri «otomatik çekim istemiyorum» dediğinde yasal ve etik sınırlar içinde manuel yenileme seçeneği değerlendirilir — operasyon maliyeti yüksektir." },
+    { type: "p", text: "Operatör notu: metrik tanımlarını ekip içi wiki’de kilitleyin; yeni çalışan onboarding’inde aynı LTV/MRR/churn sözlüğü kullanılsın." },
+    { type: "p", text: "Shopify Flow veya harici otomasyon, RELY webhook’larıyla çakışmamalı; çift e-posta müşteri güvenini zedeler." },
+    { type: "p", text: "Büyüme toplantısında «bu ay kaç abone» yerine «net MRR ne kadar büyüdü, churn nedenleri ne» sorulmalıdır." },
+    { type: "p", text: "Türkiye’de kargo performansı abonelik NPS’ini doğrudan etkiler; lojistik partner quarterly review abonelik KPI’sına bağlanmalıdır." },
+    { type: "p", text: "RELY Subs müşteri storefront’u mobil trafiğe göre optimize edilmeli; kart güncelleme ve pause işlemleri üç tıkta tamamlanmalıdır." },
+    { type: "p", text: "Ödeme başarısızlığı müşteri hatası değildir; sistem kart süresi, banka limiti ve teknik kesintiyle yüz yüze gelir. Empatik iletişim recovery oranını agresif tahsilattan daha çok artırır." },
+    { type: "p", text: "Yıllık planlı abonelerde başarısız çekim «tüm abonelik iptal» politikasından kaçının; kısmi grace ve manuel outreach LTV’yi korur." },
+    { type: "p", text: "Kart yenileme (expiry) öncesi 30 gün hatırlatma, involuntary churn'ü düşürür; RELY bildirim akışına eklenir." },
+    { type: "p", text: "Başarısız ödeme sonrası otomatik plan düşürme (downgrade) seçeneği, tam iptal yerine MRR'ın bir kısmını korur." },
+    { type: "p", text: "Finans: kurtarılan MRR için «avoided churn» notu aylık kapanışta okunur." },
+    { type: "p", text: "Operasyon: ödeme başarısız aboneye ürün gönderilmediği süreç yazılı olmalı; müşteri şikâyeti önlenir." },
+    { type: "p", text: "PCI ve KVKK perspektifinde kart güncelleme sayfası minimal veri toplar; güven artar." },
+    { type: "p", text: "Başarısız ödemeler yönetilmezse büyüme kanalı delinir; dunning ve self-servis kart güncelleme operasyonel zorunluluktur. RELY + Craftgate/İyzico ile bu süreç ölçeklenir." },
+    { type: "p", text: "Operatörler için altın kural: abonelik metrikleri (MRR, churn, LTV, recovery) tek tanımlı dashboard'da haftalık okunur; Excel dağınıklığı karar geciktirir." },
+    { type: "p", text: "Türkiye ödeme ve kargo gerçekleri, global abonelik playbook'unu olduğu gibi kopyalamayı engeller; yerel token, SMS ve SLA ile kalibre edin." },
+    { type: "p", text: "RELY Subs, Shopify ve İkas mağazanıza headless abonelik katmanı ekler; Craftgate ve İyzico tahsilat, dunning ve müşteri storefront'u operasyonu tekilleştirir." },
+    { type: "p", text: "Retry saatleri: iş günü 10:00–16:00 bandında başarı oranı genelde daha yüksektir; gece retry'ı A/B ile test edin." },
+    { type: "p", text: "Müşteri paneli mobil ödeme (Apple Pay / Google Pay) yenilemede sürtünmeyi azaltır; destek ticket'ı düşer." },
+    { type: "p", text: "Aylık «involuntary churn MRR / toplam churned MRR» oranı hedefi: <%50; üzeri dunning zayıf demektir." },
+    { type: "p", text: "Bu rehberdeki taktikler, Shopify ve İkas üzerinde çalışan D2C abonelik operatörleri için saha deneyimine dayanır; metrik tanımlarınızı ekip içinde sabitleyip RELY Subs paneli ile haftalık ritim kurduğunuzda MRR, LTV ve recovery birlikte iyileşir. Tek seferlik satışa göre abonelikte kazanç, öngörülebilir taban gelir ve düşük net churn'de görünür." },
+    { type: "p", text: "Özet: Başarısız ödemeler involuntary churn'ün ana kaynağıdır; token'lı tahsilat, retry takvimi, SMS/e-posta, self-servis kart güncelleme ve grace period birlikte recovery'yi belirler. Craftgate/İyzico + RELY dunning ile ölçeklenir." },
+    { type: "p", text: "Checklist maddelerini 30 günlük sprint'e bölün; sahip atayın; haftalık durum toplantısında MRR bridge ve churn nedeni okunur." },
+    { type: "p", text: "Shopify D2C operatörü olarak abonelik, «eklenti» değil iş modeli katmanıdır; metrik disiplini olmadan büyüme sürdürülemez." },
+    { type: "p", text: "Pazarlama, finans ve operasyon aynı toplantıda MRR hareket tablosunu okumadığında abonelik projesi parçalanır; haftalık 30 dakika «abonelik council» bu riski azaltır." },
+    { type: "p", text: "Türkiye'de SMS ve e-posta birlikte kullanıldığında recovery ve churn müdahalesi güçlenir; yalnızca e-posta tek başına yetersiz kalır." },
+    { type: "p", text: "RELY Subs: Shopify/İkas ürün ve sipariş senkronu, Craftgate/İyzico token tahsilatı, dunning, Mailgun/NetGSM bildirimleri ve müşteri storefront — operatörün tekrarlayan gelir altyapısı tek panelde toplanır." },
+    { type: "p", text: "Yazı sonu hatırlatma: abonelik operasyonunda ölçmediğiniz metrik yönetemezsiniz; MRR bridge, cohort LTV, voluntary/involuntary churn ayrımı ve recovery rate dörtlüsü olmadan büyüme kararları kör kalır. RELY Subs bu dörtlüyü destekleyen headless katmandır — mevcut Shopify veya İkas mağazanızı değiştirmeden tekrarlayan gelir disiplinini kurun." },
+    { type: "p", text: "Uygulama checklist'indeki maddeleri öncelik sırasına koyun; ilk 14 günde ödeme ve metrik altyapısı, sonraki 30 günde churn ve LTV müdahaleleri devreye girsin." },
+    { type: "p", text: "İleri okuma: MRR bridge ve cohort retention raporlarını aylık kapanışta finans ve pazarlama ile birlikte gözden geçirin; sapma varsa kök neden aynı hafta atanmış sorumluyla kapatılsın." },
+    { type: "p", text: "Başarısız ödeme yönetimi olgun abonelik operasyonunun ayrılmaz parçasıdır." },
+  ] satisfies BlogPostSection[],
+  checklist: [
+    "Failed payment ve recovery rate KPI tanımlayın",
+    "Retry takvimi (T+1, T+3, T+7) ve bildirim eşlemesini yazın",
+    "Müşteri panelinde kart güncelleme akışını test edin",
+    "Craftgate/İyzico red kodlarına göre mesaj şablonları oluşturun",
+    "Başarılı tahsilat sonrası sipariş oluşturma sırasını doğrulayın",
+    "Involuntary churn’ü MRR bridge’de ayrı satır yapın",
+    "SMS + e-posta dunning A/B testi planlayın",
+    "Grace period politikasını hukuk/finans ile onaylayın",
+    "Aylık failed payment cohort raporu otomatikleştirin",
+    "Recovery hedefi (%35+ olgun işletme) yönetime sunun",
+  ],
+};

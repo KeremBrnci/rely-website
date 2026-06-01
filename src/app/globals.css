@@ -1,26 +1,239 @@
+@import "../styles/tokens/spacing.css";
+@import "../styles/tokens/marketing.css";
+@import "../styles/tokens/typography.css";
+@import "../styles/tokens/elevation.css";
+@import "../styles/tokens/container.css";
+@import "../styles/tokens/theme-map.css";
+@import "../styles/tokens/infrastructure.css";
+@import "../styles/tokens/radius.css";
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Bai Jamjuree — tek tip ailesi (gövde, başlık, UI) */
+  --font-sans: var(--font-bai-jamjuree);
+  --font-heading: var(--font-bai-jamjuree);
+  --font-mono: var(--font-bai-jamjuree);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
+  --radius-3xl: var(--radius);
+  --radius-4xl: var(--radius);
+
+  --radius-shell: var(--radius);
+  --radius-control: var(--radius);
+  --radius-pill: var(--radius-pill);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #06385f;
+  --primary-foreground: #ffffff;
+  --secondary: #d6e4f0;
+  --secondary-foreground: #06385f;
+  --muted: #d6e4f0;
+  --muted-foreground: #5c6570;
+  --accent: #d6e4f0;
+  --accent-foreground: #06385f;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #06385f;
+  --chart-1: #06385f;
+  --chart-2: #084a7a;
+  --chart-3: #5c6570;
+  --chart-4: #d6e4f0;
+  --chart-5: #0f172a;
+  --sidebar: #f8fafc;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #06385f;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #d6e4f0;
+  --sidebar-accent-foreground: #06385f;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #06385f;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: #084a7a;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html,
+  body {
+    font-family:
+      var(--font-bai-jamjuree),
+      "Bai Jamjuree",
+      "Bai Jamjuree Fallback",
+      ui-sans-serif,
+      sans-serif;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Tıklanabilir öğelerde imleç pointer (Tailwind v4 varsayılanı default'tur) */
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  label[for],
+  summary {
+    cursor: pointer;
+  }
+
+  /* Devre dışı / etkileşimsiz durumlar */
+  button:disabled,
+  [role="button"][aria-disabled="true"],
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  .rely-marketing-canvas > [data-slot="marketing-section"]:not(#hero) {
+    position: relative;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/*
+ * İlk içerik bölümü: PageSeo JSON-LD <script> etiketleri main’in ilk çocuğu
+ * olduğu için `:first-child` kullanılmaz — ilk <section> hedeflenir.
+ * #hero kendi `pt-[var(--site-header-offset)]` değerini taşır.
+ */
+.marketing-main > section[data-slot="marketing-section"]:first-of-type:not(#hero) {
+  padding-top: calc(var(--site-header-offset) + 2.5rem);
+}
+
+@layer components {
+  .rely-marketing-canvas {
+    --rely-section-gutter: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  @property --nav-tab-border-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes nav-tab-border-draw {
+    to {
+      --nav-tab-border-angle: 360deg;
+    }
+  }
+
+  .nav-tab-animated-border {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-shell);
+    padding: 1px;
+    opacity: 0;
+    background: conic-gradient(
+      from -90deg,
+      color-mix(in oklab, var(--marketing-border-subtle) 72%, var(--marketing-body-muted))
+        var(--nav-tab-border-angle),
+      transparent var(--nav-tab-border-angle)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  .group\/navtab:hover .nav-tab-animated-border,
+  .group\/navtab:focus-within .nav-tab-animated-border {
+    opacity: 1;
+    animation: nav-tab-border-draw 0.45s ease-out forwards;
+  }
+
+  .group\/navtab:not(:hover):not(:focus-within)
+    .nav-tab-animated-border:not(.is-active) {
+    --nav-tab-border-angle: 0deg;
+    animation: none;
+  }
+
+  .nav-tab-animated-border.is-active {
+    opacity: 1;
+    --nav-tab-border-angle: 360deg;
+  }
 }

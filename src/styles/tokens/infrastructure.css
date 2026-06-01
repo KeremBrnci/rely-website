@@ -1,0 +1,1105 @@
+/**
+ * RELY infrastructure visual language — rhythm, flow, connected surfaces.
+ * Decorative restraint: structure over ornament.
+ */
+
+:root {
+  --rely-rhythm-line: var(--marketing-border-subtle);
+  --rely-flow-accent: var(--marketing-primary);
+  --rely-flow-muted: color-mix(in srgb, var(--marketing-primary) 18%, transparent);
+}
+
+/* —— Kart: hover'da dönen accent border (zıplama yok) —— */
+@property --rely-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.rely-card {
+  position: relative;
+  border: 1px solid var(--marketing-border-subtle);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.rely-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--rely-border-angle, 0deg),
+    transparent 0deg,
+    transparent 92deg,
+    color-mix(in oklab, var(--rely-card-accent, var(--marketing-primary)) 92%, transparent) 150deg,
+    transparent 208deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.rely-card:hover {
+  box-shadow: var(--ds-shadow-md);
+  border-color: color-mix(in oklab, var(--rely-card-accent, var(--marketing-primary)) 16%, var(--marketing-border-subtle));
+}
+
+.rely-card:hover::before {
+  opacity: 1;
+  animation: rely-border-rotate 2.4s linear infinite;
+}
+
+@keyframes rely-border-rotate {
+  to {
+    --rely-border-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rely-card:hover::before {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* —— Abonelik yaşam döngüsü — şematik dikey timeline —— */
+.rely-flow {
+  --rely-flow-chip: 2.75rem; /* size-11 */
+}
+
+.rely-flow-rail {
+  position: absolute;
+  left: calc(var(--rely-flow-chip) / 2);
+  top: calc(var(--rely-flow-chip) / 2);
+  bottom: calc(var(--rely-flow-chip) / 2);
+  width: 2px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--marketing-primary) 22%, transparent),
+    color-mix(in oklab, var(--marketing-primary) 9%, transparent)
+  );
+}
+
+.rely-flow-pulse {
+  position: absolute;
+  left: calc(var(--rely-flow-chip) / 2);
+  width: 11px;
+  height: 11px;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  background: var(--marketing-primary);
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--marketing-primary) 16%, transparent);
+  animation: rely-flow-travel 4.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes rely-flow-travel {
+  0% {
+    top: calc(var(--rely-flow-chip) / 2);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - var(--rely-flow-chip) / 2);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rely-flow-pulse {
+    display: none;
+  }
+}
+
+/* —— Nasıl Çalışır — adımların scroll ile staggered girişi —— */
+.rely-step {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--rely-step-delay, 0ms);
+}
+
+.rely-step.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rely-step-line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--rely-step-delay, 0ms) + 120ms);
+}
+
+.rely-step.is-visible .rely-step-line {
+  transform: scaleX(1);
+}
+
+/* Konnektör boyunca akan puls — yuvarlaklar arası sürekli hareket */
+.rely-step-dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 9999px;
+  background: var(--rely-card-accent, var(--marketing-primary));
+  box-shadow: 0 0 0 4px
+    color-mix(in oklab, var(--rely-card-accent, var(--marketing-primary)) 18%, transparent);
+  opacity: 0;
+}
+
+.rely-step.is-visible .rely-step-dot {
+  animation: rely-step-travel 2.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  animation-delay: var(--rely-dot-delay, 0ms);
+}
+
+@keyframes rely-step-travel {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  14% {
+    opacity: 1;
+  }
+  84% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.rely-step-badge {
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.45s ease;
+  transition-delay: var(--rely-step-delay, 0ms);
+  transform: scale(0.82);
+  opacity: 0;
+}
+
+.rely-step.is-visible .rely-step-badge {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Nasıl çalışır — dönen kenarlıklı yuvarlak ikon */
+.rely-step-icon-box {
+  --rely-step-icon-size: 4.75rem;
+
+  position: relative;
+  flex-shrink: 0;
+  width: var(--rely-step-icon-size);
+  height: var(--rely-step-icon-size);
+  border-radius: 50%;
+}
+
+.rely-step-icon-box__orbit {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.rely-step-icon-box__orbit-track {
+  position: absolute;
+  inset: -120%;
+  background: conic-gradient(
+    from 0deg,
+    var(--rely-card-accent, var(--marketing-primary)),
+    color-mix(
+        in oklab,
+        var(--rely-card-accent, var(--marketing-primary)) 22%,
+        transparent
+      )
+      28%,
+    transparent 52%,
+    color-mix(
+        in oklab,
+        var(--rely-card-accent, var(--marketing-primary)) 38%,
+        var(--marketing-border-subtle)
+      )
+      76%,
+    var(--rely-card-accent, var(--marketing-primary)) 100%
+  );
+}
+
+.rely-step.is-visible .rely-step-icon-box__orbit-track {
+  animation: rely-step-icon-ring-spin 3.6s linear infinite;
+}
+
+.rely-step-icon-box__surface {
+  position: absolute;
+  inset: 2px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklab, var(--marketing-border-subtle) 82%, transparent);
+  background: color-mix(
+    in oklab,
+    var(--marketing-surface-elevated) 94%,
+    var(--marketing-soft-blue)
+  );
+}
+
+.rely-step-icon-box__badge {
+  position: absolute;
+  top: -0.125rem;
+  right: -0.125rem;
+  z-index: 2;
+  min-width: 1.375rem;
+  height: 1.375rem;
+  padding-inline: 0.3125rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklab, #ffffff 55%, transparent);
+  font-family: var(--font-bai-jamjuree), "Bai Jamjuree", sans-serif;
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+  background: var(--rely-card-accent, var(--marketing-primary));
+}
+
+@keyframes rely-step-icon-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rely-step.is-visible .rely-step-icon-box__orbit-track {
+    animation: none;
+    inset: 0;
+    background: none;
+    border: 2px solid
+      color-mix(
+        in oklab,
+        var(--rely-card-accent, var(--marketing-primary)) 42%,
+        var(--marketing-border-subtle)
+      );
+    border-radius: inherit;
+  }
+
+  .rely-step-icon-box__orbit {
+    inset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rely-step,
+  .rely-step-line,
+  .rely-step-badge {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .rely-step-dot {
+    display: none;
+  }
+}
+
+/* —— Ürün bandı — koyu lacivert-gri, hafif grid (fintech değil) —— */
+.rely-product-band {
+  position: relative;
+  isolation: isolate;
+  background-color: #0c2236;
+  background-image:
+    radial-gradient(120% 90% at 14% -10%, rgba(94, 148, 200, 0.2), transparent 58%),
+    linear-gradient(180deg, #11314a 0%, #0a1f30 100%);
+}
+
+.rely-product-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(125% 100% at 50% 0%, #000 50%, transparent 100%);
+  mask-image: radial-gradient(125% 100% at 50% 0%, #000 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Koyu zeminde metin rayı — token'ları açık değerlere çevirir (dashboard hariç). */
+.rely-on-dark {
+  --marketing-foreground-strong: #f1f6fb;
+  --marketing-body-muted: #9db2c6;
+  --marketing-border-subtle: rgba(255, 255, 255, 0.12);
+  --marketing-eyebrow-foreground: rgba(214, 230, 245, 0.82);
+  --marketing-eyebrow-line: rgba(255, 255, 255, 0.18);
+}
+
+/* Hero — referans dalga görseli */
+.rely-hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--marketing-page-hero-bg);
+  background-image: url("/images/hero/background.png");
+  background-repeat: no-repeat;
+  background-position: center 42%;
+  background-size: cover;
+}
+
+@media (min-width: 1920px) {
+  .rely-hero-background {
+    background-size: 100% auto;
+    background-position: center 40%;
+  }
+}
+
+.rely-hero-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--marketing-page-hero-bg) 10%, transparent) 55%,
+    color-mix(in srgb, var(--marketing-page-hero-bg) 30%, transparent) 100%
+  );
+  pointer-events: none;
+}
+
+/* —— Hero — Stripe tarzı akan wave (statik görsel + three.js animasyon) —— */
+.rely-hero-wave {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Görselin zemini (~#fefefe) ile birebir aynı: beyaz kutu/flaş olmaz, blend gerekmez */
+  background: #fefefe;
+
+  --fallback-width-mobile: min(92vw, 520px);
+  --fallback-height-mobile: calc(var(--fallback-width-mobile) * 682 / 1024);
+  --fallback-width-tablet: 1248px;
+  --fallback-height-tablet: 831px;
+  --fallback-width-desktop: 1392px;
+  --fallback-height-desktop: 927px;
+}
+
+.rely-hero-wave__layout,
+.rely-hero-wave__contents {
+  position: absolute;
+  inset: 0;
+}
+
+/* three.js animasyon katmanı statik görselin üzerine biner */
+.rely-hero-wave__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Statik fallback: WebGL yoksa / canvas yüklenene kadar / reduced-motion */
+/* Statik görsel ilk boyamadan beri sabit durur; canvas hazır olunca birebir devralır */
+.rely-hero-wave__static {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.rely-hero-wave--drawn .rely-hero-wave__static {
+  opacity: 0;
+}
+
+.rely-hero-wave__static img {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: var(--fallback-width-mobile);
+  height: var(--fallback-height-mobile);
+  max-width: none;
+}
+
+@media (max-width: 1023px) {
+  .rely-hero-wave__canvas {
+    display: none;
+  }
+
+  .rely-hero-wave--drawn .rely-hero-wave__static {
+    opacity: 1;
+  }
+
+  .rely-hero-wave__static img {
+    right: 0;
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 639px) {
+  .rely-hero-wave__veil {
+    background:
+      linear-gradient(
+        to right,
+        #fefefe 0%,
+        #fefefe 10%,
+        color-mix(in srgb, #fefefe 72%, transparent) 34%,
+        color-mix(in srgb, #fefefe 28%, transparent) 52%,
+        transparent 78%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 58%,
+        color-mix(in srgb, #fefefe 55%, transparent) 100%
+      );
+  }
+}
+
+@media (min-width: 640px) {
+  .rely-hero-wave__static img {
+    width: var(--fallback-width-tablet);
+    height: var(--fallback-height-tablet);
+  }
+}
+
+@media (min-width: 1264px) {
+  .rely-hero-wave__static img {
+    width: var(--fallback-width-desktop);
+    height: var(--fallback-height-desktop);
+  }
+}
+
+/* Sol metin okunabilirliği için yumuşak veil */
+.rely-hero-wave__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(
+      to right,
+      #fefefe 4%,
+      color-mix(in srgb, #fefefe 30%, transparent) 28%,
+      transparent 55%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 64%,
+      color-mix(in srgb, #fefefe 45%, transparent) 100%
+    );
+}
+
+/* —— Hero — kod ile üretilen wave + mesh arka planı —— */
+.rely-hero-waves {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rely-hero-waves__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.rely-hero-wave-line {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.rely-hero-wave-layer {
+  will-change: transform;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+.rely-hero-wave--xa {
+  animation-name: rely-hero-wave-xa;
+  animation-duration: 16s;
+}
+.rely-hero-wave--ya {
+  animation-name: rely-hero-wave-ya;
+  animation-duration: 12s;
+}
+.rely-hero-wave--xb {
+  animation-name: rely-hero-wave-xb;
+  animation-duration: 20s;
+}
+.rely-hero-wave--yb {
+  animation-name: rely-hero-wave-yb;
+  animation-duration: 14s;
+}
+.rely-hero-wave--xc {
+  animation-name: rely-hero-wave-xc;
+  animation-duration: 18s;
+}
+
+@keyframes rely-hero-wave-xa {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-118px, 10px, 0);
+  }
+}
+@keyframes rely-hero-wave-xb {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(102px, -12px, 0);
+  }
+}
+@keyframes rely-hero-wave-xc {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-90px, 16px, 0);
+  }
+}
+@keyframes rely-hero-wave-ya {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(22px, 46px, 0);
+  }
+}
+@keyframes rely-hero-wave-yb {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-26px, -42px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rely-hero-wave-layer {
+    animation: none !important;
+  }
+}
+
+/* Hero h1 — explicit size (Tailwind text-hero can fail to apply in some builds) */
+.rely-hero-title {
+  font-family: var(--font-bai-jamjuree), "Bai Jamjuree", "Bai Jamjuree Fallback", sans-serif;
+  font-size: var(--fs-hero);
+  font-weight: 600;
+  line-height: var(--leading-hero-title);
+  letter-spacing: var(--tracking-editorial);
+  color: var(--marketing-foreground-strong);
+  text-wrap: balance;
+}
+
+@media (max-width: 639px) {
+  .rely-hero-title {
+    font-size: clamp(2rem, 1.35rem + 4.8vw, 2.625rem);
+    line-height: 1.14;
+  }
+}
+
+/* Selective headline emphasis — gradient clip only on a single strategic phrase.
+   Falls back to a solid brand color where background-clip:text is unsupported. */
+.rely-text-emphasis {
+  color: var(--marketing-emphasis-to);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .rely-text-emphasis {
+    background-image: linear-gradient(
+      100deg,
+      var(--marketing-emphasis-from) 0%,
+      var(--marketing-emphasis-to) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* On dark surfaces (revenue band, pre-footer CTA) use light blue → near-white. */
+.rely-on-dark .rely-text-emphasis,
+.rely-pre-footer-surface .rely-text-emphasis {
+  --marketing-emphasis-from: var(--marketing-emphasis-on-dark-from);
+  --marketing-emphasis-to: var(--marketing-emphasis-on-dark-to);
+  color: var(--marketing-emphasis-on-dark-to);
+}
+
+/* Eyebrow label — font-size via --fs-eyebrow (Tailwind text-eyebrow is unreliable here) */
+.rely-section-eyebrow-label {
+  font-family: var(--font-bai-jamjuree), "Bai Jamjuree", "Bai Jamjuree Fallback", sans-serif;
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--marketing-eyebrow-foreground);
+}
+
+/* Trusted partner logos — single-row cloud, optical scale (Servet = 1) */
+.rely-trusted-brand-cloud {
+  display: flex;
+  width: 100%;
+  max-width: 90rem;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: clamp(1.25rem, 2.2vw, 2.5rem);
+  padding-block-end: 0.125rem;
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter-x, 1.5rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rely-trusted-brand-cloud::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .rely-trusted-brand-cloud {
+    justify-content: center;
+    overflow-x: visible;
+    padding-inline: 0;
+  }
+}
+
+.rely-trusted-brand-slot {
+  --logo-base-height: 1.9375rem;
+  --logo-optical-scale: 1;
+  --logo-optical-opacity: 1;
+  --logo-optical-translate-y: 0;
+  --logo-slot-max-width: 7.5rem;
+
+  display: flex;
+  height: 2.75rem;
+  width: auto;
+  min-width: 4.75rem;
+  max-width: var(--logo-slot-max-width);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .rely-trusted-brand-slot {
+    --logo-base-height: 2.0625rem;
+    --logo-slot-max-width: 8rem;
+
+    height: 3rem;
+    min-width: 5.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .rely-trusted-brand-slot {
+    --logo-base-height: 2.125rem;
+    --logo-slot-max-width: 8.5rem;
+
+    height: 3.125rem;
+  }
+}
+
+.rely-trusted-brand-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(var(--logo-optical-translate-y))
+    scale(var(--logo-optical-scale));
+  transform-origin: center bottom;
+}
+
+.rely-trusted-brand-logo {
+  height: var(--logo-base-height);
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: grayscale(1) brightness(0);
+  opacity: calc(0.9 * var(--logo-optical-opacity));
+  transition:
+    filter 300ms ease,
+    opacity 300ms ease;
+}
+
+.rely-trusted-brand-logo-link:hover .rely-trusted-brand-logo,
+.rely-trusted-brand-logo-link:focus-visible .rely-trusted-brand-logo {
+  filter: none;
+  opacity: 1;
+}
+
+/* Mobil referanslar — otomatik kayan logo bandı (tek satır) */
+.rely-trusted-brand-marquee {
+  position: relative;
+  width: 100%;
+}
+
+.rely-trusted-brand-marquee__viewport {
+  overflow: hidden;
+  width: 100%;
+  min-height: 2.75rem;
+  max-height: 3.125rem;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+}
+
+.rely-trusted-brand-marquee__track {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  width: max-content;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  padding-inline: var(--spacing-gutter-x, 1.5rem);
+  list-style: none;
+  gap: clamp(1.25rem, 2.2vw, 2.5rem);
+  animation: rely-trusted-brand-marquee 38s linear infinite;
+  will-change: transform;
+}
+
+.rely-trusted-brand-marquee__track > .rely-trusted-brand-slot {
+  flex: 0 0 auto;
+}
+
+.rely-trusted-brand-marquee__viewport:hover .rely-trusted-brand-marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes rely-trusted-brand-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+/* Döngü kopyaları artık yok; eski sınıf kalırsa mobilde gizle */
+.rely-trusted-brand-marquee .rely-trusted-brand-slot--marquee-clone {
+  display: none !important;
+}
+
+@media (max-width: 1023px) {
+  .rely-trusted-brand-cloud:not(.rely-trusted-brand-marquee__track) {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rely-trusted-brand-marquee__viewport {
+    mask-image: none;
+    -webkit-mask-image: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .rely-trusted-brand-marquee__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rely-trusted-brand-marquee__track {
+    animation: none;
+    width: max-content;
+    flex-wrap: nowrap;
+  }
+}
+
+/* Subtle editorial grid — mask on ::before only so content is never clipped */
+.rely-surface-grid {
+  position: relative;
+  isolation: isolate;
+}
+
+.rely-surface-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--rely-rhythm-line) 65%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--rely-rhythm-line) 65%, transparent) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 72%);
+}
+
+.rely-surface-grid > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Softer grid for business-outcome sections — lower dominance */
+.rely-surface-grid-muted {
+  position: relative;
+  isolation: isolate;
+}
+
+.rely-surface-grid-muted::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--rely-rhythm-line) 32%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--rely-rhythm-line) 32%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 4rem 4rem;
+  mask-image: radial-gradient(ellipse 85% 55% at 50% 28%, black 0%, transparent 78%);
+}
+
+.rely-surface-grid-muted > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pre-footer CTA — Rely cadence (horizontal lanes + flow nodes), not a square grid */
+.rely-pre-footer-surface {
+  background-color: var(--marketing-pre-footer-bg);
+}
+
+.rely-pre-footer-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+  /* vertical spine — infrastructure axis */
+    linear-gradient(
+      to right,
+      transparent calc(50% - 0.5px),
+      color-mix(in oklab, white 6%, transparent) 50%,
+      transparent calc(50% + 0.5px)
+    ),
+    /* billing-cycle rhythm — horizontal lanes only */
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(4.5rem - 1px),
+      color-mix(in oklab, white 7%, transparent) calc(4.5rem - 1px),
+      color-mix(in oklab, white 7%, transparent) 4.5rem
+    ),
+    /* staggered flow nodes (offset dot field) */
+    radial-gradient(
+      circle,
+      color-mix(in oklab, white 11%, transparent) 1.25px,
+      transparent 1.25px
+    ),
+    radial-gradient(
+      circle,
+      color-mix(in oklab, white 11%, transparent) 1.25px,
+      transparent 1.25px
+    );
+  background-size:
+    100% 100%,
+    100% 4.5rem,
+    3.25rem 3.25rem,
+    3.25rem 3.25rem;
+  background-position:
+    center,
+    center,
+    0 0,
+    1.625rem 2.25rem;
+  mask-image: radial-gradient(ellipse 92% 76% at 50% 46%, black 14%, transparent 78%);
+}
+
+.rely-pre-footer-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 108% 100% at 50% 50%,
+    transparent 40%,
+    color-mix(in oklab, #000 40%, transparent) 100%
+  );
+}
+
+/* Pre-footer CTA — sayfa tipine göre yüzey ve vurgu rengi */
+.rely-pre-footer-surface[data-variant="home"] {
+  --marketing-pre-footer-bg: #141c24;
+}
+
+.rely-pre-footer-surface[data-variant="product"],
+.rely-pre-footer-surface[data-variant="feature-plans"],
+.rely-pre-footer-surface[data-variant="feature-billing"] {
+  --marketing-pre-footer-bg: var(--marketing-pricing-charcoal);
+}
+
+.rely-pre-footer-surface[data-variant="pricing"] {
+  --marketing-pre-footer-bg: var(--marketing-pricing-dark);
+}
+
+.rely-pre-footer-surface[data-variant="pricing"]::before {
+  background-image:
+    linear-gradient(
+      to right,
+      transparent calc(50% - 0.5px),
+      color-mix(in oklab, var(--marketing-accent-teal) 22%, transparent) 50%,
+      transparent calc(50% + 0.5px)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(4.5rem - 1px),
+      color-mix(in oklab, white 9%, transparent) calc(4.5rem - 1px),
+      color-mix(in oklab, white 9%, transparent) 4.5rem
+    ),
+    radial-gradient(
+      circle,
+      color-mix(in oklab, var(--marketing-soft-blue) 18%, transparent) 1.25px,
+      transparent 1.25px
+    ),
+    radial-gradient(
+      circle,
+      color-mix(in oklab, var(--marketing-soft-blue) 18%, transparent) 1.25px,
+      transparent 1.25px
+    );
+}
+
+.rely-pre-footer-surface[data-variant="contact"],
+.rely-pre-footer-surface[data-variant="vertical-supplements"] {
+  --marketing-pre-footer-bg: color-mix(
+    in oklab,
+    var(--marketing-accent-teal) 18%,
+    #121a1c
+  );
+}
+
+.rely-pre-footer-surface[data-variant="contact"] .rely-text-emphasis,
+.rely-pre-footer-surface[data-variant="vertical-supplements"] .rely-text-emphasis {
+  --marketing-emphasis-on-dark-from: #6ec9d0;
+  --marketing-emphasis-on-dark-to: #d8f4f6;
+}
+
+.rely-pre-footer-surface[data-variant="references"],
+.rely-pre-footer-surface[data-variant="blog"],
+.rely-pre-footer-surface[data-variant="feature-integrations"] {
+  --marketing-pre-footer-bg: color-mix(
+    in oklab,
+    var(--marketing-accent-indigo) 14%,
+    #16141f
+  );
+}
+
+.rely-pre-footer-surface[data-variant="solution-reward"],
+.rely-pre-footer-surface[data-variant="feature-vouchers"],
+.rely-pre-footer-surface[data-variant="vertical-beauty"] {
+  --marketing-pre-footer-bg: color-mix(
+    in oklab,
+    var(--marketing-accent-rose) 12%,
+    #1a1418
+  );
+}
+
+.rely-pre-footer-surface[data-variant="solution-reward"] .rely-text-emphasis,
+.rely-pre-footer-surface[data-variant="feature-vouchers"] .rely-text-emphasis,
+.rely-pre-footer-surface[data-variant="vertical-beauty"] .rely-text-emphasis {
+  --marketing-emphasis-on-dark-from: #e8a0b8;
+  --marketing-emphasis-on-dark-to: #fce8f0;
+}
+
+.rely-pre-footer-surface[data-variant="solution-value"],
+.rely-pre-footer-surface[data-variant="feature-recovery"],
+.rely-pre-footer-surface[data-variant="vertical-coffee"],
+.rely-pre-footer-surface[data-variant="vertical-petFood"],
+.rely-pre-footer-surface[data-variant="vertical-mealKits"] {
+  --marketing-pre-footer-bg: color-mix(
+    in oklab,
+    var(--marketing-accent-amber) 14%,
+    #1a1712
+  );
+}
+
+.rely-pre-footer-surface[data-variant="solution-value"] .rely-text-emphasis,
+.rely-pre-footer-surface[data-variant="vertical-coffee"] .rely-text-emphasis,
+.rely-pre-footer-surface[data-variant="vertical-mealKits"] .rely-text-emphasis {
+  --marketing-emphasis-on-dark-from: #e8c078;
+  --marketing-emphasis-on-dark-to: #faf0dc;
+}
+
+.rely-pre-footer-surface[data-variant="vertical-wellness"],
+.rely-pre-footer-surface[data-variant="solution-efficiency"] {
+  --marketing-pre-footer-bg: color-mix(
+    in oklab,
+    var(--marketing-accent-indigo) 16%,
+    #14131f
+  );
+}
+
+.rely-pre-footer-surface[data-variant="pricing"] .pre-footer-cta-primary {
+  background-color: var(--marketing-accent-teal);
+}
+
+.rely-pre-footer-surface[data-variant="pricing"] .pre-footer-cta-primary:hover {
+  background-color: color-mix(in oklab, var(--marketing-accent-teal) 88%, white);
+}
+
+.rely-pre-footer-surface[data-variant="solution-acquire"] .pre-footer-cta-primary,
+.rely-pre-footer-surface[data-variant="feature-bundles"] .pre-footer-cta-primary {
+  background-color: var(--marketing-accent-teal);
+}
+
+.rely-pre-footer-surface[data-variant="solution-acquire"] .pre-footer-cta-primary:hover,
+.rely-pre-footer-surface[data-variant="feature-bundles"] .pre-footer-cta-primary:hover {
+  background-color: color-mix(in oklab, var(--marketing-accent-teal) 88%, white);
+}
