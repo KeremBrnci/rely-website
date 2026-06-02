@@ -120,13 +120,13 @@ const megaMenuColumnsClassName = cn(
 
 const featuresMegaMenuColumnsClassName = cn(
   "grid grid-cols-1 gap-x-5 gap-y-5",
-  "sm:grid-cols-2 md:gap-x-6",
-  "lg:grid-cols-3 lg:gap-x-6",
-  "lg:[&>div]:min-w-[12.5rem]",
+  "sm:grid-cols-2 md:gap-x-7",
+  "lg:grid-cols-3 lg:gap-x-8",
+  "lg:[&>div]:min-w-[15.5rem] xl:[&>div]:min-w-[16.5rem]",
 );
 
 const featuresMegaMenuItemLinkClassName = cn(
-  "group flex h-full min-h-[4.25rem] items-start gap-2.5 rounded-[0.75rem] p-2.5",
+  "group flex h-full min-h-[4.5rem] items-start gap-3 rounded-[0.75rem] p-3",
   "transition-[background-color,box-shadow,transform] duration-200 ease-out",
   "hover:-translate-y-px",
   "hover:bg-[color:color-mix(in_oklab,var(--marketing-surface-band)_82%,var(--marketing-soft-blue))]",
@@ -150,7 +150,7 @@ const featuresMegaMenuItemTitleClassName = cn(
 );
 
 const featuresMegaMenuItemDescriptionClassName = cn(
-  "mt-1 block line-clamp-2 text-pretty text-[12px] leading-[1.45] tracking-[-0.01em]",
+  "mt-1.5 block line-clamp-2 text-pretty text-[13px] leading-[1.5] tracking-[-0.01em]",
   "text-[color:var(--marketing-body-muted)]",
   "transition-colors duration-200",
   "group-hover:text-[color:var(--marketing-body-readable)]",
@@ -226,7 +226,19 @@ function SiteHeaderInner({ className }: SiteHeaderProps) {
     const trigger = megaMenuTriggerRefs.current.get(menuTitle);
     if (!trigger) return;
 
-    const centerX = trigger.getBoundingClientRect().left + trigger.offsetWidth / 2;
+    const triggerRect = trigger.getBoundingClientRect();
+    let centerX = triggerRect.left + trigger.offsetWidth / 2;
+
+    const navItem = mainNavigation.find((item) => item.title === menuTitle);
+    if (navItem?.megaMenu === "features") {
+      const navAnchor = desktopNavAnchorRef.current;
+      if (navAnchor) {
+        const navRect = navAnchor.getBoundingClientRect();
+        const navCenterX = navRect.left + navRect.width / 2;
+        centerX = centerX + (navCenterX - centerX) * 0.42;
+      }
+    }
+
     setMegaMenuAnchor((prev) => (prev?.centerX === centerX ? prev : { centerX }));
   }, []);
 
@@ -487,7 +499,7 @@ function ViewportMegaMenu({
         className={cn(
           "pointer-events-auto w-max px-3 pt-1",
           megaMenuType === "features"
-            ? "max-w-[min(calc(100vw-1.5rem),52rem)]"
+            ? "max-w-[min(calc(100vw-1.5rem),58rem)]"
             : "max-w-[min(calc(100vw-1.5rem),72rem)]",
         )}
         style={{
@@ -653,7 +665,7 @@ function FeaturesMegaMenuPanel({ groups }: { groups: FeatureMenuGroup[] }) {
       aria-label="Özellikler"
       className={cn(
         megaMenuPanelSurfaceClassName,
-        "w-[min(100%,52rem)] p-4 md:p-5",
+        "w-[min(100%,58rem)] p-5 md:p-6",
       )}
     >
       <div className={featuresMegaMenuColumnsClassName}>
