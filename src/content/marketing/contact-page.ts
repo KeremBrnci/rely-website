@@ -28,7 +28,7 @@ export const contactPageContent = {
     title: "Formu doldurun",
     description: "Demo için mağaza bilgilerinizi paylaşın; genel sorularınızda konuyu kısaca belirtin.",
     requestTypes: {
-      demo: { label: "Demo talebi", description: "Ürün turu ve size özel teklif" },
+      demo: { label: "Demo talebi", description: "Ürün tanıtımı ve size özel teklif" },
       contact: { label: "İletişim", description: "Genel soru, ortaklık veya destek" },
     },
     fields: {
@@ -85,7 +85,7 @@ export const contactPageContent = {
         id: "contact-faq-1",
         question: "Demo ne kadar sürer?",
         answer:
-          "Genellikle 30 dakikalık bir ürün turu ve mağazanıza özel kurulum önerisi. Takvim linki talep ederseniz e-posta ile paylaşılır.",
+          "Genellikle 30 dakikalık bir ürün tanıtımı ve mağazanıza özel kurulum önerisi. Takvim linki talep ederseniz e-posta ile paylaşılır.",
       },
       {
         id: "contact-faq-2",

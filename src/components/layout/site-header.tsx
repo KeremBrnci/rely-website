@@ -40,6 +40,7 @@ import {
   featuresMenu,
   type FeatureMenuGroup,
   type FeatureMenuIcon,
+  type FeatureMenuItem,
 } from "@/config/marketing/features-menu";
 import {
   sectorsMenuGroups,
@@ -111,29 +112,34 @@ const megaMenuPanelSurfaceClassName = cn(
   "max-h-[min(70vh,calc(100dvh-var(--site-header-mega-menu-top,var(--site-header-offset))-1.25rem))] overflow-y-auto overscroll-contain",
 );
 
-const megaMenuColumnsClassName = cn(
+const megaMenuPanelLayoutClassName = "w-[min(100%,72rem)] p-4 md:p-5";
+
+const megaMenuViewportMaxWidthClassName = "max-w-[min(calc(100vw-1.5rem),72rem)]";
+
+const megaMenuGridBaseClassName = cn(
   "grid grid-cols-1 gap-x-5 gap-y-5",
-  "sm:grid-cols-2 md:gap-x-6",
-  "lg:grid-cols-4 lg:gap-x-6",
-  "lg:[&>div]:min-w-[14rem] xl:[&>div]:min-w-[15rem]",
+  "sm:grid-cols-2 md:gap-x-6 lg:gap-x-6",
 );
 
-const featuresMegaMenuColumnsClassName = cn(
-  "grid grid-cols-1 gap-x-5 gap-y-5",
-  "sm:grid-cols-2 md:gap-x-7",
-  "lg:grid-cols-3 lg:gap-x-8",
-  "lg:[&>div]:min-w-[15.5rem] xl:[&>div]:min-w-[16.5rem]",
+const megaMenuGridFourColumnsClassName = cn(
+  megaMenuGridBaseClassName,
+  "lg:grid-cols-4 lg:[&>div]:min-w-[14rem] xl:[&>div]:min-w-[15rem]",
 );
 
-const featuresMegaMenuItemLinkClassName = cn(
-  "group flex h-full min-h-[4.5rem] items-start gap-3 rounded-[0.75rem] p-3",
+const megaMenuGridThreeColumnsClassName = cn(
+  megaMenuGridBaseClassName,
+  "lg:grid-cols-3 lg:w-full lg:[&>div]:min-w-0",
+);
+
+const megaMenuItemLinkClassName = cn(
+  "group flex h-full min-h-[4.25rem] items-start gap-2.5 rounded-[0.75rem] p-2.5",
   "transition-[background-color,box-shadow,transform] duration-200 ease-out",
   "hover:-translate-y-px",
   "hover:bg-[color:color-mix(in_oklab,var(--marketing-surface-band)_82%,var(--marketing-soft-blue))]",
   "hover:shadow-[0_4px_14px_-6px_color-mix(in_oklab,var(--marketing-primary)_18%,transparent),inset_0_0_0_1px_color-mix(in_oklab,var(--marketing-border-subtle)_60%,var(--marketing-soft-blue))]",
 );
 
-const featuresMegaMenuItemIconClassName = cn(
+const megaMenuItemIconClassName = cn(
   "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-[0.5rem]",
   "bg-[color:color-mix(in_oklab,var(--marketing-soft-blue)_60%,var(--marketing-background))]",
   "text-[color:var(--marketing-primary)]",
@@ -142,26 +148,18 @@ const featuresMegaMenuItemIconClassName = cn(
   "group-hover:text-[color:var(--marketing-primary-deep)]",
 );
 
-const featuresMegaMenuItemTitleClassName = cn(
+const megaMenuItemTitleClassName = cn(
   "block font-heading text-[0.875rem] font-semibold leading-[1.25] tracking-[-0.015em]",
   "text-[color:var(--marketing-foreground-strong)]",
   "transition-colors duration-200",
   "group-hover:text-[color:var(--marketing-primary-deep)]",
 );
 
-const featuresMegaMenuItemDescriptionClassName = cn(
-  "mt-1.5 block line-clamp-2 text-pretty text-[13px] leading-[1.5] tracking-[-0.01em]",
+const megaMenuItemDescriptionClassName = cn(
+  "mt-1 block line-clamp-1 text-pretty text-[12px] leading-[1.45] tracking-[-0.01em]",
   "text-[color:var(--marketing-body-muted)]",
   "transition-colors duration-200",
   "group-hover:text-[color:var(--marketing-body-readable)]",
-);
-
-const sectorsMegaMenuItemLinkClassName = featuresMegaMenuItemLinkClassName;
-const sectorsMegaMenuItemIconClassName = featuresMegaMenuItemIconClassName;
-const sectorsMegaMenuItemTitleClassName = featuresMegaMenuItemTitleClassName;
-const sectorsMegaMenuItemDescriptionClassName = cn(
-  featuresMegaMenuItemDescriptionClassName,
-  "line-clamp-1",
 );
 
 type MegaMenuAnchor = {
@@ -235,7 +233,7 @@ function SiteHeaderInner({ className }: SiteHeaderProps) {
       if (navAnchor) {
         const navRect = navAnchor.getBoundingClientRect();
         const navCenterX = navRect.left + navRect.width / 2;
-        centerX = centerX + (navCenterX - centerX) * 0.42;
+        centerX = centerX + (navCenterX - centerX) * 0.5;
       }
     }
 
@@ -496,12 +494,7 @@ function ViewportMegaMenu({
       onMouseLeave={onScheduleClose}
     >
       <div
-        className={cn(
-          "pointer-events-auto w-max px-3 pt-1",
-          megaMenuType === "features"
-            ? "max-w-[min(calc(100vw-1.5rem),58rem)]"
-            : "max-w-[min(calc(100vw-1.5rem),72rem)]",
-        )}
+        className={cn("pointer-events-auto w-max px-3 pt-1", megaMenuViewportMaxWidthClassName)}
         style={{
           position: "fixed",
           left: anchor.centerX,
@@ -618,20 +611,41 @@ function MegaMenuColumn({
   );
 }
 
-function SectorMenuItemLink({ item }: { item: SectorMenuItem }) {
-  const Icon = sectorMenuIcon[item.icon];
+function MegaMenuItemLink({
+  href,
+  title,
+  description,
+  icon: Icon,
+}: {
+  href: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}) {
   return (
     <li className="min-h-0">
-      <Link href={item.href} role="menuitem" className={sectorsMegaMenuItemLinkClassName}>
-        <span className={sectorsMegaMenuItemIconClassName}>
+      <Link href={href} role="menuitem" className={megaMenuItemLinkClassName}>
+        <span className={megaMenuItemIconClassName}>
           <Icon className="size-4 stroke-[1.75]" aria-hidden />
         </span>
         <span className="min-w-0 flex-1">
-          <span className={sectorsMegaMenuItemTitleClassName}>{item.title}</span>
-          <span className={sectorsMegaMenuItemDescriptionClassName}>{item.description}</span>
+          <span className={megaMenuItemTitleClassName}>{title}</span>
+          <span className={megaMenuItemDescriptionClassName}>{description}</span>
         </span>
       </Link>
     </li>
+  );
+}
+
+function SectorMenuItemLink({ item }: { item: SectorMenuItem }) {
+  const Icon = sectorMenuIcon[item.icon];
+  return (
+    <MegaMenuItemLink
+      href={item.href}
+      title={item.title}
+      description={item.description}
+      icon={Icon}
+    />
   );
 }
 
@@ -640,12 +654,9 @@ function SectorsMegaMenuPanel({ groups }: { groups: SectorMenuGroup[] }) {
     <div
       role="menu"
       aria-label="Sektörler"
-      className={cn(
-        megaMenuPanelSurfaceClassName,
-        "w-[min(100%,72rem)] p-4 md:p-5",
-      )}
+      className={cn(megaMenuPanelSurfaceClassName, megaMenuPanelLayoutClassName)}
     >
-      <div className={megaMenuColumnsClassName}>
+      <div className={megaMenuGridFourColumnsClassName}>
         {groups.map((group) => (
           <MegaMenuColumn key={group.label} label={group.label} compact>
             {group.items.map((item) => (
@@ -658,43 +669,34 @@ function SectorsMegaMenuPanel({ groups }: { groups: SectorMenuGroup[] }) {
   );
 }
 
+function FeatureMenuItemLink({ item }: { item: FeatureMenuItem }) {
+  const Icon = featureMenuIcon[item.icon];
+  return (
+    <MegaMenuItemLink
+      href={item.href}
+      title={item.title}
+      description={item.description}
+      icon={Icon}
+    />
+  );
+}
+
 function FeaturesMegaMenuPanel({ groups }: { groups: FeatureMenuGroup[] }) {
   return (
     <div
       role="menu"
       aria-label="Özellikler"
-      className={cn(
-        megaMenuPanelSurfaceClassName,
-        "w-[min(100%,58rem)] p-5 md:p-6",
-      )}
+      className={cn(megaMenuPanelSurfaceClassName, megaMenuPanelLayoutClassName)}
     >
-      <div className={featuresMegaMenuColumnsClassName}>
+      <div className={megaMenuGridThreeColumnsClassName}>
         {groups.map((group) => (
           <MegaMenuColumn key={group.label} label={group.label} compact>
-            {group.items.map((menuItem) => {
-              const Icon = featureMenuIcon[menuItem.icon];
-              return (
-                <li key={`${group.label}-${menuItem.title}`} className="min-h-0">
-                  <Link
-                    href={menuItem.href}
-                    role="menuitem"
-                    className={featuresMegaMenuItemLinkClassName}
-                  >
-                    <span className={featuresMegaMenuItemIconClassName}>
-                      <Icon className="size-4 stroke-[1.75]" aria-hidden />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className={featuresMegaMenuItemTitleClassName}>
-                        {menuItem.title}
-                      </span>
-                      <span className={featuresMegaMenuItemDescriptionClassName}>
-                        {menuItem.description}
-                      </span>
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
+            {group.items.map((menuItem) => (
+              <FeatureMenuItemLink
+                key={`${group.label}-${menuItem.title}`}
+                item={menuItem}
+              />
+            ))}
           </MegaMenuColumn>
         ))}
       </div>

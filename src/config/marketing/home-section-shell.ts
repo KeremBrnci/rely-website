@@ -21,7 +21,7 @@ export const homeMarketingSectionShell = {
       "relative isolate flex flex-col overflow-hidden",
       "max-lg:min-h-0 lg:min-h-[min(94svh,56rem)]",
       "[background:var(--marketing-page-hero-gradient)]",
-      /* Header payı; mobilde içerik hemen altında, lg+ mt-auto ile altta (Joy) */
+      /* Header payı; lg+ içerik nav ile alt çizgi arasında dikey ortalanır */
       "pt-[var(--site-header-offset)] max-lg:pb-8 sm:max-lg:pb-10",
     ),
   } satisfies HomeMarketingSectionShell,

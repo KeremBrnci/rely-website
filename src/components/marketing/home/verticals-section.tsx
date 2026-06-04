@@ -50,8 +50,10 @@ function VerticalCard({ item, index }: { item: HomeVertical; index: number }) {
       <span
         aria-hidden
         className={cn(
-          "absolute inset-0 z-0 bg-cover bg-center transition-transform duration-500 ease-out",
+          "absolute inset-0 z-0 bg-cover bg-center transition-[transform,filter] duration-500 ease-out",
           "group-hover:scale-[1.05]",
+          item.image &&
+            "saturate-[1.14] brightness-[1.07] contrast-[1.04] group-hover:saturate-[1.22] group-hover:brightness-[1.1]",
         )}
         style={
           {
@@ -63,7 +65,12 @@ function VerticalCard({ item, index }: { item: HomeVertical; index: number }) {
       />
       <span
         aria-hidden
-        className="absolute inset-0 z-[1] bg-gradient-to-t from-[#06182a]/90 via-[#06182a]/35 to-transparent"
+        className={cn(
+          "absolute inset-0 z-[1] bg-gradient-to-t",
+          item.image
+            ? "from-[#06182a]/78 via-[#06182a]/22 to-[#06182a]/6"
+            : "from-[#06182a]/90 via-[#06182a]/35 to-transparent",
+        )}
       />
       <Icon className="pointer-events-none absolute right-4 top-4 z-[2] size-9 text-white/15 md:size-10" />
       <div className="relative z-[2] p-5 md:p-6">
