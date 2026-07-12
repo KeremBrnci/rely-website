@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bai_Jamjuree } from "next/font/google";
 
+import { GoogleAnalyticsProvider } from "@/components/analytics/google-analytics-provider";
 import { siteConfig } from "@/config";
 import {
   SEO_BRAND,
@@ -75,7 +76,10 @@ export default function RootLayout({
       lang="tr"
       className={`${baiJamjuree.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <GoogleAnalyticsProvider />
+        {children}
+      </body>
     </html>
   );
 }
