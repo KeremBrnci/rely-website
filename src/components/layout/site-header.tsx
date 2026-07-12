@@ -132,15 +132,16 @@ const megaMenuGridThreeColumnsClassName = cn(
 );
 
 const megaMenuItemLinkClassName = cn(
-  "group flex h-full min-h-[4.25rem] items-start gap-2.5 rounded-[0.75rem] p-2.5",
-  "transition-[background-color,box-shadow,transform] duration-200 ease-out",
-  "hover:-translate-y-px",
+  "group flex h-full min-h-[4.25rem] w-full items-center gap-2.5 rounded-[0.75rem] p-2.5",
+  "border border-transparent",
+  "transition-[background-color,border-color,box-shadow] duration-200 ease-out",
   "hover:bg-[color:color-mix(in_oklab,var(--marketing-surface-band)_82%,var(--marketing-soft-blue))]",
-  "hover:shadow-[0_4px_14px_-6px_color-mix(in_oklab,var(--marketing-primary)_18%,transparent),inset_0_0_0_1px_color-mix(in_oklab,var(--marketing-border-subtle)_60%,var(--marketing-soft-blue))]",
+  "hover:border-[color:color-mix(in_oklab,var(--marketing-border-subtle)_60%,var(--marketing-soft-blue))]",
+  "hover:shadow-[0_4px_14px_-6px_color-mix(in_oklab,var(--marketing-primary)_18%,transparent)]",
 );
 
 const megaMenuItemIconClassName = cn(
-  "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-[0.5rem]",
+  "flex size-7 shrink-0 items-center justify-center rounded-[0.5rem]",
   "bg-[color:color-mix(in_oklab,var(--marketing-soft-blue)_60%,var(--marketing-background))]",
   "text-[color:var(--marketing-primary)]",
   "transition-colors duration-200",
@@ -602,7 +603,7 @@ function MegaMenuColumn({
       </p>
       <ul
         className={cn(
-          compact ? "grid flex-1 auto-rows-fr gap-1" : "flex flex-col gap-0.5",
+          compact ? "grid flex-1 auto-rows-fr gap-1.5" : "flex flex-col gap-1",
         )}
       >
         {children}
@@ -623,7 +624,7 @@ function MegaMenuItemLink({
   icon: LucideIcon;
 }) {
   return (
-    <li className="min-h-0">
+    <li className="flex min-h-0">
       <Link href={href} role="menuitem" className={megaMenuItemLinkClassName}>
         <span className={megaMenuItemIconClassName}>
           <Icon className="size-4 stroke-[1.75]" aria-hidden />
