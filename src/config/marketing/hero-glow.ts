@@ -35,6 +35,9 @@ export type HeroGlowKey =
   | "feature-pause"
   | "feature-billing"
   | "feature-integrations"
+  | "feature-storefront"
+  | "feature-management"
+  | "feature-notifications"
   | "vertical-coffee"
   | "vertical-beauty"
   | "vertical-supplements"
@@ -225,6 +228,21 @@ export const heroGlowPresets: Record<HeroGlowKey, HeroGlowPreset> = {
       { position: "-top-10 -right-16", size: "size-[min(14rem,34vw)]", color: amber, opacity: 0.42, blur: "blur-[56px]" },
     ],
   },
+  "feature-storefront": {
+    blobs: [
+      { position: "-bottom-24 -right-18", size: "size-[min(26rem,62vw)]", color: softBlue, opacity: 0.72 },
+      { position: "top-[14%] -left-12", size: "size-[min(14rem,34vw)]", color: primary, opacity: 0.42, blur: "blur-[58px]" },
+    ],
+  },
+  "feature-management": {
+    blobs: [{ position: "-bottom-26 left-[8%]", size: "size-[min(28rem,66vw)]", color: indigo, opacity: 0.65 }],
+  },
+  "feature-notifications": {
+    blobs: [
+      { position: "-bottom-22 right-[10%]", size: "size-[min(24rem,58vw)]", color: teal, opacity: 0.68 },
+      { position: "-top-12 -left-10", size: "size-[min(13rem,32vw)]", color: rose, opacity: 0.4, blur: "blur-[54px]" },
+    ],
+  },
 
   "vertical-coffee": {
     blobs: [
@@ -317,6 +335,9 @@ export function getFeatureHeroGlow(
     | "plans"
     | "bundles"
     | "vouchers"
+    | "storefront"
+    | "management"
+    | "notifications"
     | "recovery"
     | "pause"
     | "billing"

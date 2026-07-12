@@ -42,16 +42,16 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/brand/ms-icon-310x310.png",
-        width: 310,
-        height: 310,
+        url: siteConfig.ogImage,
+        width: siteConfig.ogImageWidth,
+        height: siteConfig.ogImageHeight,
         alt: SEO_BRAND,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/brand/ms-icon-310x310.png"],
+    images: [siteConfig.ogImage],
   },
   robots: SEO_ROBOTS_INDEX_FOLLOW,
   alternates: {

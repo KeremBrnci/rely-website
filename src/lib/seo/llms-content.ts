@@ -16,7 +16,7 @@ import {
   geoQuotableFactsTr,
   GEO_LAST_UPDATED,
 } from "@/lib/seo/geo";
-import { getSiteUrlEntriesByGroup, toAbsoluteUrl } from "@/lib/seo/site-index";
+import { getSiteUrlEntriesByGroup, getSiteBaseUrl, toAbsoluteUrl } from "@/lib/seo/site-index";
 
 const HELP_CENTER = siteConfig.links.helpCenter;
 
@@ -39,6 +39,7 @@ export function buildLlmsTxt(): string {
   return `# llms.txt — ${geoEntity.primaryName}
 
 Website: ${toAbsoluteUrl("/")}
+Canonical host: ${getSiteBaseUrl()} (apex relysubs.com → 308 → www)
 Full documentation: ${toAbsoluteUrl(geoPaths.llmsFull)}
 AI index: ${toAbsoluteUrl(geoPaths.aiIndex)}
 Help center: ${HELP_CENTER}
@@ -103,6 +104,7 @@ export function buildLlmsFullTxt(): string {
 
 Canonical source for AI agents, LLMs, and answer engines
 Website: ${toAbsoluteUrl("/")}
+Canonical host: ${getSiteBaseUrl()} (apex relysubs.com → 308 → www)
 Index: ${toAbsoluteUrl(geoPaths.llmsIndex)}
 AI index: ${toAbsoluteUrl(geoPaths.aiIndex)}
 Sitemap: ${toAbsoluteUrl("/sitemap.xml")}

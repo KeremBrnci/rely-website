@@ -55,8 +55,8 @@ export function createPageMetadata(input: PageSeoInput): Metadata {
       images: [
         {
           url: ogImageUrl,
-          width: 1200,
-          height: 630,
+          width: siteConfig.ogImageWidth,
+          height: siteConfig.ogImageHeight,
           alt: `${SEO_SITE_NAME} — e-ticaret abonelik altyapısı`,
         },
       ],

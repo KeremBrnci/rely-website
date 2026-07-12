@@ -122,6 +122,12 @@ const featureHeroLinkSuffix: Record<FeatureKey, string> = {
     " [Abonelik kutuları](/sektorler/abonelik-kutulari) ve [yemek kitleri](/sektorler/yemek-kiti) paket satışından en çok faydalanır.",
   vouchers:
     " İlk 1000 abone için [blog rehberimiz](/blog/abonelik-ilk-1000-musteri) ve [demo talebi](/iletisim) bir sonraki adım.",
+  storefront:
+    " Self-servis yönetim [abonelik yönetimi](/ozellikler/abonelik-yonetimi) ve [bildirimler](/ozellikler/bildirimler) ile tamamlanır.",
+  management:
+    " Müşteri tarafı [abonelik vitrini](/ozellikler/abonelik-vitrini); operasyon [otomatik tahsilat](/ozellikler/otomatik-tahsilat) ile birleşir.",
+  notifications:
+    " Başarısız ödemede [ödeme kurtarma](/ozellikler/odeme-kurtarma) ve kart güncelleme akışı birlikte çalışır.",
   recovery:
     " [Başarısız ödemeler rehberi](/blog/basarisiz-odemeler-gelir-kaybi) ile birlikte [otomatik tahsilat](/ozellikler/otomatik-tahsilat) okuyun.",
   pause:
@@ -184,6 +190,9 @@ const featureRelatedFeatures: Record<FeatureKey, FeatureKey[]> = {
   plans: ["bundles", "billing"],
   bundles: ["plans", "vouchers"],
   vouchers: ["plans", "bundles"],
+  storefront: ["management", "notifications"],
+  management: ["storefront", "billing"],
+  notifications: ["recovery", "billing"],
   recovery: ["billing", "pause"],
   pause: ["recovery", "billing"],
   billing: ["recovery", "integrations"],
@@ -194,6 +203,9 @@ const featureRelatedSectors: Record<FeatureKey, SubscriptionVerticalKey[]> = {
   plans: ["coffee", "supplements"],
   bundles: ["subscriptionBoxes", "mealKits"],
   vouchers: ["beauty", "subscriptionBoxes"],
+  storefront: ["coffee", "beauty"],
+  management: ["grocery", "petFood"],
+  notifications: ["supplements", "householdEssentials"],
   recovery: ["supplements", "coffee"],
   pause: ["protein", "beauty"],
   billing: ["grocery", "householdEssentials", "petFood"],
@@ -204,6 +216,9 @@ const featureRelatedBlog: Record<FeatureKey, string[]> = {
   plans: ["tek-seferlik-satistan-tekrarlayan-gelire-gecis"],
   bundles: ["subscription-box-is-modeli"],
   vouchers: ["abonelik-ilk-1000-musteri"],
+  storefront: ["shopify-abonelik-oncesi"],
+  management: ["churn-azaltma-10-yol"],
+  notifications: ["basarisiz-odemeler-gelir-kaybi"],
   recovery: ["basarisiz-odemeler-gelir-kaybi"],
   pause: ["churn-azaltma-10-yol"],
   billing: ["mrr-tekrarlayan-gelir-hesaplama"],
@@ -340,7 +355,12 @@ function appendSolutionLink(
   }
 
   const featureKey = key as FeatureKey;
-  if (featureKey === "integrations" || featureKey === "billing") {
+  if (
+    featureKey === "integrations" ||
+    featureKey === "billing" ||
+    featureKey === "storefront" ||
+    featureKey === "management"
+  ) {
     return `${solution} Tüm modüller [abonelik platformu](/urun) sayfasında özetlenir.`;
   }
   return `${solution} [Fiyatlandırma](/fiyatlandirma) ve [ürün](/urun) sayfalarından devam edin.`;

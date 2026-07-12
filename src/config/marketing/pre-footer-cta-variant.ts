@@ -21,6 +21,9 @@ export type PreFooterCtaVariantKey =
   | "feature-pause"
   | "feature-billing"
   | "feature-integrations"
+  | "feature-storefront"
+  | "feature-management"
+  | "feature-notifications"
   | "vertical-coffee"
   | "vertical-beauty"
   | "vertical-supplements"
@@ -245,6 +248,18 @@ export const preFooterCtaVariants: Record<PreFooterCtaVariantKey, PreFooterCtaVa
     key: "feature-integrations",
     glows: [blob("-bottom-26 right-[8%]", "size-[min(28rem,66vw)]", indigoGlow, 0.46)],
   },
+  "feature-storefront": {
+    key: "feature-storefront",
+    glows: [blob("-bottom-28 right-[6%]", "size-[min(30rem,72vw)]", softBlueGlow, 0.44)],
+  },
+  "feature-management": {
+    key: "feature-management",
+    glows: [blob("-bottom-30 left-[10%]", "size-[min(32rem,76vw)]", indigoGlow, 0.46)],
+  },
+  "feature-notifications": {
+    key: "feature-notifications",
+    glows: [blob("-bottom-28 right-[12%]", "size-[min(28rem,68vw)]", tealGlow, 0.44)],
+  },
   "vertical-coffee": {
     key: "vertical-coffee",
     glows: [
@@ -392,6 +407,9 @@ const featurePathToKey: Record<string, PreFooterCtaVariantKey> = {
   [routes.features.pause]: "feature-pause",
   [routes.features.billing]: "feature-billing",
   [routes.features.integrations]: "feature-integrations",
+  [routes.features.storefront]: "feature-storefront",
+  [routes.features.management]: "feature-management",
+  [routes.features.notifications]: "feature-notifications",
 };
 
 const verticalPathToKey: Record<string, PreFooterCtaVariantKey> = {

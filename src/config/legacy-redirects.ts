@@ -223,19 +223,7 @@ const englishPathRedirects: LegacyRedirectEntry[] = [
   },
   {
     source: "/ozellikler/storefront",
-    destination: routes.product,
-  },
-  {
-    source: "/ozellikler/abonelik-vitrini",
-    destination: routes.product,
-  },
-  {
-    source: "/ozellikler/abonelik-yonetimi",
-    destination: routes.product,
-  },
-  {
-    source: "/ozellikler/bildirimler",
-    destination: routes.product,
+    destination: routes.features.storefront,
   },
 ];
 

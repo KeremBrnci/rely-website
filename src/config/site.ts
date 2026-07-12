@@ -1,4 +1,5 @@
-const PRODUCTION_SITE_URL = "https://relysubs.com";
+/** Vercel production primary host — apex 308 ile buraya yönlenir. */
+const PRODUCTION_SITE_URL = "https://www.relysubs.com";
 
 function resolveSiteUrl(): string {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
@@ -21,8 +22,10 @@ export const siteConfig = {
   footerTagline:
     "Modern ticaret markaları için tekrarlayan gelir altyapısı.",
   url: resolveSiteUrl(),
-  /** Sosyal önizleme — 1200×630 önerilir; yoksa marka ikonu kullanılır */
-  ogImage: "/brand/ms-icon-310x310.png",
+  /** Sosyal önizleme — 1200×630 */
+  ogImage: "/brand/og-image.png",
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   links: {
     /** Ürün dokümantasyonu — help.relysubs.com */
     helpCenter: "https://help.relysubs.com/",

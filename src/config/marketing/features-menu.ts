@@ -72,7 +72,7 @@ export const featuresMenu: FeatureMenuGroup[] = [
       {
         title: "Müşteri Portalı",
         description: "Müşteriler aboneliklerini kendileri yönetsin.",
-        href: routes.product,
+        href: routes.features.storefront,
         icon: "portal",
       },
     ],
@@ -93,9 +93,9 @@ export const featuresMenu: FeatureMenuGroup[] = [
         icon: "integrations",
       },
       {
-        title: "Ölçeklenebilir Yapı",
-        description: "Binlerce aktif aboneliği sorunsuz yönetin.",
-        href: routes.product,
+        title: "Abonelik Yönetimi",
+        description: "Binlerce aktif aboneliği tek ekrandan yönetin.",
+        href: routes.features.management,
         icon: "scale",
       },
     ],

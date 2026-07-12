@@ -16,6 +16,9 @@ export type FeatureKey =
   | "plans"
   | "bundles"
   | "vouchers"
+  | "storefront"
+  | "management"
+  | "notifications"
   | "recovery"
   | "pause"
   | "billing"
@@ -269,6 +272,254 @@ export const featuresContent: Record<FeatureKey, FeatureContent> = {
           step: "03",
           title: "Yayınlayın",
           description: "Kampanyayı başlatın ve performansını izleyin.",
+        },
+      ],
+    },
+  },
+
+  storefront: {
+    href: routes.features.storefront,
+    meta: {
+      title: "Abonelik Vitrini — RELY Subs özellikleri",
+      description:
+        "Müşterilerin abonelik başlattığı ve yönettiği markanıza özel storefront; kendi domaininizde veya marka.relysubs.com altında yayınlanır.",
+    },
+    hero: {
+      eyebrow: "Özellik · Abonelik vitrini",
+      title: "Markanıza özel abonelik vitrini",
+      titleEmphasis: "abonelik vitrini",
+      subtitle:
+        "Müşteriler abonelik başlatır, plan değiştirir ve kart günceller; ana mağaza deneyiminden kopmadan headless katman olarak çalışır.",
+      primaryCta,
+      secondaryCta,
+    },
+    outcome: {
+      problemLabel: "Sorun",
+      problem:
+        "Abonelik checkout'u ana mağazadan kopuk olduğunda müşteri «aboneliğim nerede?» sorusuna cevap bulamaz.",
+      solutionLabel: "Sonuç",
+      solution:
+        "Kendi domaininizde yayınlanan vitrinle abonelik deneyimini markanızla hizalarsınız.",
+    },
+    features: {
+      intro: {
+        eyebrow: "Neler sunar",
+        title: "Müşteri odaklı abonelik sitesi",
+        titleEmphasis: "abonelik sitesi",
+        description: "Abonelik başlatma ve self-servis yönetim tek yerde toplanır.",
+      },
+      items: [
+        {
+          id: "storefront-domain",
+          icon: "globe",
+          title: "Kendi domaininiz",
+          description:
+            "abonelik.magazaniz.com gibi CNAME ile markanıza özel URL'de yayınlayın.",
+        },
+        {
+          id: "storefront-checkout",
+          icon: "layers",
+          title: "Abonelik checkout",
+          description:
+            "Plan seçimi, varyant ve ödeme akışı Shopify veya İkas vitrininden ayrı yönetilir.",
+        },
+        {
+          id: "storefront-collections",
+          icon: "workflow",
+          title: "Koleksiyon düzeni",
+          description: "Ürünleri gruplayarak vitrin deneyimini markanıza göre kurgulayın.",
+        },
+      ],
+    },
+    steps: {
+      intro: {
+        eyebrow: "Nasıl çalışır",
+        title: "Üç adımda vitrini yayına alın",
+        titleEmphasis: "yayına alın",
+        description: "Domaini bağlayın, ürünleri düzenleyin ve müşteriye açın.",
+      },
+      items: [
+        {
+          id: "storefront-step-1",
+          step: "01",
+          title: "Domaini ayarlayın",
+          description: "CNAME ile kendi domaininizi veya varsayılan alt alan adını tanımlayın.",
+        },
+        {
+          id: "storefront-step-2",
+          step: "02",
+          title: "Ürün ve koleksiyonları düzenleyin",
+          description: "E-ticaret mağazanızdan içe aktarılan ürünleri vitrinde gruplayın.",
+        },
+        {
+          id: "storefront-step-3",
+          step: "03",
+          title: "Abonelik akışını test edin",
+          description: "Checkout, plan değişimi ve kart güncellemeyi mobilde doğrulayın.",
+        },
+      ],
+    },
+  },
+
+  management: {
+    href: routes.features.management,
+    meta: {
+      title: "Abonelik Yönetimi — RELY Subs özellikleri",
+      description:
+        "Aktif, duraklatılmış ve iptal edilmiş abonelikleri tek ekrandan yönetin; adres, plan ve ödeme geçmişini izleyin.",
+    },
+    hero: {
+      eyebrow: "Özellik · Abonelik yönetimi",
+      title: "Tüm abonelikler tek operasyon ekranında",
+      titleEmphasis: "tek operasyon ekranında",
+      subtitle:
+        "Durum, sonraki ödeme ve gönderim tarihi, müşteri bilgisi ve olay geçmişi tek panelde; destek talebi azalır.",
+      primaryCta,
+      secondaryCta,
+    },
+    outcome: {
+      problemLabel: "Sorun",
+      problem: "Abonelik verisi Excel ve farklı araçlara dağıldığında operasyon yavaşlar ve hata artar.",
+      solutionLabel: "Sonuç",
+      solution:
+        "Tek ekrandan durum, adres ve plan değişikliklerini yöneterek ekibi hızlandırırsınız.",
+    },
+    features: {
+      intro: {
+        eyebrow: "Neler sunar",
+        title: "Operasyon paneli",
+        titleEmphasis: "Operasyon paneli",
+        description: "Abonelik yaşam döngüsünü uçtan uca izleyin ve müdahale edin.",
+      },
+      items: [
+        {
+          id: "management-status",
+          icon: "shield",
+          title: "Durum yönetimi",
+          description: "Aktif, duraklatılmış ve iptal edilmiş abonelikleri filtreleyin.",
+        },
+        {
+          id: "management-address",
+          icon: "layers",
+          title: "Adres güncelleme",
+          description: "Teslimat ve fatura adresi değişikliği bir sonraki siparişe uygulanır.",
+        },
+        {
+          id: "management-timeline",
+          icon: "workflow",
+          title: "Abonelik olayları",
+          description: "Ödeme, duraklatma ve plan değişikliklerini kronolojik izleyin.",
+        },
+      ],
+    },
+    steps: {
+      intro: {
+        eyebrow: "Nasıl çalışır",
+        title: "Üç adımda operasyonu merkezileştirin",
+        titleEmphasis: "merkezileştirin",
+        description: "Aboneliği bulun, durumu görün ve gerektiğinde müdahale edin.",
+      },
+      items: [
+        {
+          id: "management-step-1",
+          step: "01",
+          title: "Aboneliği arayın",
+          description: "Müşteri, ürün veya duruma göre filtreleyin.",
+        },
+        {
+          id: "management-step-2",
+          step: "02",
+          title: "Detayı inceleyin",
+          description: "Plan, sonraki ödeme tarihi ve geçmiş olayları görün.",
+        },
+        {
+          id: "management-step-3",
+          step: "03",
+          title: "Güncelleyin veya müdahale edin",
+          description: "Adres, plan veya durum değişikliğini panelden uygulayın.",
+        },
+      ],
+    },
+  },
+
+  notifications: {
+    href: routes.features.notifications,
+    meta: {
+      title: "Bildirimler — RELY Subs özellikleri",
+      description:
+        "Yenileme hatırlatması, ödeme sonucu, kart güncelleme ve iptal bildirimleri; e-posta ve SMS şablonları değişken destekli.",
+    },
+    hero: {
+      eyebrow: "Özellik · Bildirimler",
+      title: "Doğru zamanda otomatik bildirim",
+      titleEmphasis: "otomatik bildirim",
+      subtitle:
+        "Yenileme öncesi hatırlatma, başarılı veya başarısız ödeme, kart güncelleme ve iptal mesajları hazır tetikleyicilerle gider.",
+      primaryCta,
+      secondaryCta,
+    },
+    outcome: {
+      problemLabel: "Sorun",
+      problem: "Manuel e-posta ve SMS operasyonu gecikir; başarısız ödemede müşteri haberdar olmaz.",
+      solutionLabel: "Sonuç",
+      solution:
+        "Otomatik bildirim akışlarıyla recovery ve müşteri güvenini desteklersiniz.",
+    },
+    features: {
+      intro: {
+        eyebrow: "Neler sunar",
+        title: "E-posta ve SMS şablonları",
+        titleEmphasis: "şablonları",
+        description: "Değişken destekli şablonlarla kişiselleştirilmiş mesajlar gönderin.",
+      },
+      items: [
+        {
+          id: "notifications-triggers",
+          icon: "gauge",
+          title: "Olay tetikleyicileri",
+          description:
+            "Yenileme hatırlatması, ödeme sonucu, kart güncelleme ve iptal otomatik tetiklenir.",
+        },
+        {
+          id: "notifications-variables",
+          icon: "layers",
+          title: "Değişken desteği",
+          description:
+            "Müşteri adı, sonraki ödeme tarihi ve kart güncelleme bağlantısı şablona eklenir.",
+        },
+        {
+          id: "notifications-channels",
+          icon: "workflow",
+          title: "E-posta ve SMS",
+          description: "E-posta ve NetGSM SMS kanallarıyla çok kanallı iletişim kurun.",
+        },
+      ],
+    },
+    steps: {
+      intro: {
+        eyebrow: "Nasıl çalışır",
+        title: "Üç adımda bildirimleri açın",
+        titleEmphasis: "bildirimleri açın",
+        description: "Kanalı bağlayın, şablonu düzenleyin ve tetikleyiciyi etkinleştirin.",
+      },
+      items: [
+        {
+          id: "notifications-step-1",
+          step: "01",
+          title: "Mesajlaşma kanalını bağlayın",
+          description: "E-posta ve SMS (NetGSM) entegrasyonunu tanımlayın.",
+        },
+        {
+          id: "notifications-step-2",
+          step: "02",
+          title: "Şablonları özelleştirin",
+          description: "Marka tonunuza uygun metin ve değişkenleri ayarlayın.",
+        },
+        {
+          id: "notifications-step-3",
+          step: "03",
+          title: "Tetikleyicileri etkinleştirin",
+          description: "Ödeme kurtarma ve yenileme hatırlatmalarını devreye alın.",
         },
       ],
     },
@@ -606,6 +857,9 @@ export const featuresOrder: FeatureKey[] = [
   "plans",
   "bundles",
   "vouchers",
+  "storefront",
+  "management",
+  "notifications",
   "recovery",
   "pause",
   "billing",

@@ -18,12 +18,7 @@ function buildSummaryPrompt(): string {
   );
 }
 
-export type FooterAiProviderId =
-  | "chatgpt"
-  | "claude"
-  | "perplexity"
-  | "grok"
-  | "gemini";
+export type FooterAiProviderId = "chatgpt" | "claude" | "perplexity" | "grok";
 
 export type FooterAiProvider = {
   id: FooterAiProviderId;
@@ -63,12 +58,6 @@ export const footerAiSummary = {
         label: "Grok",
         title: "Grok ile Rely özetle",
         href: `https://grok.com/?q=${q}`,
-      },
-      {
-        id: "gemini",
-        label: "Gemini",
-        title: "Gemini ile Rely özetle",
-        href: `https://gemini.google.com/app?q=${q}`,
       },
     ];
   })(),
