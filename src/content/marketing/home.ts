@@ -11,6 +11,9 @@ export const homeMeta = {
     "RELY Subs, mevcut e-ticaret altyapınıza abonelik e-ticaret katmanı ekler: planlar, otomatik tahsilat, ödeme kurtarma ve müşteri portalı tek panelde. Tekrarlayan gelir oluşturun.",
 } as const;
 
+/** Ana sayfada referanslar bandını göster (geçici olarak kapalı). */
+export const homeTrustedBrandsVisible = false;
+
 export const homeHero = {
   eyebrow: "E-ticaret abonelik altyapısı",
   title: "Mevcut mağazanıza abonelik modeli ekleyin. Tekrarlayan gelir oluşturun.",

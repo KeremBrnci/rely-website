@@ -8,7 +8,7 @@ import { TrustedBrandsSection } from "@/components/marketing/home/trusted-brands
 import { VerticalsSection } from "@/components/marketing/home/verticals-section";
 import { HomePageSeo, PageSeo } from "@/components/seo/page-seo";
 import { routes } from "@/config/routes";
-import { homeFaq, homeMeta } from "@/content/marketing/home";
+import { homeFaq, homeMeta, homeTrustedBrandsVisible } from "@/content/marketing/home";
 import { faqItemsToSchema, homeBreadcrumb } from "@/lib/seo";
 
 export function HomePage() {
@@ -23,7 +23,7 @@ export function HomePage() {
         faq={faqItemsToSchema(homeFaq.items)}
       />
       <HeroSection />
-      <TrustedBrandsSection />
+      {homeTrustedBrandsVisible ? <TrustedBrandsSection /> : null}
       <CapabilitiesSection />
       <HowItWorksSection />
       <SubscriptionLifecycleSection />

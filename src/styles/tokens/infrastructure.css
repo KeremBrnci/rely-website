@@ -472,7 +472,7 @@
   }
 
   .rely-hero-wave__static img {
-    top: clamp(7rem, 30vh, 11.5rem);
+    top: clamp(5.25rem, 22vh, 9.5rem);
     bottom: auto;
     right: -14%;
     left: auto;
@@ -497,7 +497,7 @@
 
 @media (max-width: 639px) {
   .rely-hero-wave__static img {
-    top: clamp(6.75rem, 27vh, 10.5rem);
+    top: clamp(4.75rem, 19vh, 8.25rem);
     right: -18%;
     opacity: 0.92;
   }
