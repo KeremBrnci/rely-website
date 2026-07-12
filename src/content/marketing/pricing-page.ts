@@ -68,7 +68,7 @@ const platformIncludes = [
   marketingAutoBillingIncludeLabel,
   "Başarısız ödeme kurtarma ve kart güncelleme bağlantısı",
   "Otomatik sipariş oluşturma ve sipariş takibi",
-  "E-posta ve SMS bildirimleri (Mailgun / NetGSM)",
+  "E-posta ve SMS bildirimleri",
   "Merkezi yönetim paneli (abonelik, müşteri, ödeme)",
   "E-ticaret altyapınızla entegrasyon",
   "Müşteri paneli: plan, adres, teslimat güncelleme",
@@ -140,7 +140,7 @@ export const pricingPageContent = {
       name: "Başlangıç",
       tagline: "Aboneliğe başlamak ve kendi hızınızda büyümek için.",
       priceNote: marketingPlatformMonthlyFee,
-      priceSubnote: "Aylık platform ücreti + %1,39'dan başlayan komisyon (başarılı tahsilat).",
+      priceSubnote: "Aylık platform ücreti + %1,39'dan başlayan komisyon oranı.",
       featured: false,
       cta: { label: "Demo talep et", href: routes.contact },
       features: [

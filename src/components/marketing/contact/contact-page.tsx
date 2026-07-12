@@ -44,7 +44,21 @@ export function ContactPage() {
             <aside className="flex flex-col gap-6 lg:pt-2">
               <div>
                 <InfrastructureEyebrow>{sidebar.title}</InfrastructureEyebrow>
-                <p className="mt-3 text-[14px] leading-[1.65] text-[color:var(--marketing-body-muted)]">
+                <ul className="mt-4 flex flex-col gap-2.5">
+                  {sidebar.highlights.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-[14px] leading-[1.5] text-[color:var(--marketing-body-muted)]"
+                    >
+                      <Check
+                        className="mt-0.5 size-4 shrink-0 text-[color:var(--marketing-primary)]"
+                        aria-hidden
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-[14px] leading-[1.65] text-[color:var(--marketing-body-muted)]">
                   {sidebar.responseNote}
                 </p>
               </div>
@@ -86,21 +100,6 @@ export function ContactPage() {
                   </div>
                 </div>
               </div>
-
-              <ul className="flex flex-col gap-2.5">
-                {sidebar.highlights.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2.5 text-[14px] leading-[1.5] text-[color:var(--marketing-body-muted)]"
-                  >
-                    <Check
-                      className="mt-0.5 size-4 shrink-0 text-[color:var(--marketing-primary)]"
-                      aria-hidden
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </aside>
           </div>
         </Container>

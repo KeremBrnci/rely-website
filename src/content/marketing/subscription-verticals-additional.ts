@@ -50,10 +50,10 @@ export const additionalSubscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Abonelik kutularında kazanımlar",
-        titleEmphasis: "kazanımlar",
+        title: "Abonelik kutularının avantajları",
+        titleEmphasis: "avantajları",
         description:
-          "Kürasyon, çeşit rotasyonu ve hediye abonelik bu dikeyin temel beklentileridir.",
+          "Kürasyon, çeşit rotasyonu ve hediye abonelik bu kategorinin temel beklentileridir.",
       },
       items: [
         {
@@ -169,10 +169,10 @@ export const additionalSubscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Sağlıklı atıştırmalıkta abonelik kazanımları",
-        titleEmphasis: "kazanımları",
+        title: "Sağlıklı atıştırmalıkta aboneliğin avantajları",
+        titleEmphasis: "avantajları",
         description:
-          "Kutu çeşitleri, sıklık ve kanal esnekliği bu dikeyin temel beklentileridir.",
+          "Kutu çeşitleri, sıklık ve kanal esnekliği bu kategorinin temel beklentileridir.",
       },
       items: [
         {
@@ -289,7 +289,7 @@ export const additionalSubscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Market dikeyinde abonelik faydaları",
+        title: "Market alışverişinde aboneliğin faydaları",
         titleEmphasis: "faydaları",
         description:
           "Otomatik yenileme odaklı kurgu ve bölgesel teslimat kuralları kritiktir.",
@@ -408,10 +408,10 @@ export const additionalSubscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Özel tüketimde abonelik kazanımları",
-        titleEmphasis: "kazanımları",
+        title: "Gurme ürünlerde aboneliğin avantajları",
+        titleEmphasis: "avantajları",
         description:
-          "Set paketleri, sıklık esnekliği ve hediye abonelik bu dikeyin temel beklentileridir.",
+          "Set paketleri, sıklık esnekliği ve hediye abonelik bu kategorinin temel beklentileridir.",
       },
       items: [
         {
@@ -528,7 +528,7 @@ export const additionalSubscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Ev tüketiminde abonelik faydaları",
+        title: "Ev tüketim ürünlerinde aboneliğin faydaları",
         titleEmphasis: "faydaları",
         description:
           "Yenileme odaklı planlar, çok ürünlü paketler ve bölgesel teslimat kuralları kritiktir.",
@@ -647,7 +647,7 @@ export const additionalSubscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "İçecek dikeyinde abonelik avantajları",
+        title: "Sağlıklı içeceklerde aboneliğin avantajları",
         titleEmphasis: "avantajları",
         description:
           "Sıklık, paket hacmi ve soğuk zincir kuralları bu kategoride öne çıkar.",
@@ -766,10 +766,10 @@ export const additionalSubscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Protein dikeyinde abonelik kazanımları",
-        titleEmphasis: "kazanımları",
+        title: "Protein markalarında aboneliğin avantajları",
+        titleEmphasis: "avantajları",
         description:
-          "Aroma, gramaj ve program paketleri bu dikeyin temel kurgularıdır.",
+          "Aroma, gramaj ve program paketleri protein markalarının temel kurgularıdır.",
       },
       items: [
         {

@@ -226,7 +226,7 @@ export const productPage = {
         icon: "bell",
         label: "Bildirim",
         items: [
-          { name: "Mailgun", note: "Otomatik e-posta bildirimleri" },
+          { name: "E-posta", note: "Otomatik e-posta bildirimleri" },
           { name: "NetGSM", note: "SMS ile abonelik hatırlatmaları" },
         ],
       },

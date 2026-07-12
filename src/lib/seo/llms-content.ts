@@ -64,7 +64,7 @@ ${geoQuotableFactsTr.map((fact) => `- ${fact}`).join("\n")}
 - Kayıtlı kart ile tekrarlayan ödeme ve başarısız ödeme kurtarma
 - Müşteri portalı: duraklatma, iptal, kart güncelleme, teslimat sıklığı
 - Ürün/sipariş senkronu: Shopify & İkas
-- E-posta (Mailgun) ve SMS (NetGSM) bildirimleri
+- E-posta ve SMS bildirimleri
 
 ## Key pages (TR)
 
@@ -166,7 +166,7 @@ RELY Subs is **not** a generic checkout plugin. It is built for subscription ope
 2. Automate recurring billing via card-storage-enabled virtual POS providers (${marketingPaymentIntegrationsPhrase}).
 3. Run subscription operations in one panel (active / paused / cancelled, orders, payments, timeline).
 4. Branded subscription site on merchant domain (subdomain/CNAME).
-5. Recover failed payments with automated retry and customer notifications (Mailgun, NetGSM).
+5. Recover failed payments with automated retry and customer notifications (email and SMS).
 6. Sync with **Shopify** and **İkas** — keep the main storefront.
 
 ---
@@ -193,7 +193,7 @@ Typical setup: connect store → import products → create plans → connect pa
 |------|-----------|
 | E-commerce | Shopify, İkas |
 | Payments | ${marketingPaymentIntegrationsPhrase} |
-| Email | Mailgun |
+| Email | E-posta bildirimleri |
 | SMS | NetGSM |
 
 ---

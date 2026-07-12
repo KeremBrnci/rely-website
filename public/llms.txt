@@ -1,0 +1,31 @@
+# llms.txt — Rely Subs
+
+Website: https://relysubs.com  
+Full documentation: https://relysubs.com/llms-full.txt  
+Help center: https://help.relysubs.com/
+
+## Summary
+
+**Rely Subs**, Türkiye’deki e-ticaret ve D2C markalar için **tekrarlayan gelir altyapısıdır**: mevcut mağazanızı (Shopify, İkas) değiştirmeden abonelik planları, otomatik tahsilat (Craftgate / İyzico), markalı **abonelik vitrini** (kendi domaininizde), ödeme kurtarma (dunning), bildirimler ve tek operasyon paneli sunar.
+
+Kısaca: tek seferlik satışa eklenmiş bir eklenti değil; abonelik operasyonu için baştan kurulmuş bir platform.
+
+## What we do
+
+- Abonelik planları (sıklık, indirim, süre, paketler)
+- Token’lı tekrarlayan ödeme ve başarısız ödeme kurtarma
+- Müşteri self-servis: duraklatma, iptal, kart güncelleme, teslimat sıklığı
+- Ürün/sipariş senkronu: Shopify & İkas
+- E-posta ve SMS bildirimleri
+
+## Key pages (TR)
+
+- Ürün: https://relysubs.com/urun
+- Fiyatlandırma: https://relysubs.com/fiyatlandirma
+- İletişim: https://relysubs.com/iletisim
+- Sektörler: https://relysubs.com/sektorler/kahve (ve diğer dikeyler — tam liste llms-full.txt içinde)
+- Özellikler: https://relysubs.com/ozellikler/abonelik-planlari (planlar, vitrin, tahsilat, entegrasyonlar — tam liste llms-full.txt)
+
+## Canonical file
+
+`/llms-full.txt` — ürün kimliği, mimari, entegrasyonlar, sektör URL’leri, terminoloji ve AI için kısa SSS.

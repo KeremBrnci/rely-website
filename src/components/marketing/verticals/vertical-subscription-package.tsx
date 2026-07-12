@@ -1,13 +1,14 @@
-import Image from "next/image";
 import type { CSSProperties } from "react";
 import { CalendarDays, Package, Truck } from "lucide-react";
 
+import { MarketingFillImage } from "@/components/marketing/marketing-fill-image";
 import type { VerticalImage, VerticalPackagePreview } from "@/config/marketing/vertical-assets";
 import { cn } from "@/lib/utils";
 
 export type VerticalSubscriptionPackageProps = {
   image: VerticalImage;
   preview: VerticalPackagePreview;
+  imagePriority?: boolean;
   className?: string;
   style?: CSSProperties;
 };
@@ -15,6 +16,7 @@ export type VerticalSubscriptionPackageProps = {
 export function VerticalSubscriptionPackage({
   image,
   preview,
+  imagePriority = false,
   className,
   style,
 }: VerticalSubscriptionPackageProps) {
@@ -70,13 +72,13 @@ export function VerticalSubscriptionPackage({
 
       <div className="relative mx-4 mt-4 overflow-hidden rounded-xl ring-1 ring-[color:var(--marketing-border-subtle)] md:mx-5">
         <div className="relative aspect-[5/4] w-full">
-          <Image
+          <MarketingFillImage
             src={image.src}
             alt=""
             aria-hidden
-            fill
+            priority={imagePriority}
             sizes="(min-width: 768px) 28vw, 80vw"
-            className="object-cover"
+            containerClassName="absolute inset-0"
           />
           <span
             aria-hidden

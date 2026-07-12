@@ -33,7 +33,7 @@ export const homeVerticals = {
     eyebrow: "Sektörler",
     title: "Her sektöre uygun abonelik altyapısı",
     description:
-      "RELY, farklı dikeylerin satın alma alışkanlıklarına göre uyarlanmış akışlar ve en iyi uygulamalarla aboneliği destekler.",
+      "RELY, farklı sektörlerin satın alma alışkanlıklarına göre uyarlanmış akışlar ve en iyi uygulamalarla aboneliği destekler.",
   },
   items: [
     {
@@ -42,7 +42,7 @@ export const homeVerticals = {
       stat: "Esnek teslimat sunulduğunda kahve aboneleri belirgin şekilde daha uzun kalıyor.",
       icon: "coffee",
       href: routes.subscriptions.coffee,
-      image: "/images/verticals/coffee.png",
+      image: "/images/verticals/coffee.webp",
     },
     {
       id: "vert-beauty",
@@ -50,7 +50,7 @@ export const homeVerticals = {
       stat: "Aboneler, kutusunu kişiselleştirebildiği markaları tercih ediyor.",
       icon: "beauty",
       href: routes.subscriptions.beauty,
-      image: "/images/verticals/beauty.png",
+      image: "/images/verticals/beauty.webp",
     },
     {
       id: "vert-supplements",
@@ -58,7 +58,7 @@ export const homeVerticals = {
       stat: "Müşteriler tek tek sipariş yerine düzenli aboneliği tercih ediyor.",
       icon: "supplements",
       href: routes.subscriptions.supplements,
-      image: "/images/verticals/supplements.png",
+      image: "/images/verticals/supplements.webp",
     },
     {
       id: "vert-pet",
@@ -66,7 +66,7 @@ export const homeVerticals = {
       stat: "Pet sahipleri için otomatik teslimat en pratik satın alma yolu.",
       icon: "petFood",
       href: routes.subscriptions.petFood,
-      image: "/images/verticals/pet-food.png",
+      image: "/images/verticals/pet-food.webp",
     },
     {
       id: "vert-food",
@@ -74,7 +74,7 @@ export const homeVerticals = {
       stat: "Haftalık menü ve esnek teslimatla yemek kiti aboneleri düzenli kalır.",
       icon: "food",
       href: routes.subscriptions.mealKits,
-      image: "/images/verticals/food.png",
+      image: "/images/verticals/food.webp",
     },
     {
       id: "vert-wellness",
@@ -82,7 +82,7 @@ export const homeVerticals = {
       stat: "Düzenli kullanım alışkanlığı, wellness ürünlerini aboneliğe çok uygun kılar.",
       icon: "wellness",
       href: routes.subscriptions.wellness,
-      image: "/images/verticals/wellness.png",
+      image: "/images/verticals/wellness.webp",
     },
     {
       id: "vert-snacks",
@@ -90,7 +90,7 @@ export const homeVerticals = {
       stat: "Protein bar ve kutu abonelikleri, düzenli tüketimle sadakati yükseltir.",
       icon: "snacks",
       href: routes.subscriptions.healthySnacks,
-      image: "/images/verticals/healthy-snacks-bars-hero.png",
+      image: "/images/verticals/healthy-snacks-bars-hero.webp",
     },
     {
       id: "vert-grocery",
@@ -98,7 +98,7 @@ export const homeVerticals = {
       stat: "Temel gıda ve sarf ürünlerinde yenileme aboneliği operasyonu sadeleştirir.",
       icon: "grocery",
       href: routes.subscriptions.grocery,
-      image: "/images/verticals/grocery.png",
+      image: "/images/verticals/grocery.webp",
     },
     {
       id: "vert-beverage",
@@ -106,7 +106,7 @@ export const homeVerticals = {
       stat: "Bitki çayı, meyve suyu ve sağlıklı içeceklerde ritim abonelikle korunur.",
       icon: "beverage",
       href: routes.subscriptions.functionalBeverages,
-      image: "/images/verticals/functional-beverages.png",
+      image: "/images/verticals/functional-beverages.webp",
     },
   ] satisfies HomeVertical[],
 } as const;

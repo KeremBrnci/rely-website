@@ -21,7 +21,7 @@ export const marketingAutoBillingIncludeLabel =
   "Otomatik tahsilat (kart saklama destekleyen sanal POS'lar)";
 
 export const marketingPaymentProvidersShortLabel =
-  "Tahsilat: kart saklama destekleyen sanal POS'lar";
+  "Tahsilat: Kart saklama (tokenization) destekleyen tüm ödeme sağlayıcıları ile entegrasyon";
 
 export const marketingPaymentIntegrationsPhrase =
   "Kart saklama (token) hizmeti sunan tüm sanal POS ve ödeme kuruluşlarıyla çalışır (Craftgate, İyzico ve diğerleri).";

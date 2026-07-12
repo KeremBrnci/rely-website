@@ -400,7 +400,7 @@
   /* Görselin zemini (~#fefefe) ile birebir aynı: beyaz kutu/flaş olmaz, blend gerekmez */
   background: #fefefe;
 
-  --fallback-width-mobile: min(92vw, 520px);
+  --fallback-width-mobile: min(72vw, 400px);
   --fallback-height-mobile: calc(var(--fallback-width-mobile) * 682 / 1024);
   --fallback-width-tablet: 1248px;
   --fallback-height-tablet: 831px;
@@ -458,33 +458,68 @@
   }
 
   .rely-hero-wave__static img {
-    right: 0;
+    top: auto;
+    bottom: -3%;
+    right: -12%;
     left: auto;
-    top: 50%;
-    transform: translateY(-50%);
+    transform: none;
+    width: var(--fallback-width-mobile);
+    height: var(--fallback-height-mobile);
+    opacity: 0.94;
   }
-}
 
-@media (max-width: 639px) {
   .rely-hero-wave__veil {
     background:
       linear-gradient(
-        to right,
+        to bottom,
         #fefefe 0%,
-        #fefefe 10%,
-        color-mix(in srgb, #fefefe 72%, transparent) 34%,
-        color-mix(in srgb, #fefefe 28%, transparent) 52%,
-        transparent 78%
+        #fefefe 46%,
+        color-mix(in srgb, #fefefe 90%, transparent) 60%,
+        color-mix(in srgb, #fefefe 62%, transparent) 74%,
+        color-mix(in srgb, #fefefe 24%, transparent) 88%,
+        transparent 100%
       ),
       linear-gradient(
-        to bottom,
-        transparent 58%,
-        color-mix(in srgb, #fefefe 55%, transparent) 100%
+        to right,
+        #fefefe 0%,
+        #fefefe 54%,
+        color-mix(in srgb, #fefefe 78%, transparent) 70%,
+        color-mix(in srgb, #fefefe 32%, transparent) 84%,
+        transparent 100%
       );
   }
 }
 
-@media (min-width: 640px) {
+@media (max-width: 639px) {
+  .rely-hero-wave__static img {
+    bottom: -4%;
+    right: -18%;
+    opacity: 0.92;
+  }
+
+  .rely-hero-wave__veil {
+    background:
+      linear-gradient(
+        to bottom,
+        #fefefe 0%,
+        #fefefe 48%,
+        color-mix(in srgb, #fefefe 92%, transparent) 62%,
+        color-mix(in srgb, #fefefe 68%, transparent) 76%,
+        color-mix(in srgb, #fefefe 28%, transparent) 90%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        #fefefe 0%,
+        #fefefe 58%,
+        color-mix(in srgb, #fefefe 82%, transparent) 72%,
+        color-mix(in srgb, #fefefe 35%, transparent) 86%,
+        transparent 100%
+      );
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1263px) {
   .rely-hero-wave__static img {
     width: var(--fallback-width-tablet);
     height: var(--fallback-height-tablet);
@@ -627,8 +662,9 @@
 
 @media (max-width: 639px) {
   .rely-hero-title {
-    font-size: clamp(2rem, 1.35rem + 4.8vw, 2.625rem);
-    line-height: 1.14;
+    font-size: clamp(1.875rem, 1.55rem + 3.4vw, 2.375rem);
+    line-height: 1.16;
+    max-width: none;
   }
 }
 

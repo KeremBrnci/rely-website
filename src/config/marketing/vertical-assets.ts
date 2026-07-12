@@ -46,11 +46,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   coffee: {
     icon: "coffee",
     heroImage: {
-      src: "/images/verticals/coffee.png",
+      src: "/images/verticals/coffee.webp",
       alt: "Kahve aboneliği — taze kavrum ve demleme anı",
     },
     packageImage: {
-      src: "/images/verticals/coffee-package.png",
+      src: "/images/verticals/coffee-package.webp",
       alt: "Kahve abonelik paketi — çekirdek ve öğütülmüş kahve teslimatı",
     },
     packagePreview: {
@@ -65,11 +65,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   beauty: {
     icon: "beauty",
     heroImage: {
-      src: "/images/verticals/beauty.png",
+      src: "/images/verticals/beauty.webp",
       alt: "Güzellik abonelik kutusu — cilt bakımı ürünleri unboxing",
     },
     packageImage: {
-      src: "/images/verticals/beauty-package.png",
+      src: "/images/verticals/beauty-package.webp",
       alt: "Güzellik abonelik paketi — serum, krem ve maske minileri",
     },
     packagePreview: {
@@ -84,11 +84,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   supplements: {
     icon: "supplements",
     heroImage: {
-      src: "/images/verticals/supplements.png",
+      src: "/images/verticals/supplements.webp",
       alt: "Takviye aboneliği — vitamin ve kapsül ürünleri",
     },
     packageImage: {
-      src: "/images/verticals/supplements-package.png",
+      src: "/images/verticals/supplements-package.webp",
       alt: "Takviye abonelik paketi — amber şişeler ve program düzeni",
     },
     packagePreview: {
@@ -103,11 +103,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   petFood: {
     icon: "petFood",
     heroImage: {
-      src: "/images/verticals/pet-food.png",
+      src: "/images/verticals/pet-food.webp",
       alt: "Pet mama aboneliği — düzenli kibble teslimatı",
     },
     packageImage: {
-      src: "/images/verticals/pet-food-package.png",
+      src: "/images/verticals/pet-food-package.webp",
       alt: "Pet mama abonelik paketi — mama torbası ve kap",
     },
     packagePreview: {
@@ -122,11 +122,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   mealKits: {
     icon: "food",
     heroImage: {
-      src: "/images/verticals/food.png",
+      src: "/images/verticals/food.webp",
       alt: "Yemek kiti aboneliği — taze malzemeler ve haftalık menü",
     },
     packageImage: {
-      src: "/images/verticals/food-package.png",
+      src: "/images/verticals/food-package.webp",
       alt: "Yemek kiti abonelik paketi — malzemeler ve tarif kartı",
     },
     packagePreview: {
@@ -141,11 +141,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   wellness: {
     icon: "wellness",
     heroImage: {
-      src: "/images/verticals/wellness.png",
+      src: "/images/verticals/wellness.webp",
       alt: "Wellness aboneliği — yoga, fitness ve günlük rutin ürünleri",
     },
     packageImage: {
-      src: "/images/verticals/wellness-package.png",
+      src: "/images/verticals/wellness-package.webp",
       alt: "Wellness abonelik paketi — matcha, journal ve rutin aksesuarları",
     },
     packagePreview: {
@@ -160,11 +160,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   subscriptionBoxes: {
     icon: "wellness",
     heroImage: {
-      src: "/images/verticals/subscription-boxes.png",
+      src: "/images/verticals/subscription-boxes.webp",
       alt: "Abonelik kutusu — aylık keşif ve sürpriz ürün unboxing",
     },
     packageImage: {
-      src: "/images/verticals/subscription-boxes-package.png",
+      src: "/images/verticals/subscription-boxes-package.webp",
       alt: "Abonelik kutusu paketi — kurdeleli hediye kutusu teslimatı",
     },
     packagePreview: {
@@ -179,11 +179,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   healthySnacks: {
     icon: "snacks",
     heroImage: {
-      src: "/images/verticals/healthy-snacks-bars-hero.png",
+      src: "/images/verticals/healthy-snacks-bars-hero.webp",
       alt: "Sağlıklı atıştırmalık aboneliği — protein bar, krokan bar ve granola",
     },
     packageImage: {
-      src: "/images/verticals/healthy-snacks-bars-package.png",
+      src: "/images/verticals/healthy-snacks-bars-package.webp",
       alt: "Atıştırmalık abonelik paketi — protein bar, krokan bar ve kuruyemiş",
     },
     packagePreview: {
@@ -198,11 +198,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   grocery: {
     icon: "grocery",
     heroImage: {
-      src: "/images/verticals/grocery.png",
+      src: "/images/verticals/grocery.webp",
       alt: "Market aboneliği — temel gıda ve ev ihtiyaçları sepeti",
     },
     packageImage: {
-      src: "/images/verticals/grocery-package.png",
+      src: "/images/verticals/grocery-package.webp",
       alt: "Market abonelik paketi — bez çanta ve temel ürünler",
     },
     packagePreview: {
@@ -217,11 +217,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   specialtyPantry: {
     icon: "snacks",
     heroImage: {
-      src: "/images/verticals/specialty-pantry.png",
+      src: "/images/verticals/specialty-pantry.webp",
       alt: "Özel tüketim ürünleri — tahin, pekmez ve kuruyemiş aboneliği",
     },
     packageImage: {
-      src: "/images/verticals/specialty-pantry-package.png",
+      src: "/images/verticals/specialty-pantry-package.webp",
       alt: "Özel tüketim abonelik paketi — tahin, pekmez ve kuruyemiş seti",
     },
     packagePreview: {
@@ -236,11 +236,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   householdEssentials: {
     icon: "grocery",
     heroImage: {
-      src: "/images/verticals/household-essentials.png",
+      src: "/images/verticals/household-essentials.webp",
       alt: "Ev tüketim ürünleri — deterjan ve temizlik malzemeleri aboneliği",
     },
     packageImage: {
-      src: "/images/verticals/household-essentials-package.png",
+      src: "/images/verticals/household-essentials-package.webp",
       alt: "Ev tüketim abonelik paketi — deterjan ve temizlik ürünleri",
     },
     packagePreview: {
@@ -255,11 +255,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   functionalBeverages: {
     icon: "beverage",
     heroImage: {
-      src: "/images/verticals/functional-beverages.png",
+      src: "/images/verticals/functional-beverages.webp",
       alt: "Fonksiyonel içecek aboneliği — detoks çayı, kombucha ve soğuk içecekler",
     },
     packageImage: {
-      src: "/images/verticals/functional-beverages-package.png",
+      src: "/images/verticals/functional-beverages-package.webp",
       alt: "İçecek abonelik paketi — cam şişelerde fonksiyonel içecekler",
     },
     packagePreview: {
@@ -274,11 +274,11 @@ export const verticalAssetsByKey: Record<SubscriptionVerticalKey, VerticalAssets
   protein: {
     icon: "protein",
     heroImage: {
-      src: "/images/verticals/protein.png",
+      src: "/images/verticals/protein.webp",
       alt: "Protein aboneliği — whey tozu ve spor beslenmesi",
     },
     packageImage: {
-      src: "/images/verticals/protein-package.png",
+      src: "/images/verticals/protein-package.webp",
       alt: "Protein abonelik paketi — toz kutu ve shaker",
     },
     packagePreview: {

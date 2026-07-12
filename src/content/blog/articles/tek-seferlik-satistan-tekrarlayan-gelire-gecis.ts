@@ -64,7 +64,7 @@ export const articleBody = {
     },
     {
       type: "p",
-      text: "Kozmetik: Rutin ürün satan bir D2C markası, üç aylık «cilt döngüsü» paketini ön ödemeli plan olarak konumlandırdı. İptal penceresi ilk teslimattan önce net yazıldı; voluntary churn ilk ayda yüksek görünse de, kalan abonelerin LTV'si tek seferlik rutin alıcıya göre 2,4 kat çıktı. Bildirimler (Mailgun/NetGSM) yenileme öncesi kullanıldı, kart reddi kaynaklı involuntary churn ayrı izlendi.",
+      text: "Kozmetik: Rutin ürün satan bir D2C markası, üç aylık «cilt döngüsü» paketini ön ödemeli plan olarak konumlandırdı. İptal penceresi ilk teslimattan önce net yazıldı; voluntary churn ilk ayda yüksek görünse de, kalan abonelerin LTV'si tek seferlik rutin alıcıya göre 2,4 kat çıktı. Bildirimler (e-posta ve SMS) yenileme öncesi kullanıldı, kart reddi kaynaklı involuntary churn ayrı izlendi.",
     },
     {
       type: "p",

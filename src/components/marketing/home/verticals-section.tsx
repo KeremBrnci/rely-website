@@ -1,4 +1,4 @@
-import type { CSSProperties, ComponentType } from "react";
+import type { ComponentType, CSSProperties } from "react";
 
 import Link from "next/link";
 import {
@@ -14,6 +14,7 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 
+import { MarketingFillImage } from "@/components/marketing/marketing-fill-image";
 import { InfrastructureEyebrow } from "@/components/sections/headings/infrastructure-eyebrow";
 import { MarketingSection } from "@/components/sections/shell/marketing-section";
 import { cardAccentColorVar, getCardAccent } from "@/config/marketing/card-accents";
@@ -47,22 +48,26 @@ function VerticalCard({ item, index }: { item: HomeVertical; index: number }) {
 
   const inner = (
     <>
-      <span
-        aria-hidden
-        className={cn(
-          "absolute inset-0 z-0 bg-cover bg-center transition-[transform,filter] duration-500 ease-out",
-          "group-hover:scale-[1.05]",
-          item.image &&
-            "saturate-[1.14] brightness-[1.07] contrast-[1.04] group-hover:saturate-[1.22] group-hover:brightness-[1.1]",
-        )}
-        style={
-          {
-            backgroundImage: item.image
-              ? `url(${item.image})`
-              : fallbackBackground,
-          } as CSSProperties
-        }
-      />
+      {item.image ? (
+        <MarketingFillImage
+          src={item.image}
+          alt=""
+          aria-hidden
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          containerClassName={cn(
+            "absolute inset-0 z-0 transition-[transform,filter] duration-500 ease-out",
+            "group-hover:scale-[1.05]",
+            "saturate-[1.14] brightness-[1.07] contrast-[1.04]",
+            "group-hover:saturate-[1.22] group-hover:brightness-[1.1]",
+          )}
+        />
+      ) : (
+        <span
+          aria-hidden
+          className="absolute inset-0 z-0"
+          style={{ background: fallbackBackground } as CSSProperties}
+        />
+      )}
       <span
         aria-hidden
         className={cn(

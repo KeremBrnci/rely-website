@@ -30,7 +30,7 @@ aboneliğe açar, düzenli ödeme alır ve tüm operasyonu tek panelden yönetir
 | --- | --- |
 | E-ticaret platformu | **Shopify** (API token + webhook), **İkas** (API anahtarı) |
 | Ödeme | **Kart saklama (token) destekleyen sanal POS ve ödeme kuruluşları** — Craftgate, İyzico ve diğerleri; recurring destek gerekir |
-| E-posta | **Mailgun** |
+| E-posta | **E-posta bildirimleri** |
 | SMS | **NetGSM** |
 
 > Platform bağlantısı kurulmadan ürün aktarılamaz. Kart bilgileri RELY'de
@@ -118,7 +118,7 @@ E-posta ve SMS şablonları, değişken (`{{customer_name}}`, `{{update_card_url
 - "Mevcut altyapınızı değiştirmeden" (replatform yok).
 - "Storefront" = müşteri abonelik sitesi (kendi domaininde).
 - "Tokenization" = kart saklama; kartlar RELY'de tutulmaz.
-- Entegrasyon adlarını doğru yaz: Shopify, İkas, Craftgate, İyzico (örnek sanal POS), Mailgun, NetGSM.
+- Entegrasyon adlarını doğru yaz: Shopify, İkas, Craftgate, İyzico (örnek sanal POS), NetGSM.
 
 ## Yapılmayacaklar / dikkat
 

@@ -3,10 +3,6 @@
  */
 
 import { routes } from "@/config/routes";
-import {
-  marketingPaymentProvidersShortLabel,
-  marketingSetupQuickStartLabel,
-} from "@/config/marketing/copy";
 
 export const contactPageMeta = {
   title: "İletişim",
@@ -73,9 +69,10 @@ export const contactPageContent = {
     },
     responseNote: "İş günlerinde genellikle 24 saat içinde yanıt veriyoruz.",
     highlights: [
-      "E-ticaret altyapınızla uyumlu entegrasyon",
-      marketingSetupQuickStartLabel,
-      marketingPaymentProvidersShortLabel,
+      "Mağazanıza özel demo ve ihtiyaç analizi",
+      "Shopify altyapınıza uygun entegrasyon değerlendirmesi",
+      "Ortalama 30 dakikalık demo görüşmesi",
+      "Teknik ekibimizden doğrudan destek",
     ],
   },
   faq: {

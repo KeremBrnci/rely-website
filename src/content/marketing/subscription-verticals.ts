@@ -117,8 +117,8 @@ export const subscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Kahve dikeyinde aboneliğin getirdiği kazanımlar",
-        titleEmphasis: "kazanımlar",
+        title: "Kahve aboneliğinin markanıza kazandırdıkları",
+        titleEmphasis: "kazandırdıkları",
         description:
           "Sıklık, paket ve kanal esnekliği kahve markalarının en çok ihtiyaç duyduğu üç alandır.",
       },
@@ -237,7 +237,7 @@ export const subscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Güzellik dikeyinde aboneliğin avantajları",
+        title: "Güzellik markalarında aboneliğin avantajları",
         titleEmphasis: "avantajları",
         description: "Kişiselleştirme ve promosyon, güzellik markalarının fark yarattığı iki alandır.",
       },
@@ -271,7 +271,7 @@ export const subscriptionVerticalsContent: Record<
         title: "Güzellik aboneliği için RELY’i tercih edin",
         titleEmphasis: "tercih edin",
         description:
-          "Bildirimler, müşteri portalı ve ödeme kurtarma; yüksek abone kaybı riski olan güzellik dikeyinde kritiktir.",
+          "Bildirimler, müşteri portalı ve ödeme kurtarma; yüksek abone kaybı riski olan güzellik markalarında kritiktir.",
       },
       items: [
         {
@@ -356,9 +356,9 @@ export const subscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Takviye markalarının abonelikten kazancı",
-        titleEmphasis: "kazancı",
-        description: "Yüksek abone değeri ve düşük destek yükü, bu dikeyde aboneliği öne çıkarır.",
+        title: "Takviye markalarında aboneliğin avantajları",
+        titleEmphasis: "avantajları",
+        description: "Yüksek abone değeri ve düşük destek yükü, bu kategoride aboneliği öne çıkarır.",
       },
       items: [
         {
@@ -468,12 +468,12 @@ export const subscriptionVerticalsContent: Record<
         "Pet sahipleri mama stoğunu takip etmek istemez; gecikme pet beslenmesini doğrudan etkiler ve marka güvenini zedeler.",
       solutionLabel: "Neden mantıklı?",
       solution:
-        "Abonelik; ‘bir daha unutma’ vaadiyle en yüksek abone tutma oranına sahip dikeylerden biridir; müşteri edinme maliyeti hızla geri döner.",
+        "Abonelik; ‘bir daha unutma’ vaadiyle en yüksek abone tutma oranına sahip kategorilerden biridir; müşteri edinme maliyeti hızla geri döner.",
     },
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Pet dikeyinde abonelik avantajları",
+        title: "Pet markalarında aboneliğin avantajları",
         titleEmphasis: "avantajları",
         description: "Doğru miktarda, doğru zamanda teslimat pet kategorisinin temel beklentisidir.",
       },
@@ -588,9 +588,9 @@ export const subscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Gıda ve yemek kitinde abonelik kazanımları",
-        titleEmphasis: "kazanımları",
-        description: "Kesim tarihi ve teslimat penceresi bu dikeyin operasyonel omurgasıdır.",
+        title: "Yemek kiti markalarında aboneliğin avantajları",
+        titleEmphasis: "avantajları",
+        description: "Kesim tarihi ve teslimat penceresi bu kategorinin operasyonel omurgasıdır.",
       },
       items: [
         {
@@ -703,9 +703,9 @@ export const subscriptionVerticalsContent: Record<
     advantages: {
       intro: {
         eyebrow: "Avantajlar",
-        title: "Wellness dikeyinde abonelik faydaları",
-        titleEmphasis: "faydaları",
-        description: "Program paketleri ve çapraz kategori kombinasyonları wellness dikeyinde yaygındır.",
+        title: "Wellness markalarında aboneliğin avantajları",
+        titleEmphasis: "avantajları",
+        description: "Program paketleri ve çapraz kategori kombinasyonları wellness markalarında yaygındır.",
       },
       items: [
         {

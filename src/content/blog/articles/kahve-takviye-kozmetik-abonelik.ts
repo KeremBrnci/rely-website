@@ -90,7 +90,7 @@ export const articleBody = {
     },
     {
       type: "p",
-      text: "Shopify veya İkas entegrasyonu, Craftgate/İyzico token’lı tahsilat, dunning, Mailgun/NetGSM bildirimleri ve müşteri storefront’u — kahve, supplement ve kozmetik için aynı motor, farklı plan ve mesaj. Headless yapı marka temasını korur; dikey özelleştirme plan ve içerikte yapılır.",
+      text: "Shopify veya İkas entegrasyonu, Craftgate/İyzico token’lı tahsilat, dunning, e-posta ve SMS bildirimleri ve müşteri storefront’u — kahve, supplement ve kozmetik için aynı motor, farklı plan ve mesaj. Headless yapı marka temasını korur; dikey özelleştirme plan ve içerikte yapılır.",
     },
     {
       type: "h2",
@@ -190,7 +190,7 @@ export const articleBody = {
     { type: "p", text: "Shopify D2C operatörü olarak abonelik, «eklenti» değil iş modeli katmanıdır; metrik disiplini olmadan büyüme sürdürülemez." },
     { type: "p", text: "Pazarlama, finans ve operasyon aynı toplantıda MRR hareket tablosunu okumadığında abonelik projesi parçalanır; haftalık 30 dakika «abonelik council» bu riski azaltır." },
     { type: "p", text: "Türkiye'de SMS ve e-posta birlikte kullanıldığında recovery ve churn müdahalesi güçlenir; yalnızca e-posta tek başına yetersiz kalır." },
-    { type: "p", text: "RELY Subs: Shopify/İkas ürün ve sipariş senkronu, Craftgate/İyzico token tahsilatı, dunning, Mailgun/NetGSM bildirimleri ve müşteri storefront — operatörün tekrarlayan gelir altyapısı tek panelde toplanır." },
+    { type: "p", text: "RELY Subs: Shopify/İkas ürün ve sipariş senkronu, Craftgate/İyzico token tahsilatı, dunning, e-posta ve SMS bildirimleri ve müşteri storefront — operatörün tekrarlayan gelir altyapısı tek panelde toplanır." },
     { type: "p", text: "Yazı sonu hatırlatma: abonelik operasyonunda ölçmediğiniz metrik yönetemezsiniz; MRR bridge, cohort LTV, voluntary/involuntary churn ayrımı ve recovery rate dörtlüsü olmadan büyüme kararları kör kalır. RELY Subs bu dörtlüyü destekleyen headless katmandır — mevcut Shopify veya İkas mağazanızı değiştirmeden tekrarlayan gelir disiplinini kurun." },
     { type: "p", text: "Uygulama checklist'indeki maddeleri öncelik sırasına koyun; ilk 14 günde ödeme ve metrik altyapısı, sonraki 30 günde churn ve LTV müdahaleleri devreye girsin." },
     { type: "p", text: "İleri okuma: MRR bridge ve cohort retention raporlarını aylık kapanışta finans ve pazarlama ile birlikte gözden geçirin; sapma varsa kök neden aynı hafta atanmış sorumluyla kapatılsın." },

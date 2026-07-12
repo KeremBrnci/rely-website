@@ -1,6 +1,6 @@
-import Image from "next/image";
 import type { CSSProperties } from "react";
 
+import { MarketingFillImage } from "@/components/marketing/marketing-fill-image";
 import { Container } from "@/components/layout/container";
 import { MarketingSection } from "@/components/sections/shell/marketing-section";
 import { VerticalSubscriptionPackage } from "@/components/marketing/verticals/vertical-subscription-package";
@@ -33,23 +33,23 @@ export function VerticalImagerySection({ visuals }: { visuals: VerticalAssets })
               "aspect-[16/10] md:aspect-[16/9]",
             )}
           >
-            <Image
+            <MarketingFillImage
               src={heroImage.src}
               alt={heroImage.alt}
-              fill
               priority
               sizes="(min-width: 768px) 65vw, 92vw"
-              className="object-cover"
+              containerClassName="absolute inset-0"
             />
             <span
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#06182a]/55 via-transparent to-transparent"
+              className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#06182a]/55 via-transparent to-transparent"
             />
           </figure>
 
           <VerticalSubscriptionPackage
             image={visuals.packageImage}
             preview={packagePreview}
+            imagePriority
             className="md:min-h-0"
             style={
               {
