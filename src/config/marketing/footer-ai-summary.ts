@@ -13,7 +13,7 @@ function buildSummaryPrompt(): string {
       "Bu kaynakları okuyarak RELY Subs'ı Türkçe özetle:",
       llmsUrl,
       indexUrl,
-      "Odak: e-ticaret abonelik altyapısı, abonelik e-ticaret, otomatik tahsilat, Shopify/İkas entegrasyonu.",
+      "Odak: e-ticaret abonelik altyapısı, abonelik e-ticaret, otomatik tahsilat.",
     ].join(" "),
   );
 }
@@ -39,7 +39,7 @@ export const footerAiSummary = {
         id: "chatgpt",
         label: "ChatGPT",
         title: "ChatGPT ile Rely özetle",
-        href: `https://chatgpt.com/?hints=search&q=${q}`,
+        href: `https://chatgpt.com/?prompt=${q}`,
       },
       {
         id: "claude",
