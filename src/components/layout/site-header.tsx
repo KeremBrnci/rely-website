@@ -225,7 +225,7 @@ function SiteHeaderInner({ className }: SiteHeaderProps) {
     if (!trigger) return;
 
     const triggerRect = trigger.getBoundingClientRect();
-    let centerX = triggerRect.left + trigger.offsetWidth / 2;
+    let centerX = triggerRect.left + triggerRect.width / 2;
 
     const navItem = mainNavigation.find((item) => item.title === menuTitle);
     if (navItem?.megaMenu === "features") {

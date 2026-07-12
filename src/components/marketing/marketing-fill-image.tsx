@@ -34,8 +34,12 @@ export function MarketingFillImage({
         fill
         sizes={sizes}
         priority={priority}
-        placeholder={withBlurPlaceholder ? "blur" : "empty"}
-        blurDataURL={withBlurPlaceholder ? marketingImageBlurDataUrl : undefined}
+        fetchPriority={priority ? "high" : undefined}
+        loading={priority ? "eager" : "lazy"}
+        placeholder={withBlurPlaceholder && !priority ? "blur" : "empty"}
+        blurDataURL={
+          withBlurPlaceholder && !priority ? marketingImageBlurDataUrl : undefined
+        }
         className={cn("object-cover", imageClassName, className)}
       />
     </div>

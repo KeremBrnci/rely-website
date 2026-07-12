@@ -1,3 +1,5 @@
+import { preload } from "react-dom";
+
 import { SolutionFeatures } from "@/components/marketing/solutions/solution-features";
 import { getVerticalHeroGlow } from "@/config/marketing/hero-glow";
 import { subscriptionVerticalSlugToKey } from "@/content/marketing/subscription-verticals";
@@ -17,6 +19,8 @@ import { faqItemsToSchema, sectorBreadcrumbs } from "@/lib/seo";
 
 export function SubscriptionVerticalPage({ slug }: { slug: SubscriptionVerticalSlug }) {
   const content = enrichVerticalContent(getSubscriptionVerticalBySlug(slug), slug);
+
+  preload(content.visuals.heroImage.src, { as: "image", fetchPriority: "high" });
 
   return (
     <>

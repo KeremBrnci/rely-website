@@ -20,7 +20,7 @@ export function HeroSection() {
 
       <Container
         className={cn(
-          "relative z-10 flex w-full flex-1 flex-col",
+          "relative z-10 flex w-full flex-col lg:flex-1",
           "max-lg:pt-4 sm:max-lg:pt-5",
           "pb-[clamp(2rem,4vh,5.5rem)] sm:pb-[clamp(2.5rem,5vh,5.5rem)]",
         )}

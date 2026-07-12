@@ -19,7 +19,7 @@ export const homeMarketingSectionShell = {
     background: "muted",
     className: cn(
       "relative isolate flex flex-col overflow-hidden",
-      "max-lg:min-h-[clamp(30rem,82svh,42rem)] lg:min-h-[min(94svh,56rem)]",
+      "max-lg:min-h-0 lg:min-h-[min(94svh,56rem)]",
       "[background:var(--marketing-page-hero-gradient)]",
       /* Header payı; lg+ içerik nav ile alt çizgi arasında dikey ortalanır */
       "pt-[var(--site-header-offset)] max-lg:pb-10 sm:max-lg:pb-12",

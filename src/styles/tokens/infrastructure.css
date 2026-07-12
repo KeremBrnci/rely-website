@@ -193,12 +193,10 @@
     transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
     opacity 0.45s ease;
   transition-delay: var(--rely-step-delay, 0ms);
-  transform: scale(0.82);
   opacity: 0;
 }
 
 .rely-step.is-visible .rely-step-badge {
-  transform: scale(1);
   opacity: 1;
 }
 
@@ -266,22 +264,35 @@
 
 .rely-step-icon-box__badge {
   position: absolute;
-  top: -0.125rem;
-  right: -0.125rem;
+  top: 0;
+  right: 0;
   z-index: 2;
-  min-width: 1.375rem;
-  height: 1.375rem;
-  padding-inline: 0.3125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
   border-radius: 9999px;
   border: 1px solid color-mix(in oklab, #ffffff 55%, transparent);
   font-family: var(--font-bai-jamjuree), "Bai Jamjuree", sans-serif;
   font-size: 0.625rem;
   font-weight: 600;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
   color: #ffffff;
   background: var(--rely-card-accent, var(--marketing-primary));
+  transform: translate(30%, -30%);
+}
+
+.rely-step-badge.rely-step-icon-box__badge {
+  transform: translate(30%, -30%) scale(0.82);
+}
+
+.rely-step.is-visible .rely-step-badge.rely-step-icon-box__badge {
+  transform: translate(30%, -30%) scale(1);
 }
 
 @keyframes rely-step-icon-ring-spin {
@@ -314,8 +325,11 @@
   .rely-step-line,
   .rely-step-badge {
     opacity: 1;
-    transform: none;
     transition: none;
+  }
+
+  .rely-step-badge.rely-step-icon-box__badge {
+    transform: translate(30%, -30%);
   }
 
   .rely-step-dot {
@@ -458,9 +472,9 @@
   }
 
   .rely-hero-wave__static img {
-    top: auto;
-    bottom: -3%;
-    right: -12%;
+    top: clamp(7rem, 30vh, 11.5rem);
+    bottom: auto;
+    right: -14%;
     left: auto;
     transform: none;
     width: var(--fallback-width-mobile);
@@ -470,15 +484,6 @@
 
   .rely-hero-wave__veil {
     background:
-      linear-gradient(
-        to bottom,
-        #fefefe 0%,
-        #fefefe 46%,
-        color-mix(in srgb, #fefefe 90%, transparent) 60%,
-        color-mix(in srgb, #fefefe 62%, transparent) 74%,
-        color-mix(in srgb, #fefefe 24%, transparent) 88%,
-        transparent 100%
-      ),
       linear-gradient(
         to right,
         #fefefe 0%,
@@ -492,7 +497,7 @@
 
 @media (max-width: 639px) {
   .rely-hero-wave__static img {
-    bottom: -4%;
+    top: clamp(6.75rem, 27vh, 10.5rem);
     right: -18%;
     opacity: 0.92;
   }
@@ -502,18 +507,16 @@
       linear-gradient(
         to bottom,
         #fefefe 0%,
-        #fefefe 48%,
-        color-mix(in srgb, #fefefe 92%, transparent) 62%,
-        color-mix(in srgb, #fefefe 68%, transparent) 76%,
-        color-mix(in srgb, #fefefe 28%, transparent) 90%,
+        #fefefe 62%,
+        color-mix(in srgb, #fefefe 88%, transparent) 78%,
         transparent 100%
       ),
       linear-gradient(
         to right,
         #fefefe 0%,
-        #fefefe 58%,
-        color-mix(in srgb, #fefefe 82%, transparent) 72%,
-        color-mix(in srgb, #fefefe 35%, transparent) 86%,
+        #fefefe 62%,
+        color-mix(in srgb, #fefefe 82%, transparent) 76%,
+        color-mix(in srgb, #fefefe 35%, transparent) 88%,
         transparent 100%
       );
   }

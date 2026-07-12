@@ -49,7 +49,6 @@ export function VerticalImagerySection({ visuals }: { visuals: VerticalAssets })
           <VerticalSubscriptionPackage
             image={visuals.packageImage}
             preview={packagePreview}
-            imagePriority
             className="md:min-h-0"
             style={
               {
