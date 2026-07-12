@@ -1,4 +1,8 @@
+import { randomUUID } from "node:crypto";
+
 import { NextResponse } from "next/server";
+
+import { sendContactNotification, type ContactNotificationPayload } from "@/lib/email/send-contact-notification";
 
 type ContactPayload = {
   requestType?: string;
@@ -28,7 +32,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const requestType = body.requestType === "contact" ? "contact" : "demo";
+  const requestType: ContactNotificationPayload["requestType"] =
+    body.requestType === "contact" ? "contact" : "demo";
   const name = body.name?.trim() ?? "";
   const email = body.email?.trim() ?? "";
   const company = body.company?.trim() ?? "";
@@ -59,10 +64,28 @@ export async function POST(request: Request) {
     platform: body.platform?.trim() || null,
     message,
     receivedAt: new Date().toISOString(),
-  };
+  } satisfies ContactNotificationPayload;
 
-  if (process.env.NODE_ENV === "development") {
-    console.info("[contact]", entry);
+  const submissionId = randomUUID();
+  const result = await sendContactNotification(
+    entry,
+    `contact-form/${submissionId}`,
+  );
+
+  if (!result.ok) {
+    if (process.env.NODE_ENV === "development") {
+      console.info("[contact]", entry);
+      if (result.reason === "missing_config") {
+        console.warn("[contact] RESEND_API_KEY tanımlı değil; geliştirmede kayıt loglandı.");
+        return NextResponse.json({ ok: true });
+      }
+    }
+
+    console.error("[contact] Resend error:", result.message);
+    return NextResponse.json(
+      { error: "E-posta gönderilemedi. Lütfen daha sonra tekrar deneyin." },
+      { status: 503 },
+    );
   }
 
   return NextResponse.json({ ok: true });
