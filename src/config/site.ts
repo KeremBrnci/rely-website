@@ -22,8 +22,8 @@ export const siteConfig = {
   footerTagline:
     "Modern ticaret markaları için tekrarlayan gelir altyapısı.",
   url: resolveSiteUrl(),
-  /** Sosyal önizleme — 1200×630 */
-  ogImage: "/brand/og-image.png",
+  /** Sosyal önizleme — gerçek logo, 1200×630 */
+  ogImage: "/brand/og-share.png",
   ogImageWidth: 1200,
   ogImageHeight: 630,
   links: {
