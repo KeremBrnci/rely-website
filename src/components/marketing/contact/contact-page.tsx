@@ -32,6 +32,7 @@ export function ContactPage() {
         id="iletisim-form"
         spacing="lg"
         background="default"
+        contained={false}
         className={cn(
           "scroll-mt-24 border-b border-[color:var(--marketing-section-divider)]",
           "bg-[color:var(--marketing-background)]",
