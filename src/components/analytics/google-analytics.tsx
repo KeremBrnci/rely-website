@@ -1,14 +1,23 @@
 import Script from "next/script";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+/** Google Ads — site genelinde sabit gtag config. */
+const GOOGLE_ADS_ID = "AW-18335930537";
 
+/** gtag.js bir kez yüklenir; GA4 (varsa) + Google Ads config. */
 export function GoogleAnalytics() {
-  if (!GA_MEASUREMENT_ID) return null;
+  const primaryId = GA_MEASUREMENT_ID || GOOGLE_ADS_ID;
+
+  const configs: string[] = [];
+  if (GA_MEASUREMENT_ID) {
+    configs.push(`gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });`);
+  }
+  configs.push(`gtag('config', '${GOOGLE_ADS_ID}');`);
 
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${primaryId}`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -16,7 +25,7 @@ export function GoogleAnalytics() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });
+          ${configs.join("\n          ")}
         `}
       </Script>
     </>
