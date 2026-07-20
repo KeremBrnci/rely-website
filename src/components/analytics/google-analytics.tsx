@@ -1,8 +1,8 @@
 import Script from "next/script";
 
+import { GOOGLE_ADS_ID } from "@/components/analytics/google-ads";
+
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
-/** Google Ads — site genelinde sabit gtag config. */
-const GOOGLE_ADS_ID = "AW-18335930537";
 
 /** gtag.js bir kez yüklenir; GA4 (varsa) + Google Ads config. */
 export function GoogleAnalytics() {
