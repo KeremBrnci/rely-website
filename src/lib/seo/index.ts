@@ -53,7 +53,6 @@ export {
   ContactPageJsonLd,
   FaqPageJsonLd,
   OrganizationJsonLd,
-  SoftwareApplicationJsonLd,
   ProductJsonLd,
   WebPageJsonLd,
   WebSiteJsonLd,
