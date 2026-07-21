@@ -1,12 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import * as THREE from "three";
 
-const ASSET_VERSION = "5";
-const IMAGE_SRC = `/images/hero/wave-desktop.webp?v=${ASSET_VERSION}`;
-const IMAGE_WIDTH = 1024;
-const IMAGE_HEIGHT = 682;
+import {
+  HERO_WAVE_IMAGE_HEIGHT,
+  HERO_WAVE_IMAGE_SRC,
+  HERO_WAVE_IMAGE_WIDTH,
+} from "@/config/marketing/hero-wave-asset";
+
+const IMAGE_SRC = HERO_WAVE_IMAGE_SRC;
+const IMAGE_WIDTH = HERO_WAVE_IMAGE_WIDTH;
+const IMAGE_HEIGHT = HERO_WAVE_IMAGE_HEIGHT;
 const IMAGE_ASPECT = IMAGE_WIDTH / IMAGE_HEIGHT;
 
 /** Mobilde animasyonlu canvas kayma yapar; yalnızca statik görsel kullanılır */
@@ -94,130 +98,148 @@ export function HeroWaveCanvas() {
     const mobileStaticOnly = window.matchMedia(
       MOBILE_STATIC_WAVE_MEDIA,
     ).matches;
-    // Mobil + reduced-motion: statik görsel sabit kalır, WebGL başlatılmaz
+    // Mobil + reduced-motion: three.js hiç indirilmez; statik LCP görseli kalır
     if (reduceMotion || mobileStaticOnly) return;
 
-    let renderer: THREE.WebGLRenderer;
-    try {
-      renderer = new THREE.WebGLRenderer({
-        canvas,
-        alpha: true,
-        antialias: true,
-        powerPreference: "high-performance",
+    let cancelled = false;
+    let cleanup: (() => void) | undefined;
+
+    void (async () => {
+      const THREE = await import("three");
+      if (cancelled || !canvasRef.current) return;
+
+      let renderer: InstanceType<typeof THREE.WebGLRenderer>;
+      try {
+        renderer = new THREE.WebGLRenderer({
+          canvas,
+          alpha: true,
+          antialias: true,
+          powerPreference: "high-performance",
+        });
+      } catch {
+        return;
+      }
+
+      renderer.setClearColor(0x000000, 0);
+      THREE.ColorManagement.enabled = false;
+      renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+      const uniforms = {
+        uTexture: { value: null as InstanceType<typeof THREE.Texture> | null },
+        uRepeat: { value: new THREE.Vector2(1, 1) },
+        uOffset: { value: new THREE.Vector2(0, 0) },
+        uTime: { value: 0 },
+      };
+
+      const geometry = new THREE.PlaneGeometry(2, 2);
+      const material = new THREE.ShaderMaterial({
+        vertexShader: VERTEX_SHADER,
+        fragmentShader: FRAGMENT_SHADER,
+        uniforms,
+        transparent: true,
       });
-    } catch {
-      // WebGL yoksa: statik <picture> görünür kalır
-      return;
-    }
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
 
-    renderer.setClearColor(0x000000, 0);
-    // Renk yönetimini kapat: canvas, statik <img> ile birebir aynı sRGB pikselleri bassın
-    THREE.ColorManagement.enabled = false;
-    renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+      const setSize = () => {
+        const parent = canvas.parentElement;
+        const w = parent?.clientWidth || window.innerWidth;
+        const h = parent?.clientHeight || window.innerHeight;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setSize(w, h, false);
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+        const { width: boxW, height: boxH } = fallbackBox(window.innerWidth);
+        uniforms.uRepeat.value.set(w / boxW, h / boxH);
+        uniforms.uOffset.value.set(
+          fallbackOffsetX(window.innerWidth, w, boxW),
+          0.5 - h / (2 * boxH),
+        );
+      };
+      setSize();
 
-    const uniforms = {
-      uTexture: { value: null as THREE.Texture | null },
-      uRepeat: { value: new THREE.Vector2(1, 1) },
-      uOffset: { value: new THREE.Vector2(0, 0) },
-      uTime: { value: 0 },
-    };
+      const loader = new THREE.TextureLoader();
+      let textureReady = false;
+      loader.load(IMAGE_SRC, (texture) => {
+        if (cancelled) {
+          texture.dispose();
+          return;
+        }
+        texture.wrapS = THREE.ClampToEdgeWrapping;
+        texture.wrapT = THREE.ClampToEdgeWrapping;
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+        texture.generateMipmaps = false;
+        uniforms.uTexture.value = texture;
+        textureReady = true;
+        renderer.render(scene, camera);
+        setDrawn(true);
+      });
 
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const material = new THREE.ShaderMaterial({
-      vertexShader: VERTEX_SHADER,
-      fragmentShader: FRAGMENT_SHADER,
-      uniforms,
-      transparent: true,
-    });
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+      const clock = new THREE.Clock();
+      let raf = 0;
+      let running = false;
+      let resizeRaf = 0;
 
-    const setSize = () => {
-      const parent = canvas.parentElement;
-      const w = parent?.clientWidth || window.innerWidth;
-      const h = parent?.clientHeight || window.innerHeight;
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-      renderer.setSize(w, h, false);
+      const loop = () => {
+        if (!running) return;
+        uniforms.uTime.value = clock.getElapsedTime();
+        if (textureReady) renderer.render(scene, camera);
+        raf = requestAnimationFrame(loop);
+      };
 
-      // Statik görselle aynı kutu: breakpoint ölçüleri + mobil hizalama
-      const { width: boxW, height: boxH } = fallbackBox(window.innerWidth);
-      uniforms.uRepeat.value.set(w / boxW, h / boxH);
-      uniforms.uOffset.value.set(
-        fallbackOffsetX(window.innerWidth, w, boxW),
-        0.5 - h / (2 * boxH),
+      const start = () => {
+        if (running) return;
+        running = true;
+        raf = requestAnimationFrame(loop);
+      };
+
+      const stop = () => {
+        running = false;
+        cancelAnimationFrame(raf);
+      };
+
+      start();
+
+      const onResize = () => {
+        cancelAnimationFrame(resizeRaf);
+        resizeRaf = requestAnimationFrame(setSize);
+      };
+      window.addEventListener("resize", onResize);
+
+      const onVisibility = () => {
+        if (document.hidden) stop();
+        else start();
+      };
+      document.addEventListener("visibilitychange", onVisibility);
+
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) start();
+          else stop();
+        },
+        { threshold: 0 },
       );
-    };
-    setSize();
+      io.observe(canvas);
 
-    const loader = new THREE.TextureLoader();
-    let textureReady = false;
-    loader.load(IMAGE_SRC, (texture) => {
-      texture.wrapS = THREE.ClampToEdgeWrapping;
-      texture.wrapT = THREE.ClampToEdgeWrapping;
-      texture.minFilter = THREE.LinearFilter;
-      texture.magFilter = THREE.LinearFilter;
-      texture.generateMipmaps = false;
-      uniforms.uTexture.value = texture;
-      textureReady = true;
-      // Statik görseli gizlemeden önce ilk kareyi bas (boşluk/atlama olmasın)
-      renderer.render(scene, camera);
-      setDrawn(true);
-    });
-
-    const clock = new THREE.Clock();
-    let raf = 0;
-    let running = false;
-
-    const loop = () => {
-      if (!running) return;
-      uniforms.uTime.value = clock.getElapsedTime();
-      if (textureReady) renderer.render(scene, camera);
-      raf = requestAnimationFrame(loop);
-    };
-
-    const start = () => {
-      if (running) return;
-      running = true;
-      raf = requestAnimationFrame(loop);
-    };
-
-    const stop = () => {
-      running = false;
-      cancelAnimationFrame(raf);
-    };
-
-    start();
-
-    const onResize = () => setSize();
-    window.addEventListener("resize", onResize);
-
-    const onVisibility = () => {
-      if (document.hidden) stop();
-      else start();
-    };
-    document.addEventListener("visibilitychange", onVisibility);
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) start();
-        else stop();
-      },
-      { threshold: 0 },
-    );
-    io.observe(canvas);
+      cleanup = () => {
+        stop();
+        cancelAnimationFrame(resizeRaf);
+        window.removeEventListener("resize", onResize);
+        document.removeEventListener("visibilitychange", onVisibility);
+        io.disconnect();
+        uniforms.uTexture.value?.dispose();
+        geometry.dispose();
+        material.dispose();
+        renderer.dispose();
+      };
+    })();
 
     return () => {
-      stop();
-      window.removeEventListener("resize", onResize);
-      document.removeEventListener("visibilitychange", onVisibility);
-      io.disconnect();
-      uniforms.uTexture.value?.dispose();
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
+      cancelled = true;
+      cleanup?.();
     };
   }, []);
 
@@ -232,14 +254,17 @@ export function HeroWaveCanvas() {
             ref={canvasRef}
             className="rely-hero-wave__canvas"
             aria-hidden="true"
-            data-engine="three.js r178"
           />
           <div className="rely-hero-wave__static">
             <picture>
               <img
-                src={`/images/hero/wave-desktop.webp?v=${ASSET_VERSION}`}
+                src={IMAGE_SRC}
                 alt=""
                 aria-hidden="true"
+                width={IMAGE_WIDTH}
+                height={IMAGE_HEIGHT}
+                decoding="async"
+                fetchPriority="high"
               />
             </picture>
           </div>

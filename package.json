@@ -9,6 +9,13 @@
     "lint": "eslint",
     "audit:titles": "npx --yes tsx scripts/audit-page-titles.ts"
   },
+  "browserslist": [
+    "chrome >= 111",
+    "edge >= 111",
+    "firefox >= 111",
+    "safari >= 16.4",
+    "not dead"
+  ],
   "dependencies": {
     "@base-ui/react": "^1.4.1",
     "@gsap/react": "^2.1.2",

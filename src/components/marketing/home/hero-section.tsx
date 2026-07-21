@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { preload } from "react-dom";
 
 import { HeroWaveCanvas } from "@/components/marketing/home/hero-wave-canvas";
 import { HeadlineEmphasis } from "@/components/marketing/headline-emphasis";
@@ -6,6 +7,7 @@ import { HeadlineEmphasis } from "@/components/marketing/headline-emphasis";
 import { Cluster } from "@/components/layout/cluster";
 import { Container } from "@/components/layout/container";
 import { MarketingSection } from "@/components/sections/shell/marketing-section";
+import { HERO_WAVE_IMAGE_SRC } from "@/config/marketing/hero-wave-asset";
 import { homeMarketingSectionShell } from "@/config/marketing/home-section-shell";
 import { BrandMark } from "@/components/brand/brand-mark";
 import { InfrastructureEyebrow } from "@/components/sections/headings/infrastructure-eyebrow";
@@ -14,6 +16,8 @@ import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 
 export function HeroSection() {
+  preload(HERO_WAVE_IMAGE_SRC, { as: "image", fetchPriority: "high" });
+
   return (
     <MarketingSection id="hero" {...homeMarketingSectionShell.hero}>
       <HeroWaveCanvas />
