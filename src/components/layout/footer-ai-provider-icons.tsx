@@ -1,4 +1,5 @@
 import type { FooterAiProviderId } from "@/config/marketing/footer-ai-summary";
+import { cn } from "@/lib/utils";
 
 type IconProps = {
   className?: string;
@@ -20,20 +21,38 @@ export function IconClaude({ className }: IconProps) {
   );
 }
 
-export function IconPerplexity({ className }: IconProps) {
+/** Masked brand mark — inherits currentColor like SVG icons. */
+function BrandMaskIcon({
+  src,
+  className,
+}: {
+  src: string;
+  className?: string;
+}) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-      <path d="M22.3977 7.0896h-2.3106V.7522l-7.4881 6.3374H2.6699v8.7445h2.8525v5.1303l4.7113-4.2581v4.2581l5.3306-4.7853v3.0805h6.5544V14.0937h2.3106V7.0896zm-3.4189-2.4979v2.4979h-2.9362l2.9362-2.4979zm-9.9305 14.9039v-3.4234l-2.8525 2.5847v-3.5588l5.8077-5.2278v6.0428l-2.9552 3.5825zm6.3766-3.9908-1.3354 1.1986v-5.5631H7.9587v-1.5232h13.6038v5.8877h-2.5376z" />
-    </svg>
+    <span
+      aria-hidden
+      className={cn("inline-block shrink-0 bg-current", className)}
+      style={{
+        maskImage: `url(${src})`,
+        WebkitMaskImage: `url(${src})`,
+        maskSize: "contain",
+        WebkitMaskSize: "contain",
+        maskRepeat: "no-repeat",
+        WebkitMaskRepeat: "no-repeat",
+        maskPosition: "center",
+        WebkitMaskPosition: "center",
+      }}
+    />
   );
 }
 
+export function IconPerplexity({ className }: IconProps) {
+  return <BrandMaskIcon src="/brand/ai/perplexity.png" className={className} />;
+}
+
 export function IconGrok({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-      <path d="M9.27 15.29 11.93 18l1.34-1.35-.04-.04L9.27 12 13.23 8 9.27 4l-1.33 1.34L11.95 8l-3.99 4 1.31 3.29zM14.78 20l5.22-8L14.78 4l-1.33 1.34 4.45 6.66-4.45 6.66L14.78 20z" />
-    </svg>
-  );
+  return <BrandMaskIcon src="/brand/ai/grok.png" className={className} />;
 }
 
 const icons: Record<FooterAiProviderId, typeof IconChatGPT> = {
