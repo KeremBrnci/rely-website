@@ -1,4 +1,5 @@
 import { companyLegal, formatCompanyAddress } from "@/config/company";
+import { marketingPlatformMonthlyFee } from "@/config/marketing/copy";
 import { routes } from "@/config/routes";
 import { siteConfig } from "@/config/site";
 import { geoKnowsAbout } from "@/lib/seo/geo";
@@ -122,29 +123,37 @@ export function WebPageJsonLd({
   );
 }
 
-export function SoftwareApplicationJsonLd() {
+/** Ürün sayfası — review/rating uydurmadan Product + Offer (TRY platform ücreti). */
+export function ProductJsonLd() {
   const url = `${siteConfig.url}${routes.product}`;
+  const priceAmount = marketingPlatformMonthlyFee.replace(/[^\d]/g, "");
 
   return (
     <JsonLd
       data={{
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
+        "@type": "Product",
         name: SEO_BRAND,
         alternateName: [
           SEO_KEYWORD_PHRASES.primary,
           SEO_KEYWORD_PHRASES.secondary,
           "Abonelik E-ticaret Platformu",
         ],
-        applicationCategory: "BusinessApplication",
-        operatingSystem: "Web",
+        category: "BusinessApplication",
         url,
         description: siteConfig.description,
+        brand: {
+          "@type": "Brand",
+          name: SEO_BRAND,
+        },
         offers: {
           "@type": "Offer",
+          url: `${siteConfig.url}${routes.pricingTr}`,
           priceCurrency: "TRY",
-          description: "Hacme göre komisyon ve kuruma özel teklif",
+          price: priceAmount,
+          priceValidUntil: "2027-12-31",
           availability: "https://schema.org/InStock",
+          description: `${marketingPlatformMonthlyFee} / ay platform ücreti; abonelik tahsilatına göre komisyon`,
         },
         provider: { "@id": organizationId },
       }}

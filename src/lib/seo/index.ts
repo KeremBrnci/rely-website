@@ -54,6 +54,7 @@ export {
   FaqPageJsonLd,
   OrganizationJsonLd,
   SoftwareApplicationJsonLd,
+  ProductJsonLd,
   WebPageJsonLd,
   WebSiteJsonLd,
   type FaqSchemaItem,

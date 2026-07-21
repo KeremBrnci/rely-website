@@ -4,7 +4,7 @@ import {
   ContactPageJsonLd,
   FaqPageJsonLd,
   type FaqSchemaItem,
-  SoftwareApplicationJsonLd,
+  ProductJsonLd,
   WebPageJsonLd,
   WebSiteJsonLd,
   buildSeoTitle,
@@ -37,7 +37,7 @@ export function PageSeo({
   return (
     <>
       <WebPageJsonLd pathname={pathname} title={title} description={description} />
-      {variant === "product" ? <SoftwareApplicationJsonLd /> : null}
+      {variant === "product" ? <ProductJsonLd /> : null}
       {variant === "contact" ? <ContactPageJsonLd /> : null}
       {variant === "article" && publishedAt ? (
         <ArticleJsonLd
