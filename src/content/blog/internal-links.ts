@@ -14,6 +14,16 @@ export function blogPostHref(slug: string): string {
 
 /** Her yazı için 3 ilgili blog yazısı (çift yönlü ağ). */
 const blogRelatedSlugs: Record<string, string[]> = {
+  "tekrar-eden-gelir-nedir": [
+    "mrr-tekrarlayan-gelir-hesaplama",
+    "tek-seferlik-satistan-tekrarlayan-gelire-gecis",
+    "reklam-yerine-mevcut-musteri-degeri",
+  ],
+  "reklam-yerine-mevcut-musteri-degeri": [
+    "ltv-nasil-artirilir",
+    "tekrar-eden-gelir-nedir",
+    "2026-eticaret-buyume-kanali-abonelik",
+  ],
   "tek-seferlik-satistan-tekrarlayan-gelire-gecis": [
     "mrr-tekrarlayan-gelir-hesaplama",
     "shopify-abonelik-oncesi",
@@ -25,9 +35,9 @@ const blogRelatedSlugs: Record<string, string[]> = {
     "tek-seferlik-satistan-tekrarlayan-gelire-gecis",
   ],
   "ltv-nasil-artirilir": [
+    "reklam-yerine-mevcut-musteri-degeri",
     "mrr-tekrarlayan-gelir-hesaplama",
     "churn-azaltma-10-yol",
-    "abonelik-musteri-sadakati",
   ],
   "basarisiz-odemeler-gelir-kaybi": [
     "churn-azaltma-10-yol",
@@ -50,9 +60,9 @@ const blogRelatedSlugs: Record<string, string[]> = {
     "abonelik-musteri-sadakati",
   ],
   "mrr-tekrarlayan-gelir-hesaplama": [
+    "tekrar-eden-gelir-nedir",
     "ltv-nasil-artirilir",
     "tek-seferlik-satistan-tekrarlayan-gelire-gecis",
-    "2026-eticaret-buyume-kanali-abonelik",
   ],
   "abonelik-musteri-sadakati": [
     "churn-azaltma-10-yol",
@@ -115,6 +125,10 @@ const blogExtraPlatformLinks: Record<string, BlogLinkItem[]> = {
 
 /** İlk paragrafa eklenecek doğal inline link cümlesi (markdown). */
 const blogInlineLinkSuffix: Record<string, string> = {
+  "tekrar-eden-gelir-nedir":
+    " Hesaplama için [MRR rehberine](/blog/mrr-tekrarlayan-gelir-hesaplama) ve geçiş planı için [tek seferlik satıştan tekrarlayan gelire](/blog/tek-seferlik-satistan-tekrarlayan-gelire-gecis) yazısına bakın.",
+  "reklam-yerine-mevcut-musteri-degeri":
+    " LTV kaldıraçları için [müşteri yaşam boyu değeri rehberini](/blog/ltv-nasil-artirilir) ve [ürün sayfamızı](/urun) inceleyebilirsiniz.",
   "tek-seferlik-satistan-tekrarlayan-gelire-gecis":
     " Altyapı seçimi için [abonelik platformumuzu](/urun) ve [fiyatlandırmayı](/fiyatlandirma) inceleyebilirsiniz.",
   "abonelik-urun-kategorileri":

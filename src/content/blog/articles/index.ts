@@ -7,15 +7,19 @@ import { articleBody as articleChurnAzaltma10Yol } from "./churn-azaltma-10-yol"
 import { articleBody as articleKahveTakviyeKozmetikAbonelik } from "./kahve-takviye-kozmetik-abonelik";
 import { articleBody as articleLtvNasilArtirilir } from "./ltv-nasil-artirilir";
 import { articleBody as articleMrrTekrarlayanGelirHesaplama } from "./mrr-tekrarlayan-gelir-hesaplama";
+import { articleBody as articleReklamYerineMevcutMusteriDegeri } from "./reklam-yerine-mevcut-musteri-degeri";
 import { articleBody as articleShopifyAbonelikOncesi } from "./shopify-abonelik-oncesi";
 import { articleBody as articleSubscriptionBoxIsModeli } from "./subscription-box-is-modeli";
 import { articleBody as articleSubscriptionCommerceD2c } from "./subscription-commerce-d2c";
+import { articleBody as articleTekrarEdenGelirNedir } from "./tekrar-eden-gelir-nedir";
 import { articleBody as articleTekSeferlikSatistanTekrarlayanGelireGecis } from "./tek-seferlik-satistan-tekrarlayan-gelire-gecis";
 
 export const blogArticles: Record<
   string,
   { sections: typeof articleMrrTekrarlayanGelirHesaplama.sections; checklist: string[] }
 > = {
+  "tekrar-eden-gelir-nedir": articleTekrarEdenGelirNedir,
+  "reklam-yerine-mevcut-musteri-degeri": articleReklamYerineMevcutMusteriDegeri,
   "tek-seferlik-satistan-tekrarlayan-gelire-gecis":
     articleTekSeferlikSatistanTekrarlayanGelireGecis,
   "abonelik-urun-kategorileri": articleAbonelikUrunKategorileri,

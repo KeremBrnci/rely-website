@@ -3,6 +3,28 @@ import type { BlogPostMeta } from "@/content/blog/types";
 /** Liste sayfası ve generateStaticParams için meta. */
 export const blogPostsMeta: BlogPostMeta[] = [
   {
+    slug: "tekrar-eden-gelir-nedir",
+    title: "Tekrar Eden Gelir Nedir? E-Ticarette Sürdürülebilir Büyümenin Anahtarı",
+    description:
+      "Tekrar eden gelir (recurring revenue) nedir, e-ticarette nasıl oluşur ve abonelik modeliyle sürdürülebilir büyümeye nasıl katkı sağlar?",
+    excerpt:
+      "Her ay satışları sıfırdan kurmak yerine mevcut müşterilerle öngörülebilir gelir oluşturun. Tekrar eden gelir modelinin tanımı, avantajları ve ilk adımları.",
+    publishedAt: "2026-07-24",
+    readingTimeMinutes: 8,
+    category: "Gelir",
+  },
+  {
+    slug: "reklam-yerine-mevcut-musteri-degeri",
+    title: "Sürekli Reklam Vermek Yerine Mevcut Müşterilerinizden Daha Fazla Değer Elde Edin",
+    description:
+      "Reklam maliyetleri yükselirken büyüme için mevcut müşteri değeri, tekrar sipariş ve abonelik modeliyle LTV artırma stratejileri.",
+    excerpt:
+      "Daha fazla reklam her zaman daha fazla büyüme demek değildir. Mevcut müşterilerden değer çıkarmak ve abonelikle tekrar siparişi sistematik hale getirmek.",
+    publishedAt: "2026-07-23",
+    readingTimeMinutes: 8,
+    category: "Büyüme",
+  },
+  {
     slug: "tek-seferlik-satistan-tekrarlayan-gelire-gecis",
     title: "Tek Seferlik Satıştan Tekrarlayan Gelire Geçiş Rehberi",
     description:
