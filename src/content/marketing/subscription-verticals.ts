@@ -298,7 +298,7 @@ export const subscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Güzellik aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "beauty-faq-1",
@@ -417,7 +417,7 @@ export const subscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Takviye aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "supp-faq-1",
@@ -534,7 +534,7 @@ export const subscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Pet aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "pet-faq-1",
@@ -649,7 +649,7 @@ export const subscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Yemek kiti ve gıda aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "food-faq-1",
@@ -764,7 +764,7 @@ export const subscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Wellness aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "well-faq-1",

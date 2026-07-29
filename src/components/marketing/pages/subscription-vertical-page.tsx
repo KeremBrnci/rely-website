@@ -52,7 +52,11 @@ export function SubscriptionVerticalPage({ slug }: { slug: SubscriptionVerticalS
         sectionShell={verticalMarketingSectionShell.whyRely}
       />
       <MarketingInternalLinksSection internalLinks={content.internalLinks} />
-      <VerticalPageFaq title={content.faq.title} items={content.faq.items} />
+      <VerticalPageFaq
+        title="Sıkça Sorulan Sorular"
+        items={content.faq.items}
+        className="!pt-[clamp(4.75rem,8vw,7rem)]"
+      />
     </>
   );
 }

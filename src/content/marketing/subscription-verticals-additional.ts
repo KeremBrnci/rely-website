@@ -112,7 +112,7 @@ export const additionalSubscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Abonelik kutusu SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "box-faq-1",
@@ -231,7 +231,7 @@ export const additionalSubscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Sağlıklı atıştırmalık aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "snack-faq-1",
@@ -351,7 +351,7 @@ export const additionalSubscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Market aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "groc-faq-1",
@@ -470,7 +470,7 @@ export const additionalSubscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Özel tüketim aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "spec-faq-1",
@@ -590,7 +590,7 @@ export const additionalSubscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Ev tüketim aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "house-faq-1",
@@ -709,7 +709,7 @@ export const additionalSubscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Sağlıklı içecek aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "bev-faq-1",
@@ -828,7 +828,7 @@ export const additionalSubscriptionVerticalsContent: Record<
       ],
     },
     faq: {
-      title: "Protein tozu aboneliği SSS",
+      title: "Sıkça Sorulan Sorular",
       items: [
         {
           id: "prot-faq-1",
