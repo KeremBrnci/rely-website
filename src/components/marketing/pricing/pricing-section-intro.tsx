@@ -25,10 +25,20 @@ export function PricingSectionIntro({
   className,
   descriptionClassName,
 }: PricingSectionIntroProps) {
+  const showEyebrow = eyebrow.trim().length > 0;
+
   return (
     <div className={cn(pricingSectionIntroClassName, className)}>
-      <InfrastructureEyebrow align="center">{eyebrow}</InfrastructureEyebrow>
-      <h2 className={cn(textRoleClassName["heading-xl"], pricingSectionTitleClassName)}>
+      {showEyebrow ? (
+        <InfrastructureEyebrow align="center">{eyebrow}</InfrastructureEyebrow>
+      ) : null}
+      <h2
+        className={cn(
+          textRoleClassName["heading-xl"],
+          pricingSectionTitleClassName,
+          !showEyebrow && "mt-0",
+        )}
+      >
         {titleEmphasis ? (
           <HeadlineEmphasis text={title} phrase={titleEmphasis} />
         ) : (

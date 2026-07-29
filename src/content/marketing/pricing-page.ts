@@ -203,11 +203,11 @@ export const pricingPageContent = {
   },
 
   plansIntro: {
-    eyebrow: "Tek ürün",
+    eyebrow: "",
     title: "Tek Platform. İhtiyacınıza Uygun Hizmet Seviyesi.",
     titleEmphasis: "İhtiyacınıza Uygun Hizmet Seviyesi.",
     description:
-      "Abonelik altyapısı tüm müşteriler için aynıdır. İhtiyacınıza göre hizmet seviyenizi seçebilir; onboarding, destek ve SLA kapsamınızı genişletebilirsiniz.",
+      "RELY tek bir platform sunar. Tüm müşteriler aynı ürün yeteneklerinden yararlanır. Enterprise; özel onboarding, öncelikli destek, Technical Account Manager ve SLA gibi kurumsal hizmetlerle bu deneyimi tamamlar.",
   },
   plans: [
     {
