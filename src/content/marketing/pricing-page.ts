@@ -204,10 +204,11 @@ export const pricingPageContent = {
 
   plansIntro: {
     eyebrow: "Tek ürün",
-    title: "Aynı platform. Farklı hizmet seviyesi.",
-    titleEmphasis: "Farklı hizmet seviyesi",
+    title: "Tek Platform. İhtiyacınıza Uygun Hizmet Seviyesi.",
+    titleEmphasis: "İhtiyacınıza Uygun Hizmet Seviyesi.",
     description:
-"Abonelik altyapısı tüm müşteriler için aynıdır. İhtiyacınıza göre hizmet seviyenizi seçebilir; onboarding, destek ve SLA kapsamınızı genişletebilirsiniz."  },
+      "Abonelik altyapısı tüm müşteriler için aynıdır. İhtiyacınıza göre hizmet seviyenizi seçebilir; onboarding, destek ve SLA kapsamınızı genişletebilirsiniz.",
+  },
   plans: [
     {
       id: "platform",
