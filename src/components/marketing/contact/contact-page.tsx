@@ -3,6 +3,7 @@ import { Check, Mail, MapPin } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { ContactForm } from "@/components/marketing/contact/contact-form";
+import { SmoothHashScroll } from "@/components/marketing/smooth-hash-scroll";
 import { SolutionHero } from "@/components/marketing/solutions/solution-hero";
 import { VerticalPageFaq } from "@/components/marketing/verticals/vertical-page-faq";
 import { InfrastructureEyebrow } from "@/components/sections/headings/infrastructure-eyebrow";
@@ -18,6 +19,7 @@ export function ContactPage() {
 
   return (
     <>
+      <SmoothHashScroll />
       <PageSeo
         pathname={routes.contact}
         titleSegment={contactPageMeta.title}

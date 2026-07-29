@@ -113,9 +113,12 @@ export const preFooterCtaVariants: Record<PreFooterCtaVariantKey, PreFooterCtaVa
       blob("-top-16 right-[10%]", "size-[min(14rem,34vw)]", softBlueGlow, 0.38, "blur-[56px]"),
     ],
     copy: {
+      title: "Abonelik operasyonunuzu birlikte değerlendirelim",
+      titleEmphasis: "birlikte değerlendirelim",
       subtitle:
-        "Başlangıç veya kurumsal — size uygun planı seçin. Ücretsiz deneyin, ölçeklendikçe aynı platformda kalın.",
-      primary: { label: "Ücretsiz dene", href: routes.pricingTr },
+        "Platform veya Enterprise kapsamını hacminize ve hizmet ihtiyacınıza göre netleştirelim.",
+      primary: { label: "Görüşme planlayın", href: routes.contactForm },
+      secondary: { label: "Platformu inceleyin", href: routes.product },
     },
   },
   contact: {

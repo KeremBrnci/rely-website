@@ -40,6 +40,7 @@ export function SolutionHero({
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               href={hero.primaryCta.href}
+              scroll={!hero.primaryCta.href.includes("#")}
               className={cn(
                 "inline-flex h-11 items-center justify-center rounded-shell px-6",
                 "font-sans text-[15px] font-medium leading-[1.45] tracking-[-0.02em] text-white",
@@ -51,6 +52,7 @@ export function SolutionHero({
             </Link>
             <Link
               href={hero.secondaryCta.href}
+              scroll={!hero.secondaryCta.href.includes("#")}
               className={cn(
                 "inline-flex h-11 items-center justify-center rounded-shell border px-6",
                 "font-sans text-[15px] font-medium leading-[1.45] tracking-[-0.02em]",

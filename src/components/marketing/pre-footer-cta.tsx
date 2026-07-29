@@ -26,6 +26,9 @@ export function MarketingPreFooterCta({ className }: MarketingPreFooterCtaProps)
   if (pathname === routes.references) {
     return null;
   }
+  if (pathname === routes.pricingTr || pathname === routes.pricingLegacy) {
+    return null;
+  }
 
   const preset = resolvePreFooterCtaVariant(pathname);
   const { title, titleEmphasis, subtitle, primary, secondary } = mergePreFooterCopy(preset);
@@ -73,6 +76,7 @@ export function MarketingPreFooterCta({ className }: MarketingPreFooterCtaProps)
           >
             <Link
               href={primary.href}
+              scroll={!primary.href.includes("#")}
               className={cn(
                 "inline-flex h-11 w-full items-center justify-center rounded-shell px-6 sm:w-auto",
                 "font-sans text-[15px] font-medium leading-[1.45] tracking-[-0.02em] text-white",
@@ -85,6 +89,7 @@ export function MarketingPreFooterCta({ className }: MarketingPreFooterCtaProps)
             </Link>
             <Link
               href={secondary.href}
+              scroll={!secondary.href.includes("#")}
               className={cn(
                 "inline-flex h-11 w-full items-center justify-center rounded-shell border px-6 sm:w-auto",
                 "font-sans text-[15px] font-medium leading-[1.45] tracking-[-0.02em] text-white",

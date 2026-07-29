@@ -20,7 +20,7 @@ export function PricingPageHero() {
         <InfrastructureEyebrow>{hero.eyebrow}</InfrastructureEyebrow>
         <h1
           className={cn(
-            "mt-5 max-w-[20ch] text-balance font-heading font-bold tracking-[-0.035em]",
+            "mt-5 max-w-[28ch] text-balance font-heading font-bold tracking-[-0.035em]",
             "text-[clamp(2rem,4.2vw,3.125rem)] leading-[1.1]",
             "text-[color:var(--marketing-foreground-strong)]",
           )}
@@ -34,9 +34,10 @@ export function PricingPageHero() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link
             href={hero.primaryCta.href}
+            scroll={!hero.primaryCta.href.includes("#")}
             className={cn(
-              "inline-flex h-11 items-center justify-center rounded-shell px-6",
-              "font-sans text-[15px] font-medium leading-[1.45] tracking-[-0.02em] text-white",
+              "inline-flex min-h-11 items-center justify-center rounded-shell px-6 py-2.5 text-center",
+              "font-sans text-[14px] font-medium leading-[1.35] tracking-[-0.02em] text-white sm:text-[15px]",
               "bg-[color:var(--marketing-primary)]",
               "transition-colors duration-300 ease-out hover:bg-[color:var(--marketing-primary-hover)]",
             )}
@@ -45,9 +46,10 @@ export function PricingPageHero() {
           </Link>
           <Link
             href={hero.secondaryCta.href}
+            scroll={!hero.secondaryCta.href.includes("#")}
             className={cn(
-              "inline-flex h-11 items-center justify-center rounded-shell border px-6",
-              "font-sans text-[15px] font-medium leading-[1.45] tracking-[-0.02em]",
+              "inline-flex min-h-11 items-center justify-center rounded-shell border px-6 py-2.5",
+              "font-sans text-[14px] font-medium leading-[1.35] tracking-[-0.02em] sm:text-[15px]",
               "border-[color:var(--marketing-border-subtle)] bg-[color:var(--marketing-surface-elevated)]",
               "text-[color:var(--marketing-foreground-strong)]",
               "transition-colors duration-300 ease-out hover:bg-[color:var(--marketing-soft-blue)]",

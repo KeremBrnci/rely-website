@@ -34,20 +34,20 @@ export type PricingComparisonMatrixProps = {
 function CellGlyph({ value }: { value: PricingComparisonCellValue }) {
   if (value === true) {
     return (
-      <span className="text-[13.1px] font-bold leading-[19px] text-[color:var(--marketing-primary)]">
+      <span className="block w-full text-center text-[13.1px] font-bold leading-[19px] text-[color:var(--marketing-primary)]">
         ✓
       </span>
     );
   }
   if (value === false || value === "") {
     return (
-      <span className="text-[13.1px] font-normal leading-[19px] text-[color:var(--marketing-body-muted)]">
+      <span className="block w-full text-center text-[13.1px] font-normal leading-[19px] text-[color:var(--marketing-body-muted)]">
         —
       </span>
     );
   }
   return (
-    <span className="text-center text-[12px] font-semibold leading-[1.35] text-[color:var(--marketing-foreground-strong)] sm:text-[13.1px] sm:leading-[19px]">
+    <span className="block w-full text-center text-[12px] font-semibold leading-[1.4] text-[color:var(--marketing-foreground-strong)] sm:text-[13.1px] sm:leading-[1.4]">
       {value}
     </span>
   );
@@ -63,7 +63,7 @@ export function PricingComparisonMatrix({
   const gridTemplate = cn(
     "grid min-h-[41.25px] w-full items-center border-b border-[color:var(--marketing-border-subtle)] last:border-b-0",
     variant === "flat"
-      ? "grid-cols-[minmax(0,1.25fr)_minmax(6.5rem,1fr)_minmax(6.5rem,1fr)] sm:grid-cols-[minmax(0,1.35fr)_minmax(7.5rem,1fr)_minmax(7.5rem,1fr)]"
+      ? "grid-cols-[minmax(0,1.15fr)_minmax(7rem,1fr)_minmax(7rem,1fr)] sm:grid-cols-[minmax(0,1.2fr)_minmax(8rem,1fr)_minmax(8rem,1fr)]"
       : "grid-cols-[minmax(0,1fr)_minmax(80px,80px)_minmax(80px,80px)]",
   );
 
@@ -83,9 +83,21 @@ export function PricingComparisonMatrix({
               "h-[38.5px] min-h-0 bg-[color:var(--marketing-surface-band)] px-[22.5px] text-[11.3px] font-semibold uppercase leading-[15px] tracking-[0.281px] text-[color:var(--marketing-foreground-strong)]",
             )}
           >
-            <div>{featureLabel}</div>
+            <div
+              className={cn(
+                variant === "flat" && "text-center",
+              )}
+            >
+              {featureLabel}
+            </div>
             {plans.map((p) => (
-              <div key={p.id} className="text-center">
+              <div
+                key={p.id}
+                className={cn(
+                  "flex items-center justify-center text-center",
+                  p.id === "enterprise" && "translate-x-2 sm:translate-x-3",
+                )}
+              >
                 {p.label}
               </div>
             ))}
@@ -102,13 +114,13 @@ export function PricingComparisonMatrix({
                       rowIndex % 2 === 1 ? "bg-[rgba(245,248,250,0.5)]" : "bg-white",
                     )}
                   >
-                    <div className="px-[22.5px] text-[13.1px] leading-[19px] text-[color:var(--marketing-body-muted)]">
+                    <div className="px-3 py-3 text-center text-[13.1px] leading-[1.4] text-[color:var(--marketing-body-muted)] sm:px-[22.5px]">
                       {row.feature}
                     </div>
                     {plans.map((p) => (
                       <div
                         key={p.id}
-                        className="flex h-full min-h-[41.25px] items-center justify-center px-2"
+                        className="flex h-full min-h-[48px] items-center justify-center px-3 py-3 text-center"
                       >
                         <CellGlyph value={row.values[p.id] ?? false} />
                       </div>
@@ -155,7 +167,7 @@ export function PricingComparisonMatrix({
                       {plans.map((p) => (
                         <div
                           key={p.id}
-                          className="flex h-full min-h-[41.25px] items-center justify-center px-1"
+                          className="flex h-full min-h-[41.25px] items-center justify-center px-1 text-center"
                         >
                           <CellGlyph value={row.values[p.id] ?? false} />
                         </div>

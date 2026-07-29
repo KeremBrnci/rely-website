@@ -43,11 +43,24 @@ export const marketingPlatformMonthlyFee = "12.990 ₺";
 
 export const marketingPlatformMonthlyFeePerMonthLabel = `${marketingPlatformMonthlyFee} / ay platform ücreti`;
 
-export const marketingEnterprisePricingContactLabel = "Fiyat için iletişime geçin";
+export const marketingEnterprisePricingContactLabel = "Özel teklif";
+
+/** Başarı Payı — yalnızca RELY üzerinden oluşan abonelik cirosu. */
+export const marketingSuccessFeeOnlySubscriptionRevenue =
+  "Ücretlendirme yalnızca RELY üzerinden oluşan abonelik cirosuna uygulanır. Mevcut mağazanızdaki tek seferlik siparişlerden pay alınmaz.";
+
+export const marketingSuccessFeeTiers = [
+  { range: "0 – 1.000.000 ₺", rate: "%2,59" },
+  { range: "1.000.001 – 5.000.000 ₺", rate: "%2,19" },
+  { range: "5.000.001 – 10.000.000 ₺", rate: "%1,79" },
+  { range: "10.000.000 ₺+", rate: "%1,39" },
+] as const;
+
+export const marketingSuccessFeeSummaryLabel = "Kademeli Başarı Payı (%2,59 – %1,39)";
 
 /** SSS — fiyatlandırma, taşıma, ödeme (anasayfa dışı sayfalar). */
 export const marketingPlatformPricingFaqAnswer =
-  `Aylık ${marketingPlatformMonthlyFee} sabit platform ücreti ve abonelik tahsilatına göre komisyon alıyoruz. Komisyon oranları hacminize göre kademeli olarak belirlenir.`;
+  `Aylık ${marketingPlatformMonthlyFee} platform ücreti ve yalnızca RELY üzerinden oluşan abonelik cirosuna uygulanan kademeli Başarı Payı. Tek seferlik siparişlerden pay alınmaz. Oranlar aylık abonelik cirosuna göre %2,59 ile %1,39 arasında değişir.`;
 
 export const marketingSubscriberMigrationFaqAnswer =
   "Evet. Uygun sistemlerden mevcut abonelik verilerini ve müşteri kayıtlarını taşımanız için destek sağlıyoruz.";

@@ -12,6 +12,8 @@ export const routes = {
   pricingLegacy: "/pricing",
   /** Kanonik iletişim (`/contact` → 301). */
   contact: "/iletisim",
+  /** İletişim formu anchor — sayfa açılışında forma kaydırır. */
+  contactForm: "/iletisim#iletisim-form",
   blog: "/blog",
   /** Müşteri hikayeleri ve demo CTA — /referanslar. */
   references: "/referanslar",

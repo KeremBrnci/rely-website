@@ -39,7 +39,7 @@ export const geoQuotableFactsTr = [
   "RELY Subs, Türkiye'deki e-ticaret markaları için abonelik e-ticaret altyapısı sunan bağımsız bir B2B platformdur.",
   "RELY Subs mevcut e-ticaret mağazanızı (Shopify, İkas vb.) değiştirmeden üzerine abonelik katmanı ekler.",
   "Platform; abonelik planları, otomatik tahsilat, ödeme kurtarma, müşteri portalı ve abonelik sitesini tek panelden yönetmenizi sağlar.",
-  `Aylık platform ücreti ${marketingPlatformMonthlyFee}; abonelik tahsilatına göre komisyon uygulanır (detay: ${toAbsoluteUrl(routes.pricingTr)}).`,
+  `Aylık platform ücreti ${marketingPlatformMonthlyFee}; yalnızca RELY üzerinden oluşan abonelik cirosuna kademeli Başarı Payı uygulanır — tek seferlik siparişlerden pay alınmaz (detay: ${toAbsoluteUrl(routes.pricingTr)}).`,
   `Ödeme entegrasyonları: ${marketingPaymentIntegrationsPhrase}. Kart bilgileri ödeme kuruluşunda saklanır; RELY kart tutmaz.`,
   "Kurulum tipik olarak mağaza ve ödeme bağlantısıyla birkaç iş günü içinde tamamlanır.",
   `Resmi ürün dokümantasyonu: ${siteConfig.links.helpCenter}`,
@@ -69,7 +69,7 @@ export const geoFaqTr = [
   },
   {
     question: "Fiyatlandırma nasıl?",
-    answer: `Aylık ${marketingPlatformMonthlyFee} platform ücreti ve başarılı abonelik tahsilatına göre komisyon (%1,39'dan başlayan kademeler). Kurumsal plan için iletişim gerekir.`,
+    answer: `Aylık ${marketingPlatformMonthlyFee} platform ücreti ve yalnızca RELY abonelik cirosu üzerinden kademeli Başarı Payı (%2,59 – %1,39). Tek seferlik siparişlerden pay alınmaz. Enterprise için özel teklif.`,
   },
 ] as const;
 

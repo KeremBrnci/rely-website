@@ -22,6 +22,7 @@ export function PricingTrustBanner({ body, cta, className }: PricingTrustBannerP
         </p>
         <Link
           href={cta.href}
+          scroll={!cta.href.includes("#")}
           className="inline-flex items-center gap-2 text-[15px] font-medium text-white/95 underline-offset-4 transition-colors hover:text-white hover:underline"
         >
           {cta.label}

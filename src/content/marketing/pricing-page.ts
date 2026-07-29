@@ -1,7 +1,7 @@
 /**
  * Fiyatlandırma sayfası içeriği (TR) — kanonik `/fiyatlandirma`.
- * Plan ve özellikler RELY Subs dokümantasyonundaki gerçek yeteneklere dayanır
- * (bkz. docs/rely-product-reference.md). Sunum: components/marketing/pricing/*.
+ * Tek ürün: RELY Platform. Fark: hizmet seviyesi (Platform vs Enterprise).
+ * Copy ilkesi: özellik değil, operasyon ve iş sonucu.
  */
 
 import type {
@@ -12,191 +12,375 @@ import type { PricingFaqItem } from "@/components/marketing/pricing/pricing-page
 
 import { routes } from "@/config/routes";
 import {
-  marketingAutoBillingIncludeLabel,
   marketingCardStorageFaqAnswer,
   marketingEnterprisePricingContactLabel,
   marketingPlatformMonthlyFee,
-  marketingPlatformPricingFaqAnswer,
-  marketingSetupComparisonLabel,
   marketingSetupReadyPhrase,
-  marketingSetupSelfServiceLabel,
-  marketingSubscriberMigrationFaqAnswer,
+  marketingSuccessFeeOnlySubscriptionRevenue,
+  marketingSuccessFeeSummaryLabel,
+  marketingSuccessFeeTiers,
 } from "@/config/marketing/copy";
+
+export type PricingValueItem = {
+  id: string;
+  title: string;
+  body: string;
+};
 
 function cmpRow(
   id: string,
   feature: string,
-  starter: PricingComparisonRow["values"][string],
+  platform: PricingComparisonRow["values"][string],
   enterprise: PricingComparisonRow["values"][string],
 ): PricingComparisonRow {
-  return { id, feature, values: { starter, enterprise } };
+  return { id, feature, values: { platform, enterprise } };
 }
 
-/** Sadece planlar arasında gerçekten fark olan satırlar. */
-const planDifferenceRows: PricingComparisonRow[] = [
-  cmpRow(
-    "cmp-diff-0",
-    "Platform ücreti",
-    `${marketingPlatformMonthlyFee} / ay`,
-    marketingEnterprisePricingContactLabel,
-  ),
-  cmpRow("cmp-diff-1", "Komisyon", "%1,39'dan başlayan oranlar", "Hacme göre özel oran"),
-  cmpRow("cmp-diff-2", "Önerilen abone hacmi", "Başlangıç ve büyüme", "Yüksek hacim"),
-  cmpRow("cmp-diff-3", "Panel kullanıcıları", "1 kullanıcı", "Çoklu kullanıcı + roller"),
-  cmpRow("cmp-diff-4", "Kurulum", marketingSetupComparisonLabel, "Eşlik edilen kurulum"),
-  cmpRow("cmp-diff-5", "Mevcut abonelik taşıma", "Kendi ekibiniz", "Destekli veri taşıma"),
-  cmpRow("cmp-diff-6", "Destek kanalı", "E-posta (iş günü)", "Öncelikli + özel temsil"),
-  cmpRow("cmp-diff-7", "SLA", "Standart", "Özel SLA"),
-  cmpRow("cmp-diff-8", "Özel entegrasyon / API ihtiyaçları", false, "Talep üzerine"),
+const serviceDifferenceRows: PricingComparisonRow[] = [
+  cmpRow("svc-0", "Platform ücreti", `${marketingPlatformMonthlyFee} / ay`, marketingEnterprisePricingContactLabel),
+  cmpRow("svc-1", "Başarı Payı", marketingSuccessFeeSummaryLabel, "Hacme göre özel oran"),
+  cmpRow("svc-2", "Canlıya geçiş", "Rehberli kurulum", "Dedicated onboarding"),
+  cmpRow("svc-3", "Hesap sahipliği", "Standart destek", "Technical Account Manager"),
+  cmpRow("svc-4", "Hizmet seviyesi anlaşması", "Standart yanıt süresi", "Özel SLA"),
+  cmpRow("svc-5", "Destek önceliği", "İş günü e-posta", "Öncelikli destek"),
+  cmpRow("svc-6", "Ekip hazırlığı", "Dokümantasyon", "Ekibe özel eğitim"),
+  cmpRow("svc-7", "Veri taşıma", "Rehberli self-servis", "Migration desteği"),
+  cmpRow("svc-8", "Geliştirme sırası", "Standart öncelik", "Custom geliştirme önceliği"),
 ];
 
-const planDifferenceGroup: PricingComparisonGroup[] = [
+const serviceDifferenceGroup: PricingComparisonGroup[] = [
   {
-    id: "grp-diff",
-    title: "Ölçek, destek ve kurulum",
+    id: "grp-service",
+    title: "Hizmet seviyesi",
     defaultOpen: true,
-    rows: planDifferenceRows,
+    rows: serviceDifferenceRows,
   },
 ];
 
-const platformIncludes = [
-  "Abonelik planları: standart, ön ödemeli, dinamik",
-  "Haftalık, aylık ve yıllık sıklık + indirim kuralları",
-  "Paketler, koleksiyonlar ve hediye çekleri",
-  "Kendi domaininizde markalı abonelik sitesi",
-  "Duraklatma, iptal ve abonelik olay geçmişi",
-  marketingAutoBillingIncludeLabel,
-  "Başarısız ödeme kurtarma ve kart güncelleme bağlantısı",
-  "Otomatik sipariş oluşturma ve sipariş takibi",
-  "E-posta ve SMS bildirimleri",
-  "Merkezi yönetim paneli (abonelik, müşteri, ödeme)",
-  "E-ticaret altyapınızla entegrasyon",
-  "Müşteri paneli: plan, adres, teslimat güncelleme",
-] as const;
+const platformCapabilities: PricingValueItem[] = [
+  {
+    id: "subscription-ops",
+    title: "Abonelikleri tek yerden yönetin",
+    body: "Plan, sıklık, duraklatma ve iptal süreçlerini dağınık tablolar yerine tek operasyon panelinde toplayın.",
+  },
+  {
+    id: "auto-billing",
+    title: "Otomatik tahsilat",
+    body: "Yenileme tarihinde ödemeler otomatik alınır. Sipariş süreci manuel müdahale olmadan ilerler.",
+  },
+  {
+    id: "retry",
+    title: "Başarısız ödemeleri geri kazanın",
+    body: "Kart reddi ve geçici hatalarda yeniden deneme akışı çalışır. İstek dışı abonelik kaybını azaltırsınız.",
+  },
+  {
+    id: "portal",
+    title: "Müşteri self-servis portalı",
+    body: "Aboneler adres, plan ve kart bilgilerini kendileri günceller. Destek talebi hacmi düşer.",
+  },
+  {
+    id: "integrations",
+    title: "Mevcut sistemlerinizle bağlanın",
+    body: "Shopify, İkas, Ticimax ve T-Soft mağazalarınızla ürün ve sipariş senkronu kurulur. Mağaza değiştirmeniz gerekmez.",
+  },
+  {
+    id: "payments",
+    title: "Ödeme altyapınızı koruyun",
+    body: "Kart saklama destekleyen mevcut sanal POS’unuzla çalışın. Tahsilat sağlayıcınız üzerinden devam eder.",
+  },
+  {
+    id: "api",
+    title: "Operasyonu sistemlerinize bağlayın",
+    body: "API ve webhook’larla ERP, CRM ve iç araçlarınıza abonelik olaylarını aktarın.",
+  },
+  {
+    id: "analytics",
+    title: "Tekrarlayan geliri izleyin",
+    body: "Abonelik cirosu, yenileme ve kayıp sinyallerini operasyon kararlarına bağlayacak görünürlük sağlayın.",
+  },
+];
 
-const extraServices = [
-  "Özel frontend geliştirme",
-  "ERP & CRM entegrasyonları",
-  "Özel API entegrasyonu",
-  "Öncelikli destek paketi",
-  "B2B abonelik kurguları",
-  "Abonelik geçiş ve kurulum hizmeti",
-] as const;
-
-const pricingNotes = [
-  "Üçüncü taraf uygulama ücretleri müşteriye aittir.",
-  "Özel geliştirmeler ayrıca fiyatlandırılır.",
-  "Kurumsal ihtiyaçlar için özel teklif hazırlanır.",
-] as const;
+const enterpriseServices: PricingValueItem[] = [
+  {
+    id: "onboarding",
+    title: "Dedicated onboarding",
+    body: "Canlıya geçiş planı, entegrasyon adımları ve kabul kriterleri sizin ekibinizle birlikte yürütülür.",
+  },
+  {
+    id: "tam",
+    title: "Technical Account Manager",
+    body: "Teknik ve operasyonel konular için sabit bir muhatap. Escalation süresi kısalır.",
+  },
+  {
+    id: "sla",
+    title: "SLA",
+    body: "Yanıt ve çözüm süreleri yazılı hizmet seviyesiyle tanımlanır. Operasyon riski ölçülebilir hale gelir.",
+  },
+  {
+    id: "priority",
+    title: "Öncelikli destek",
+    body: "Kritik dönemlerde (kampanya, yenileme yoğunluğu, taşıma) destek kuyruğunda öncelik alırsınız.",
+  },
+  {
+    id: "training",
+    title: "Ekibe özel eğitim",
+    body: "E-ticaret, müşteri hizmetleri ve operasyon ekiplerine rol bazlı eğitim verilir.",
+  },
+  {
+    id: "migration",
+    title: "Migration desteği",
+    body: "Mevcut abonelik ve müşteri verilerinin taşınması planlanır, test edilir ve kontrollü şekilde canlıya alınır.",
+  },
+  {
+    id: "custom",
+    title: "Custom geliştirme önceliği",
+    body: "Kurumsal entegrasyon ve özel iş kuralları ürün backlog’unda önceliklendirilir.",
+  },
+];
 
 const pricingFaqItems: PricingFaqItem[] = [
   {
     id: "pf-1",
-    question: "RELY nasıl fiyatlandırılır?",
-    answer: marketingPlatformPricingFaqAnswer,
+    question: "Neden platform ücreti ve Başarı Payı birlikte?",
+    answer:
+      "Platform ücreti abonelik altyapısının sabit kısmını karşılar: yönetim paneli, tahsilat akışları, müşteri portalı, entegrasyonlar ve ürün bakımı. Başarı Payı yalnızca RELY üzerinden oluşan abonelik cirosuna bağlanır. Abonelik hacminiz arttıkça oran kademeli düşer.",
   },
   {
     id: "pf-2",
-    question: "Mevcut mağazamı değiştirmem gerekir mi?",
-    answer:
-    "Hayır. RELY, kullandığınız e-ticaret altyapısının üzerine eklenir; platform değiştirmeden abonelik katmanını ayrı bir subdomain ile entegre ederek yönetirsiniz.",
+    question: "Tek seferlik siparişlerden pay alınır mı?",
+    answer: `Hayır. ${marketingSuccessFeeOnlySubscriptionRevenue}`,
   },
   {
     id: "pf-3",
-    question: "Kurulum ne kadar sürer?",
+    question: "Başarı Payı hangi siparişlere uygulanır?",
     answer:
-      `Hızlı Başlangıç akışıyla çoğu mağaza ${marketingSetupReadyPhrase} olur: platformu bağlar, ürünleri içe aktarır, planı ve ödeme altyapısını kurarsınız. Kurumsal pakette ekibimiz kurulum ve taşımada eşlik eder.`,
+      "Yalnızca RELY üzerinden oluşan abonelik cirosundan alınır. Yenileme tahsilatları ve abonelik siparişleri bu kapsamdadır. Mevcut mağazanızdaki tek seferlik siparişler kapsama girmez.",
   },
   {
     id: "pf-4",
-    question: "Kart bilgileri nasıl saklanıyor?",
-    answer: marketingCardStorageFaqAnswer,
+    question: "Mağaza değiştirmek gerekir mi?",
+    answer:
+      "Hayır. Shopify, İkas, Ticimax veya T-Soft mağazanız yerinde kalır. Abonelik planları, tahsilat ve müşteri portalı RELY üzerinden yönetilir.",
   },
   {
     id: "pf-5",
-    question: "Mevcut abonelerimi taşıyabilir miyim?",
-    answer: marketingSubscriberMigrationFaqAnswer,
+    question: "Hangi platformlar destekleniyor?",
+    answer:
+      "Shopify, İkas, Ticimax ve T-Soft. Ürün ve sipariş senkronu mevcut operasyonunuzu bozmadan kurulur. Entegrasyon kapsamı görüşmede netleştirilir.",
+  },
+  {
+    id: "pf-6",
+    question: "Kart bilgileri nerede saklanır?",
+    answer: marketingCardStorageFaqAnswer,
+  },
+  {
+    id: "pf-7",
+    question: "Enterprise farkı nedir?",
+    answer:
+      "Ürün yetenekleri aynıdır. Enterprise’da fark hizmet seviyesindedir: dedicated onboarding, Technical Account Manager, SLA, öncelikli destek, ekibe özel eğitim, migration desteği ve custom geliştirme önceliği. Fiyatlandırma özel teklifle belirlenir.",
+  },
+  {
+    id: "pf-8",
+    question: "Canlıya geçiş ne kadar sürer?",
+    answer: `Hazırlık düzeyine göre değişir. Hızlı başlangıçta birçok mağaza ${marketingSetupReadyPhrase} hale gelir. Mevcut abone taşıma veya özel entegrasyon varsa süre birlikte planlanır.`,
   },
 ];
 
 export const pricingPageMeta = {
   title: "Fiyatlandırma",
-  description: `E-ticaret abonelik altyapısı fiyatlandırması: aylık ${marketingPlatformMonthlyFee} platform ücreti ve %1,39'dan başlayan komisyon. Tüm abonelik özellikleri her planda; ölçek ve destek Kurumsal pakette genişler.`,
+  description: `RELY Subs abonelik altyapısı: aylık ${marketingPlatformMonthlyFee} platform ücreti ve yalnızca abonelik cirosuna uygulanan kademeli Başarı Payı. Tek seferlik siparişlerden pay alınmaz.`,
 } as const;
 
 export const pricingPageContent = {
   hero: {
-    eyebrow: "Fiyatlandırma",
-    title: "İşinizle birlikte büyüyen şeffaf fiyatlandırma",
-    titleEmphasis: "şeffaf fiyatlandırma",
-    subtitle: `Aylık ${marketingPlatformMonthlyFee} platform ücreti ve abonelik tahsilatına göre komisyon. Gizli kalem yok; ister yeni başlayın ister ölçeklenin.`,
-    primaryCta: { label: "Demo talep et", href: routes.contact },
-    secondaryCta: { label: "Ürünü inceleyin", href: routes.product },
+    eyebrow: "E-Ticaret Abonelik Altyapısı",
+    title: "Markanızı Abonelik Modeliyle Büyütün",
+    titleEmphasis: "Abonelik Modeliyle",
+    subtitle:
+      "Shopify, İkas, Ticimax veya T-Soft mağazanız yerinde kalır. Abonelik yönetimi, otomatik tahsilat, müşteri portalı ve ödeme kurtarmayı mevcut operasyonunuza ekleyin.",
+    primaryCta: { label: "Demo Talep Et", href: routes.contactForm },
+    secondaryCta: { label: "Platformu Yakından İncele", href: routes.product },
   },
 
+  plansIntro: {
+    eyebrow: "Tek ürün",
+    title: "Aynı platform. Farklı hizmet seviyesi.",
+    titleEmphasis: "Farklı hizmet seviyesi",
+    description:
+"Abonelik altyapısı tüm müşteriler için aynıdır. İhtiyacınıza göre hizmet seviyenizi seçebilir; onboarding, destek ve SLA kapsamınızı genişletebilirsiniz."  },
   plans: [
     {
-      id: "starter",
-      name: "Başlangıç",
-      tagline: "Aboneliğe başlamak ve kendi hızınızda büyümek için.",
+      id: "platform",
+      name: "RELY Platform",
+      tagline:
+        "Orta ve büyük ölçekli e-ticaret ekipleri için abonelik operasyonunun tamamı.",
       priceNote: marketingPlatformMonthlyFee,
-      priceSubnote: "Aylık platform ücreti + %1,39'dan başlayan komisyon oranı.",
-      featured: false,
-      cta: { label: "Demo talep et", href: routes.contact },
-      features: [
-        "Tüm platform özellikleri",
-        marketingSetupSelfServiceLabel,
-        "1 panel kullanıcısı",
-        "E-posta destek (iş günü)",
-      ],
+      pricePeriod: "/ ay",
+      priceSubnote: `+ ${marketingSuccessFeeSummaryLabel}`,
+      priceDetail:
+        "Platform ücreti altyapıyı ve sürekli ürün bakımını kapsar. Başarı Payı yalnızca RELY abonelik cirosuna uygulanır.",
+      featured: true,
+      badge: "Tek ürün",
+      cta: { label: "Abonelik modelinizi planlayalım", href: routes.contactForm },
+      featureIntro: "Abonelik Yönetimini Basitleştirin",
+      capabilities: platformCapabilities,
+      services: [] as PricingValueItem[],
     },
     {
       id: "enterprise",
-      name: "Kurumsal",
-      tagline: "Yüksek hacim, taşıma ve özel operasyon ihtiyaçları için.",
+      name: "Enterprise",
+      tagline:
+        "Yüksek hacim, taşıma ve kurumsal yönetişim ihtiyacı olan ekipler için hizmet katmanı.",
       priceNote: marketingEnterprisePricingContactLabel,
-      priceSubnote: "Hacim, komisyon ve SLA ihtiyacınıza göre özel teklif sunulur.",
-      featured: true,
-      cta: { label: "İletişime geçin", href: routes.contact },
-      features: [
-        "Başlangıçtaki tüm platform özellikleri",
-        "Çoklu kullanıcı ve gelişmiş yetkiler",
-        "Eşlik edilen kurulum ve destekli veri taşıma",
-        "Öncelikli destek ve özel SLA",
-        "Özel entegrasyon talepleri",
-      ],
+      pricePeriod: "",
+      priceSubnote: "RELY Platform’un tamamı + yükseltilmiş hizmet seviyesi.",
+      priceDetail:
+        "Ürün yetenekleri değişmez. Dedicated onboarding, hesap yönetimi, SLA ve migration kapsamı genişler.",
+      featured: false,
+      badge: "Hizmet seviyesi",
+      cta: { label: "Enterprise kapsamını konuşalım", href: routes.contactForm },
+      featureIntro: "Enterprise hizmet katmanı",
+      capabilities: [] as PricingValueItem[],
+      services: enterpriseServices,
     },
   ],
 
-  includes: {
-    title: "Tüm planlarda dahil",
+  successFee: {
+    eyebrow: "Başarı Payı",
+    title: "Büyümenize Uyum Sağlayan Fiyatlandırma",
+    titleEmphasis: "Uyum Sağlayan",
     description:
-      "Abonelik planlarından tahsilata, abonelik sitesinden bildirimlere kadar çekirdek altyapı her iki pakette de aynıdır. Aşağıdaki liste ek ücretli modül değil, platformun parçasıdır.",
-    items: platformIncludes,
+        "Platform ücreti, RELY'nin abonelik altyapısını ve tüm platform hizmetlerini kapsar. Başarı Payı ise yalnızca RELY üzerinden yönetilen abonelik cirosu için uygulanır. Abonelik hacminiz büyüdükçe başarı payı kademeli olarak azalır.",
+    highlight: {
+      eyebrow: "",
+      title: "Yalnızca Abonelik Geliriniz Üzerinden Ücretlendirilirsiniz",
+      body: "Başarı Payı yalnızca RELY üzerinden yönetilen abonelik cirosuna uygulanır. Mevcut mağazanızdaki tek seferlik siparişler bu hesaplamaya hiçbir zaman dahil edilmez.",
+    },
+    table: {
+      revenueLabel: "RELY Üzerinden Oluşan Abonelik Geliri",
+      rateLabel: "Başarı Payı",
+    },
+    tiers: marketingSuccessFeeTiers,
+    rationale: {
+      title: "Neden bu fiyatlandırma modeli?",
+      body: "Platform ücreti, RELY'nin abonelik altyapısını ve platform hizmetlerini kapsar. Başarı Payı ise yalnızca RELY üzerinden yönetilen abonelik cirosu için uygulanır. Böylece ücretlendirme, abonelik operasyonunuz büyüdükçe ölçeklenirken tek seferlik satışlarınız bu hesaplamaya dahil edilmez.",
+    },
+    pillars: [
+      {
+        id: "platform-fee",
+        label: "Platform Ücreti",
+        title: "Platform Ücreti Neleri Kapsar?",
+        body: "Dashboard, müşteri portalı, API ve webhook’lar, mağaza entegrasyonları, güvenlik, güncellemeler, ürün geliştirmeleri ve teknik destek bu sabit ücretin kapsamındadır. Abonelik operasyonunun sürekli çalışan katmanını finanse eder.",
+      },
+      {
+        id: "success-fee",
+        label: "Başarı Payı",
+        title: "Başarı Payı Nasıl Çalışır?",
+        body: "Başarı Payı yalnızca RELY üzerinden yönetilen abonelik cirosuna uygulanır. Abonelik hacmi büyüdükçe oran düşer. Ücretlendirme, büyümeyle birlikte ölçeklenir.",
+      },
+      {
+        id: "why-model",
+        label: "Neden Bu Model?",
+        title: "Neden İki Ayrı Ücretlendirme Var?",
+        body: "Platform ücreti sürekli çalışan SaaS altyapısını finanse eder. Başarı Payı ise yalnızca oluşturulan abonelik operasyonunun büyüklüğüne bağlıdır. Maliyet ile elde edilen değer daha dengeli hale gelir.",
+      },
+    ],
+    scenario: {
+      title: "Örnek Senaryo",
+      steps: [
+        {
+          id: "volume",
+          title: "Abonelik cirosu",
+          body: "Mağazanız aylık 2 milyon TL abonelik cirosu üretiyor.",
+        },
+        {
+          id: "tier",
+          title: "İlgili dilim",
+          body: "Başarı Payı, bu hacmin düştüğü dilime göre uygulanır.",
+        },
+        {
+          id: "excluded",
+          title: "Kapsam dışı",
+          body: "Tek seferlik mağaza siparişleri hesaplamaya dahil edilmez.",
+        },
+      ],
+    },
   },
 
   comparison: {
-    title: "Planlar arasındaki fark",
+    eyebrow: "Karşılaştırma",
+    title: "Fark ürün değil, hizmet seviyesidir",
+    titleEmphasis: "hizmet seviyesidir",
     description:
-      "İki plan arasındaki ayrım özellik listesinde değil; ölçek, kurulum desteği ve operasyonel SLA'da görünür.",
-    featureLabel: "ÖZELLİK",
+      "Her iki tarafta da aynı abonelik altyapısı vardır. Tablo; canlıya geçiş, hesap yönetimi, SLA ve migration farkını gösterir.",
+    featureLabel: "HİZMET",
     plans: [
-      { id: "starter", label: "BAŞLANGIÇ" },
-      { id: "enterprise", label: "KURUMSAL" },
+      { id: "platform", label: "RELY PLATFORM" },
+      { id: "enterprise", label: "ENTERPRISE" },
     ],
-    groups: planDifferenceGroup,
+    groups: serviceDifferenceGroup,
   },
 
-  addOns: {
-    title: "Ek hizmetler",
+  why: {
+    eyebrow: "Neden RELY?",
+    title: "Büyümenizi Destekleyen Altyapı",
+    titleEmphasis: "Operasyonel Kazanımlar",
     description:
-      "Platform paketinin dışında, operasyon ve entegrasyon ihtiyaçlarınıza göre eklenebilir hizmetler. Kapsam ve ücret, ihtiyacınıza göre ayrı teklif olarak netleşir.",
-    services: extraServices,
-    notes: pricingNotes,
+      "Abonelik altyapısı seçimi yalnızca fiyatla yapılmaz. Operasyonel sürdürülebilirlik, entegrasyon riski, müşteri deneyimi ve gelir modelinin şeffaflığı kararın merkezindedir.",
+    items: [
+      {
+        id: "keep-ops",
+        title: "Mevcut Operasyonunuzu Koruyun",
+        body: "Shopify, İkas, Ticimax veya T-Soft altyapınızı değiştirmeden abonelik modelini devreye alın. Mağaza migrasyonu olmadan abonelik katmanı eklenir.",
+        accent: "Migration riski oluşmaz.",
+      },
+      {
+        id: "success-aligned",
+        title: "Ücretlendirme Başarıya Bağlıdır",
+        body: "Yalnızca oluşturduğunuz abonelik gelirinden ücretlendirilirsiniz. Tek seferlik satışlarınız hiçbir zaman Başarı Payı’na dahil edilmez.",
+        accent: "Maliyet, ürettiğiniz abonelik cirosuna bağlanır.",
+      },
+      {
+        id: "recurring",
+        title: "Tekrarlayan Gelir Oluşturun",
+        body: "Abonelikler planlı yenilenir, tahsilatlar takvime bağlanır. Aylık gelir daha öngörülebilir hale gelir; finansal planlama güçlenir.",
+        accent: "Reklam bağımlılığını azaltır.",
+      },
+      {
+        id: "recovery",
+        title: "Başarısız Tahsilatların Etkisini Azaltın",
+        body: "Kart reddi ve geçici hatalarda abonelik sessizce düşmez. Kurtarma akışı çalışır; gelir kaybı operasyonel olarak sınırlanır.",
+        accent: "İstek dışı churn azalır.",
+      },
+      {
+        id: "support",
+        title: "Destek Operasyonunu Hafifletin",
+        body: "Müşteriler plan, adres, kart ve teslimat bilgisini self-servis yönetir. Destek ekibi istisna ve deneyim konularına odaklanır.",
+        accent: "Ticket hacmi düşer.",
+      },
+      {
+        id: "metrics",
+        title: "Abonelik Performansını Ölçün",
+        body: "MRR, LTV, churn ve yenileme oranını tek panelden izleyin. Abonelik performansını operasyon kararlarına bağlayın.",
+        accent: "Raporlama görünürlüğü artar.",
+      },
+    ],
   },
 
   faq: {
     title: "Sıkça sorulan sorular",
     items: pricingFaqItems,
+  },
+
+  finalCta: {
+    title: "Abonelik operasyonunuzu birlikte değerlendirelim",
+    titleEmphasis: "birlikte değerlendirelim",
+    subtitle: "Platform veya Enterprise kapsamını mağaza ve hizmet ihtiyacınıza göre netleştirelim.",
+    primary: { label: "Görüşme planlayın", href: routes.contactForm },
+    footnotes: [
+      "Tek seferlik siparişlerden pay alınmaz",
+      "Shopify, İkas, Ticimax, T-Soft",
+      "Ürün aynı · hizmet seviyesi seçilir",
+    ],
   },
 } as const;

@@ -6,10 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { Container } from "@/components/layout/container";
 import { MarketingSection } from "@/components/sections/shell/marketing-section";
-import {
-  marketingFaqContentClassName,
-  marketingFaqSectionShell,
-} from "@/config/marketing/faq-section-shell";
+import { pricingMarketingSectionShell } from "@/config/marketing/pricing-section-shell";
 import { cn } from "@/lib/utils";
 
 export type PricingFaqItem = {
@@ -26,15 +23,18 @@ export type PricingPageFaqProps = {
 
 export function PricingPageFaq({ title, items, className }: PricingPageFaqProps) {
   return (
-    <MarketingSection {...marketingFaqSectionShell} className={cn(className)}>
-      <Container className={marketingFaqContentClassName}>
+    <MarketingSection
+      {...pricingMarketingSectionShell.section}
+      className={cn(pricingMarketingSectionShell.section.className, className)}
+    >
+      <Container className="flex flex-col gap-12 md:gap-14">
         <h2 className="text-center text-[clamp(1.5rem,3vw,2.25rem)] font-bold leading-tight tracking-[-0.02em] text-[color:var(--marketing-foreground-strong)]">
           {title}
         </h2>
 
         <Accordion
           multiple
-          defaultValue={[]}
+          defaultValue={items[0] ? [items[0].id] : []}
           className={cn(
             "mx-auto w-full max-w-3xl overflow-hidden rounded-shell border border-[color:var(--marketing-border-subtle)]",
             "bg-[color:var(--marketing-surface-elevated)] shadow-elevation-surface",

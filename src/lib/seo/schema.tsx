@@ -153,7 +153,7 @@ export function ProductJsonLd() {
           price: priceAmount,
           priceValidUntil: "2027-12-31",
           availability: "https://schema.org/InStock",
-          description: `${marketingPlatformMonthlyFee} / ay platform ücreti; abonelik tahsilatına göre komisyon`,
+          description: `${marketingPlatformMonthlyFee} / ay platform ücreti; yalnızca abonelik cirosuna kademeli Başarı Payı`,
         },
         provider: { "@id": organizationId },
       }}
