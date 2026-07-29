@@ -310,10 +310,6 @@ export function enrichVerticalContent(
       ...content.hero,
       subtitle: `${content.hero.subtitle}${heroSuffix}`,
     },
-    whyUsed: {
-      ...content.whyUsed,
-      solution: appendSolutionLink(content.whyUsed.solution, key, "vertical"),
-    },
     internalLinks: buildVerticalInternalLinks(key),
   };
 }
@@ -330,40 +326,8 @@ export function enrichFeatureContent(
       ...content.hero,
       subtitle: `${content.hero.subtitle}${heroSuffix}`,
     },
-    outcome: {
-      ...content.outcome,
-      solution: appendSolutionLink(content.outcome.solution, feature, "feature"),
-    },
     internalLinks: buildFeatureInternalLinks(feature),
   };
-}
-
-function appendSolutionLink(
-  solution: string,
-  key: SubscriptionVerticalKey | FeatureKey,
-  kind: "vertical" | "feature",
-): string {
-  if (kind === "vertical") {
-    const verticalKey = key as SubscriptionVerticalKey;
-    const productPhrase =
-      verticalKey === "grocery" ||
-      verticalKey === "householdEssentials" ||
-      verticalKey === "petFood"
-        ? " [Ürün sayfamızda](/urun) operasyon modüllerini inceleyin."
-        : " Detaylı kurulum için [iletişim](/iletisim) formundan demo talep edin.";
-    return `${solution}${productPhrase}`;
-  }
-
-  const featureKey = key as FeatureKey;
-  if (
-    featureKey === "integrations" ||
-    featureKey === "billing" ||
-    featureKey === "storefront" ||
-    featureKey === "management"
-  ) {
-    return `${solution} Tüm modüller [abonelik platformu](/urun) sayfasında özetlenir.`;
-  }
-  return `${solution} [Fiyatlandırma](/fiyatlandirma) ve [ürün](/urun) sayfalarından devam edin.`;
 }
 
 export function getFeatureContent(feature: FeatureKey): EnrichedFeatureContent {
