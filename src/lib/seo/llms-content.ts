@@ -203,7 +203,7 @@ Typical setup: connect store → import products → create plans → connect pa
 ## Pricing (marketing site — ${GEO_LAST_UPDATED})
 
 - **Platform fee:** **${marketingPlatformMonthlyFee} / month** (fixed).
-- **Success fee (Başarı Payı):** tiered on RELY subscription revenue only (**%2,59 → %1,39** by monthly volume). One-time store orders are excluded.
+- **Success fee (Başarı Payı):** tiered on RELY subscription revenue only (**%2,59 → %0,99** by monthly volume). One-time store orders are excluded.
 - **RELY Platform:** full subscription operations for all customers.
 - **Enterprise:** same product + dedicated onboarding, TAM, SLA, priority support — custom quote.
 - Details: ${toAbsoluteUrl(routes.pricingTr)}

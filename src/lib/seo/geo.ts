@@ -69,7 +69,7 @@ export const geoFaqTr = [
   },
   {
     question: "Fiyatlandırma nasıl?",
-    answer: `Aylık ${marketingPlatformMonthlyFee} platform ücreti ve yalnızca RELY abonelik cirosu üzerinden kademeli Başarı Payı (%2,59 – %1,39). Tek seferlik siparişlerden pay alınmaz. Enterprise için özel teklif.`,
+    answer: `Aylık ${marketingPlatformMonthlyFee} platform ücreti ve yalnızca RELY abonelik cirosu üzerinden kademeli Başarı Payı (%2,59 – %0,99). Tek seferlik siparişlerden pay alınmaz. Enterprise için özel teklif.`,
   },
 ] as const;
 

@@ -14,12 +14,14 @@ import { routes } from "@/config/routes";
 import {
   marketingCardStorageFaqAnswer,
   marketingEnterprisePricingContactLabel,
-  marketingPlatformMonthlyFee,
   marketingSetupReadyPhrase,
   marketingSuccessFeeOnlySubscriptionRevenue,
   marketingSuccessFeeSummaryLabel,
   marketingSuccessFeeTiers,
 } from "@/config/marketing/copy";
+
+/** Geçici: platform ücreti tutarı sayfada gizli; demo sonrası paylaşılır. */
+const platformFeeDisplayLabel = "Demo sonrası";
 
 export type PricingValueItem = {
   id: string;
@@ -37,7 +39,7 @@ function cmpRow(
 }
 
 const serviceDifferenceRows: PricingComparisonRow[] = [
-  cmpRow("svc-0", "Platform ücreti", `${marketingPlatformMonthlyFee} / ay`, marketingEnterprisePricingContactLabel),
+  cmpRow("svc-0", "Platform ücreti", platformFeeDisplayLabel, marketingEnterprisePricingContactLabel),
   cmpRow("svc-1", "Başarı Payı", marketingSuccessFeeSummaryLabel, "Hacme göre özel oran"),
   cmpRow("svc-2", "Canlıya geçiş", "Rehberli kurulum", "Dedicated onboarding"),
   cmpRow("svc-3", "Hesap sahipliği", "Standart destek", "Technical Account Manager"),
@@ -188,7 +190,8 @@ const pricingFaqItems: PricingFaqItem[] = [
 
 export const pricingPageMeta = {
   title: "Fiyatlandırma",
-  description: `RELY Subs abonelik altyapısı: aylık ${marketingPlatformMonthlyFee} platform ücreti ve yalnızca abonelik cirosuna uygulanan kademeli Başarı Payı. Tek seferlik siparişlerden pay alınmaz.`,
+  description:
+    "RELY Subs abonelik altyapısı: platform ücreti ve yalnızca abonelik cirosuna uygulanan kademeli Başarı Payı. Tek seferlik siparişlerden pay alınmaz. Güncel tutarlar demo görüşmesinde paylaşılır.",
 } as const;
 
 export const pricingPageContent = {
@@ -215,11 +218,11 @@ export const pricingPageContent = {
       name: "RELY Platform",
       tagline:
         "Orta ve büyük ölçekli e-ticaret ekipleri için abonelik operasyonunun tamamı.",
-      priceNote: marketingPlatformMonthlyFee,
-      pricePeriod: "/ ay",
+      priceNote: platformFeeDisplayLabel,
+      pricePeriod: "",
       priceSubnote: `+ ${marketingSuccessFeeSummaryLabel}`,
       priceDetail:
-        "Platform ücreti altyapıyı ve sürekli ürün bakımını kapsar. Başarı Payı yalnızca RELY abonelik cirosuna uygulanır.",
+        "Platform ücreti altyapıyı ve sürekli ürün bakımını kapsar; tutar demo görüşmesinde netleşir. Başarı Payı yalnızca RELY abonelik cirosuna uygulanır.",
       featured: true,
       badge: "Tek ürün",
       cta: { label: "Abonelik modelinizi planlayalım", href: routes.contactForm },
