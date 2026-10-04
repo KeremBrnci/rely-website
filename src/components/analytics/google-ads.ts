@@ -4,3 +4,7 @@ export const GOOGLE_ADS_ID = "AW-18335930537";
 /** Sayfa görüntüleme dönüşüm etiketi (Google Ads). */
 export const GOOGLE_ADS_PAGE_VIEW_CONVERSION =
   "AW-18335930537/WrbdCL7nrNMcEKmxoKdE";
+
+/** İletişim / demo formu başarılı gönderim dönüşümü (Google Ads). */
+export const GOOGLE_ADS_FORM_SUBMISSION_CONVERSION =
+  "AW-18335930537/1dvQCOSn65AdEKmxoKdE";

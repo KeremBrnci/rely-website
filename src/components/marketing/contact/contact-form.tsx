@@ -9,6 +9,7 @@ import {
   ContactSelect,
   ContactTextarea,
 } from "@/components/marketing/contact/contact-field";
+import { trackContactFormConversion } from "@/components/analytics/track-contact-form-conversion";
 import { contactPageContent } from "@/content/marketing/contact-page";
 import { cn } from "@/lib/utils";
 
@@ -89,6 +90,7 @@ export function ContactForm() {
       });
 
       if (!res.ok) throw new Error("submit failed");
+      trackContactFormConversion();
       setStatus("success");
       setData(initialState);
       setErrors({});
