@@ -23,6 +23,7 @@ import {
 import { textRoleClassName } from "@/design-system/tokens";
 import { cn } from "@/lib/utils";
 
+import { HomeDemoRequestCta } from "./home-demo-request-cta";
 import { HowItWorksStepIcon } from "./how-it-works-step-icon";
 
 export function HowItWorksSection() {
@@ -135,6 +136,10 @@ export function HowItWorksSection() {
           );
         })}
       </ol>
+
+      <div className="mt-14 flex justify-center md:mt-16">
+        <HomeDemoRequestCta />
+      </div>
     </MarketingSection>
   );
 }

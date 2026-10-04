@@ -87,6 +87,10 @@ export const preFooterCtaVariants: Record<PreFooterCtaVariantKey, PreFooterCtaVa
       blob("-bottom-32 left-1/2 -translate-x-1/2", "size-[min(36rem,90vw)]", primaryGlow, 0.42),
       blob("top-[8%] -right-20", "size-[min(18rem,42vw)]", softBlueGlow, 0.35, "blur-[64px]"),
     ],
+    copy: {
+      primary: { label: "Demo Talep Et", href: routes.contactForm },
+      secondary: { label: "Nasıl çalışır?", href: `${routes.home}#how-it-works` },
+    },
   },
   default: {
     key: "default",

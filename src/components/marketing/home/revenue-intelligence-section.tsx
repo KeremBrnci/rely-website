@@ -7,6 +7,7 @@ import { homeRevenueIntelligence } from "@/content/marketing/home-revenue-intell
 import { textRoleClassName } from "@/design-system/tokens";
 import { cn } from "@/lib/utils";
 
+import { HomeDemoRequestCta } from "./home-demo-request-cta";
 import { RevenueIntelligenceDashboardPreview } from "./revenue-intelligence-dashboard-preview";
 
 const deltaToneClassName = {
@@ -73,6 +74,10 @@ export function RevenueIntelligenceSection() {
               "shadow-[0_42px_90px_-36px_rgba(3,14,26,0.75)]",
             )}
           />
+        </div>
+
+        <div className="rely-on-dark mt-14 flex justify-center md:mt-16">
+          <HomeDemoRequestCta />
         </div>
       </Container>
     </MarketingSection>

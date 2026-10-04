@@ -106,4 +106,15 @@ export const homeMarketingSectionShell = {
       marketingFaqSectionPaddingClassName,
     ),
   } satisfies HomeMarketingSectionShell,
+
+  cta: {
+    spacing: "xl",
+    background: "default",
+    contained: false,
+    className: cn(
+      "relative isolate scroll-mt-20 md:scroll-mt-24 overflow-hidden",
+      "border-y border-[color:color-mix(in_oklab,white_12%,transparent)]",
+      "rely-product-band",
+    ),
+  } satisfies HomeMarketingSectionShell,
 } as const;

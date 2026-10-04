@@ -12,8 +12,8 @@ import { homeMarketingSectionShell } from "@/config/marketing/home-section-shell
 import { BrandMark } from "@/components/brand/brand-mark";
 import { InfrastructureEyebrow } from "@/components/sections/headings/infrastructure-eyebrow";
 import { homeHero } from "@/content/marketing/home";
+import { HomeDemoRequestCta } from "@/components/marketing/home/home-demo-request-cta";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
 
 export function HeroSection() {
   preload(HERO_WAVE_IMAGE_SRC, { as: "image", fetchPriority: "high" });
@@ -73,32 +73,20 @@ export function HeroSection() {
                 {homeHero.subtitle}
               </p>
 
-              <Cluster
-                gap="md"
-                className="flex-wrap justify-start gap-x-6 gap-y-2.5 pt-0.5"
-              >
-              <Link
-                href={homeHero.primaryCta.href}
-                className={cn(
-                  "inline-flex items-center gap-2 text-[15px] font-medium leading-[26px] tracking-[-0.3px]",
-                  "text-[color:var(--marketing-primary)] underline decoration-[color:var(--marketing-primary)]/50 underline-offset-[0.22em]",
-                  "transition-colors hover:text-[color:var(--marketing-primary-hover)] hover:decoration-[color:var(--marketing-primary-hover)]",
-                )}
-              >
-                {homeHero.primaryCta.label}
-                <ArrowUpRight className="size-4 shrink-0 opacity-90" aria-hidden />
-              </Link>
-              <Link
-                href={homeHero.secondaryCta.href}
-                className={cn(
-                  "inline-flex items-center gap-2 text-[15px] font-medium leading-[26px] tracking-[-0.3px]",
-                  "text-[color:var(--marketing-body-muted)] underline decoration-[color:var(--marketing-body-muted)]/70 underline-offset-[0.22em]",
-                  "transition-colors hover:text-[color:var(--marketing-foreground-strong)] hover:decoration-[color:var(--marketing-foreground-strong)]/80",
-                )}
-              >
-                {homeHero.secondaryCta.label}
-                <ArrowUpRight className="size-4 shrink-0 opacity-90" aria-hidden />
-              </Link>
+              <Cluster gap="sm" className="flex-wrap justify-start gap-3 pt-0.5">
+                <HomeDemoRequestCta />
+                <Link
+                  href={homeHero.secondaryCta.href}
+                  className={cn(
+                    "inline-flex h-11 items-center justify-center rounded-shell border px-6",
+                    "font-sans text-[15px] font-medium leading-[1.45] tracking-[-0.02em]",
+                    "border-[color:var(--marketing-border-subtle)] bg-[color:var(--marketing-surface-elevated)]",
+                    "text-[color:var(--marketing-foreground-strong)]",
+                    "transition-colors duration-300 ease-out hover:bg-[color:var(--marketing-soft-blue)]",
+                  )}
+                >
+                  {homeHero.secondaryCta.label}
+                </Link>
               </Cluster>
             </div>
           </div>

@@ -14,17 +14,31 @@ export const homeMeta = {
 /** Ana sayfada referanslar bandını göster (geçici olarak kapalı). */
 export const homeTrustedBrandsVisible = false;
 
+export const homeDemoRequestCta = {
+  label: "Demo Talep Et",
+  href: routes.contactForm,
+} as const;
+
 export const homeHero = {
   eyebrow: "E-ticaret abonelik altyapısı",
-  title: "Mevcut mağazanıza abonelik modeli ekleyin. Tekrarlayan gelir oluşturun.",
+  title: "E-ticaret sitenize abonelik altyapısı ekleyin. Tekrarlayan gelir oluşturun.",
   titleEmphasis: "Tekrarlayan gelir",
   subtitle:
-    "RELY, mevcut e-ticaret altyapınızı değiştirmeden üzerine abonelik katmanı ekler; abonelik planları, otomatik tahsilat ve yenilemeleri tek panelden yönetirsiniz.",
-  primaryCta: { label: "Demo talep et", href: routes.pricingTr },
-  secondaryCta: { label: "Ürünü incele", href: routes.product },
+    "Mevcut mağazanıza entegre olun. Abonelikleri, otomatik tahsilatları ve müşteri süreçlerini tek panelden yönetin.",
+  primaryCta: homeDemoRequestCta,
+  secondaryCta: { label: "Nasıl çalışır?", href: "#how-it-works" },
 } as const;
 
 export const homeHeroMedia: { src: string; alt: string } | null = null;
+
+/** Sayfa içi CTA bandı (`CtaSection`) — pre-footer ile uyumlu demo odaklı mesaj. */
+export const homeCta = {
+  title: "Abonelik altyapınızı birlikte kuralım",
+  subtitle:
+    "Mağazanıza özel demo ve kurulum planı için ekibimizle görüşün; entegrasyon ve go-live adımlarını netleştirelim.",
+  primary: homeDemoRequestCta,
+  secondary: { label: "Nasıl çalışır?", href: `${routes.home}#how-it-works` },
+} as const;
 
 export type HomeTrustedBrand = {
   id: string;
