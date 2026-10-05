@@ -20,10 +20,11 @@ export type HomeCapability = {
 export const homeCapabilities = {
   intro: {
     eyebrow: "Neden RELY",
-    title: "Genel bir abonelik aracı değil; operasyonunuz için kurulmuş altyapı",
-    titleEmphasis: "operasyonunuz için kurulmuş altyapı",
+    title:
+      "Abonelik satışından fazlası. Tüm abonelik operasyonunuz tek altyapıda.",
+    titleEmphasis: "Tüm abonelik operasyonunuz tek altyapıda.",
     description:
-      "RELY, tekrarlayan gelir sağlamak isteyen e-ticaret markaları için baştan abonelik operasyonu olarak tasarlandı. Sonradan eklenen bir modül değil.",
+      "RELY; abonelik oluşturma, tekrarlayan tahsilat, sipariş, ödeme kurtarma ve müşteri yönetimini mevcut e-ticaret altyapınızla birlikte çalışan tek bir sistemde birleştirir.",
     align: "center" as const,
   },
   capabilities: [
@@ -31,55 +32,55 @@ export const homeCapabilities = {
       id: "cap-native",
       title: "Abonelik için kuruldu, sonradan eklenmedi",
       description:
-        "Tek seferlik satış aracına iliştirilmiş bir eklenti değil; baştan abonelik operasyonu için inşa edildi.",
+        "Tek seferlik satış sistemine sonradan eklenen bir özellik değil; tahsilattan siparişe kadar tüm abonelik yaşam döngüsü için geliştirildi.",
       icon: "layers",
       size: "wide",
       tone: "surface",
     },
     {
       id: "cap-shopify-native",
-      title: "Mevcut e-ticaret altyapınızla çalışır",
+      title: "Mevcut mağazanızla birlikte çalışır",
       description:
-        "Mağazanızı yeniden kurmadan, mevcut ürün ve ödeme akışınızın üzerine abonelik katmanı ekler.",
+        "E-ticaret altyapınızı yeniden kurmadan abonelik modeline geçebilirsiniz. RELY mevcut mağazanıza entegre olur ve abonelik operasyonunu ayrı bir katman olarak yönetir.",
       icon: "workflow",
       size: "wide",
       tone: "surface",
     },
     {
-      id: "cap-less-ops",
-      title: "Operasyonel yükü azaltır",
+      id: "cap-billing-to-order",
+      title: "Tahsilattan siparişe süreci otomatik yönetir",
       description:
-        "Yenileme, başarısız ödeme ve müşteri taleplerini otomatikleştirir; ekibiniz tek tek takip etmek zorunda kalmaz.",
+        "Yenileme tarihleri, tekrarlayan tahsilatlar ve aboneliğe bağlı siparişler otomatik yürütülür. Ekibinizin her yenilemeyi manuel takip etmesi gerekmez.",
       icon: "shield",
       size: "wide",
       tone: "surface",
     },
     {
-      id: "cap-measurable",
-      title: "Tekrarlayan geliri ölçülebilir kılar",
+      id: "cap-dunning",
+      title: "Başarısız ödemeleri gelire geri kazandırır",
       description:
-        "Aylık tekrarlayan gelir, abone kaybı ve elde tutmayı tek yerde gösterir; gelir tahmini varsayıma değil veriye dayanır.",
-      icon: "gauge",
+        "Başarısız tahsilatlar otomatik olarak yeniden denenir. Ödeme sorunlarının abonelik kaybına dönüşmesini azaltan kurtarma süreçleri devreye girer.",
+      icon: "shield",
+      size: "wide",
+      tone: "surface",
+    },
+    {
+      id: "cap-portal",
+      title: "Müşteriniz aboneliğini kendisi yönetir",
+      description:
+        "Müşteriler abonelik, kart ve adres bilgilerini kendi hesaplarından yönetebilir. Rutin işlemler için destek ekibine ihtiyaç azalır.",
+      icon: "globe",
       size: "compact",
       tone: "tint",
     },
     {
       id: "cap-scales",
-      title: "Süreçleri yeniden kurmadan ölçeklenir",
+      title: "Abonelik büyür, operasyon aynı hızda büyümez",
       description:
-        "Abone sayınız büyüdükçe yeni araçlara geçmeden aynı altyapıda ilerlersiniz.",
+        "Abone ve sipariş hacmi arttıkça aynı oranda manuel iş ve operasyon ekibi oluşturmak zorunda kalmadan ölçeklenebilirsiniz.",
       icon: "sparkles",
       size: "compact",
       tone: "tint",
-    },
-    {
-      id: "cap-real-ops",
-      title: "Gerçek satıcı operasyonuna göre tasarlandı",
-      description:
-        "İadeler, istisnalar ve kenar durumlar dahil; günlük operasyonun gerçeğine göre kurgulandı.",
-      icon: "globe",
-      size: "wide",
-      tone: "surface",
     },
   ] satisfies HomeCapability[],
 } as const;

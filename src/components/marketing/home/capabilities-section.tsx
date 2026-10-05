@@ -64,6 +64,7 @@ export function CapabilitiesSection() {
                 <div
                   className={cn(
                     "grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out",
+                    index === 0 && "grid-rows-[1fr]",
                     "group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr]",
                   )}
                 >

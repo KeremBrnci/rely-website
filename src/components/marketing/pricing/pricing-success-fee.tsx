@@ -79,8 +79,22 @@ export function PricingSuccessFee() {
                 <span className="text-[14px] leading-snug text-[color:var(--marketing-body-readable)] group-hover:text-[color:var(--marketing-foreground-strong)] md:text-[15px]">
                   {tier.range}
                 </span>
-                <span className="text-right font-heading text-[1.3125rem] font-semibold tabular-nums tracking-[-0.02em] text-[color:var(--marketing-primary)] md:text-[1.4375rem]">
-                  {tier.rate}
+                <span className="flex flex-col items-end text-right">
+                  <span
+                    className={cn(
+                      "font-heading font-semibold tabular-nums tracking-[-0.02em] text-[color:var(--marketing-primary)]",
+                      tier.flat
+                        ? "text-[1.0625rem] md:text-[1.1875rem]"
+                        : "text-[1.3125rem] md:text-[1.4375rem]",
+                    )}
+                  >
+                    {tier.rate}
+                  </span>
+                  {tier.note ? (
+                    <span className="mt-0.5 text-[12px] leading-snug text-[color:var(--marketing-body-muted)] md:text-[12.5px]">
+                      {tier.note}
+                    </span>
+                  ) : null}
                 </span>
               </li>
             ))}

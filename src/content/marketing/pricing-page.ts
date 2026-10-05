@@ -148,6 +148,12 @@ const pricingFaqItems: PricingFaqItem[] = [
       "Platform ücreti abonelik altyapısının sabit kısmını karşılar: yönetim paneli, tahsilat akışları, müşteri portalı, entegrasyonlar ve ürün bakımı. Başarı Payı yalnızca RELY üzerinden oluşan abonelik cirosuna bağlanır. Abonelik hacminiz arttıkça oran kademeli düşer.",
   },
   {
+    id: "pf-1b",
+    question: "Aylık abonelik cirom 1 milyon ₺'nin altındaysa ne öderim?",
+    answer:
+      "Yalnızca sabit ücret ödersiniz; Başarı Payı uygulanmaz. Aylık abonelik cironuz 1.000.000 ₺'yi aştığında, ilgili dilimin oranı (%2,29'dan başlayarak) devreye girer.",
+  },
+  {
     id: "pf-2",
     question: "Tek seferlik siparişlerden pay alınır mı?",
     answer: `Hayır. ${marketingSuccessFeeOnlySubscriptionRevenue}`,
@@ -300,7 +306,7 @@ export const pricingPageContent = {
         {
           id: "tier",
           title: "İlgili dilim",
-          body: "Başarı Payı, bu hacmin düştüğü dilime göre uygulanır.",
+          body: "Bu hacim ₺1.000.001 – ₺5.000.000 dilimine düşer; Başarı Payı %2,29 olarak uygulanır.",
         },
         {
           id: "excluded",

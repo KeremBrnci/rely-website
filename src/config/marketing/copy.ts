@@ -49,19 +49,32 @@ export const marketingEnterprisePricingContactLabel = "Özel teklif";
 export const marketingSuccessFeeOnlySubscriptionRevenue =
   "Ücretlendirme yalnızca RELY üzerinden oluşan abonelik cirosuna uygulanır. Mevcut mağazanızdaki tek seferlik siparişlerden pay alınmaz.";
 
-export const marketingSuccessFeeTiers = [
-  { range: "₺0 – ₺1.000.000", rate: "%2,59" },
-  { range: "₺1.000.001 – ₺5.000.000", rate: "%2,19" },
-  { range: "₺5.000.001 – ₺10.000.000", rate: "%1,79" },
-  { range: "₺10.000.001 – ₺20.000.000", rate: "%1,39" },
-  { range: "₺20.000.001+", rate: "%0,99" },
-] as const;
+export type MarketingSuccessFeeTier = {
+  range: string;
+  rate: string;
+  /** Oran yerine sabit ücret uygulanan dilim. */
+  flat?: boolean;
+  note?: string;
+};
 
-export const marketingSuccessFeeSummaryLabel = "Kademeli Başarı Payı (%2,59 – %0,99)";
+export const marketingSuccessFeeTiers: readonly MarketingSuccessFeeTier[] = [
+  {
+    range: "₺0 – ₺1.000.000",
+    rate: "Sabit ücret",
+    flat: true,
+    note: "Başarı Payı uygulanmaz",
+  },
+  { range: "₺1.000.001 – ₺5.000.000", rate: "%2,29" },
+  { range: "₺5.000.001 – ₺10.000.000", rate: "%1,99" },
+  { range: "₺10.000.001 – ₺20.000.000", rate: "%1,79" },
+  { range: "₺20.000.001+", rate: "%1,59" },
+];
+
+export const marketingSuccessFeeSummaryLabel = "Kademeli Başarı Payı";
 
 /** SSS — fiyatlandırma, taşıma, ödeme (anasayfa dışı sayfalar). */
 export const marketingPlatformPricingFaqAnswer =
-  `Aylık ${marketingPlatformMonthlyFee} platform ücreti ve yalnızca RELY üzerinden oluşan abonelik cirosuna uygulanan kademeli Başarı Payı. Tek seferlik siparişlerden pay alınmaz. Oranlar aylık abonelik cirosuna göre %2,59 ile %0,99 arasında değişir.`;
+  `Aylık ${marketingPlatformMonthlyFee} platform ücreti. Aylık abonelik cirosu 1.000.000 ₺'ye kadar yalnızca sabit ücret ödenir; bu eşiğin üzerinde RELY abonelik cirosuna %2,29 ile %1,59 arasında kademeli Başarı Payı uygulanır. Tek seferlik siparişlerden pay alınmaz.`;
 
 export const marketingSubscriberMigrationFaqAnswer =
   "Evet. Uygun sistemlerden mevcut abonelik verilerini ve müşteri kayıtlarını taşımanız için destek sağlıyoruz.";

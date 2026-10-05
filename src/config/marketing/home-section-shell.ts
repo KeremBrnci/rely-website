@@ -56,7 +56,7 @@ export const homeMarketingSectionShell = {
   } satisfies HomeMarketingSectionShell,
 
   howItWorks: {
-    spacing: "lg",
+    spacing: "md",
     background: "default",
     className: cn(
       "relative isolate scroll-mt-20 md:scroll-mt-24",
